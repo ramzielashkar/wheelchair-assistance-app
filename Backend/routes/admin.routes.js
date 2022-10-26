@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const { addUser, login, getServiceProviders, getBannedServiceProviders, toggleActiveClient, getUsersCount, getActiveClients } = require('../controllers/admin.controller');
+const { addUser, login, getServiceProviders, getBannedServiceProviders, toggleActiveClient, getUsersCount, getActiveClients, getBannedClients } = require('../controllers/admin.controller');
 const adminMiddleware = require('../middlewares/admin.middleware');
 const router = Router();
 
@@ -10,6 +10,7 @@ router.get('/services/banned', adminMiddleware, getBannedServiceProviders);
 router.put('/banClient/:id', adminMiddleware, toggleActiveClient);
 router.get('/count', adminMiddleware, getUsersCount);
 router.get('/clients', adminMiddleware, getActiveClients);
+router.get('/clients/banned', adminMiddleware, getBannedClients);
 
 
 module.exports = router
