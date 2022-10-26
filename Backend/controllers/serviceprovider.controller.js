@@ -56,7 +56,32 @@ const updateprofilepic = async (req, res)=>{
     }
 }
 
+//function to edit profile
+const editProfile = async (req, res)=>{
+    const id = req.user.id;
+    const {name, geo_location, location, description, working_hours, phone_number} = req.body;
+    try{
+        const user = await Seller.findByIdAndUpdate(id,{
+            name,
+            geo_location,
+            location,
+            description,
+            working_hours,
+            phone_number
+        })
+        const updated = await Seller.findById(id);
+        await res.json({
+            "user":updated});
+    } catch(error){
+        res.status(400).json({
+            message: error.message,
+        })
+    }
+    
+}
+
 module.exports = {
     login,
-    updateprofilepic
+    updateprofilepic,
+    editProfile
 }
