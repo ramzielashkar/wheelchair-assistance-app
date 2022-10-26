@@ -6,6 +6,7 @@ const { schema } = require('./user.model');
 const Client = User.discriminator('Client', new mongoose.Schema({
     profile_picture: {
         type: String,
+        default: 'default.png'
     },
     location:{
         type: String,
