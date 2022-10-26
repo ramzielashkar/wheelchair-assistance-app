@@ -110,6 +110,7 @@ const addPicture = async (req, res)=>{
 
 }
 
+//function to get pictures
 const getPictures = async (req, res)=>{
     const id = req.user.id;
     const pictures = await Seller.findById(id).select('pictures');
@@ -119,10 +120,32 @@ const getPictures = async (req, res)=>{
     })
 } 
 
+//function to delete picture
+const deletePicture = async (req, res)=>{
+    const id = req.user.id;
+    const {picture_id} = req.params;
+    try{
+    const seller = await Seller.updateOne({id}, 
+        {$pull:
+            {
+            "pictures":
+                {"_id": picture_id}
+        }
+    });
+    res.json({seller})
+    }catch(error){
+        res.status(400).json({
+            message: error.message,
+        })
+    }
+    
+}
+
 module.exports = {
     login,
     updateprofilepic,
     editProfile,
     addPicture,
-    getPictures
+    getPictures,
+    deletePicture
 }
