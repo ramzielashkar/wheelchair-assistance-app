@@ -15,6 +15,9 @@ app.use('/client', clientRoutes)
 const adminRoutes = require('./routes/admin.routes');
 app.use('/admin', adminRoutes)
 
+const serviceProviderRoutes = require('./routes/serviceprovider.routes');
+app.use('/service', serviceProviderRoutes);
+
 app.listen(process.env.PORT, (err)=>{
     if(err) throw err;
     console.log(`server running on port ${process.env.PORT}`);
