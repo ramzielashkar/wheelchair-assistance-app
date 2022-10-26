@@ -27,6 +27,36 @@ const login = async (req, res)=>{
     })
 }
 
+//function to update profile picture
+const updateprofilepic = async (req, res)=>{
+    const id = req.user.id;
+    const matches = req.body.image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
+    const response ={};
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+    const decodedImg = response;
+    const imageBuffer = decodedImg.data;
+    const type = decodedImg.type;
+    const date = new Date();
+    const seconds = date.getSeconds();
+    const fileName = `${id+ seconds}.png`;
+    
+    fs.writeFileSync("./public/" + fileName, imageBuffer, 'utf8');
+        try {
+        const user = await Seller.findByIdAndUpdate(id,{
+            profile_picture: fileName
+        })
+        const updated = await Seller.findById(id);
+        await res.json({
+            "user":updated});
+    } catch (error) {
+        res.status(400).json({
+            message: error.message,
+        })
+    }
+}
+
 module.exports = {
     login,
+    updateprofilepic
 }
