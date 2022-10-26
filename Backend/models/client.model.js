@@ -1,6 +1,6 @@
 const { default: mongoose } = require('mongoose');
 const {User, userSchema} = require('./user.model');
-const Seller = require('./seller.model');
+const Seller = require('./serviceprovider.model');
 const { schema } = require('./user.model');
 
 const Client = User.discriminator('Client', new mongoose.Schema({
