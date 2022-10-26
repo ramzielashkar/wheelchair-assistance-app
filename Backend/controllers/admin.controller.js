@@ -75,8 +75,8 @@ const getBannedServiceProviders = async (req, res)=>{
     res.json({service_providers});
 }
 
-// function to ban/unban client
-const toggleActiveClient = async (req, res)=>{
+// function to ban/unban service providers
+const toggleActiveSellers = async (req, res)=>{
     const {id} = req.params;
     const seller = await Seller.findById(id).select('active');
     const user = await Seller.findByIdAndUpdate(id,{
@@ -110,6 +110,16 @@ const getBannedClients = async (req, res)=>{
     res.json({clients});
 }
 
+// function to ban/unban client
+const toggleActiveClient = async (req, res)=>{
+    const {id} = req.params;
+    const client = await Client.findById(id).select('active');
+    const user = await Client.findByIdAndUpdate(id,{
+        active : !client.active
+    })
+    res.json({user})
+}
+
 
 
 module.exports= {
@@ -117,9 +127,10 @@ module.exports= {
     login,
     getServiceProviders,
     getBannedServiceProviders,
-    toggleActiveClient,
+    toggleActiveSellers,
     getUsersCount,
     getActiveClients,
-    getBannedClients
+    getBannedClients,
+    toggleActiveClient
 }
 
