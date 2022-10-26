@@ -8,4 +8,4 @@ const Admin = User.discriminator('Admin', new mongoose.Schema({
 );
 
 
-module.exports = mongoose.model('Admin')
+module.exports = Admin;
