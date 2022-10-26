@@ -110,9 +110,19 @@ const addPicture = async (req, res)=>{
 
 }
 
+const getPictures = async (req, res)=>{
+    const id = req.user.id;
+    const pictures = await Seller.findById(id).select('pictures');
+    if(!pictures) return res.status(404).json({message:"No Pictures Found"})
+    res.json({
+        pictures
+    })
+} 
+
 module.exports = {
     login,
     updateprofilepic,
     editProfile,
-    addPicture
+    addPicture,
+    getPictures
 }
