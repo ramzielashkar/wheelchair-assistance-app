@@ -22,6 +22,7 @@ const Seller = User.discriminator('Seller', new mongoose.Schema({
     ],
     active:{
         type: Boolean,
+        default:true
     },
     description:{
         type:String,
