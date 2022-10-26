@@ -3,11 +3,12 @@ const jwt = require('jsonwebtoken');
 const Client = require('../models/client.model');
 const fs = require("fs");
 const { now } = require('mongoose');
-
+const emailValidator = require('email-validator');
 
 // function to register client
 const register = async (req, res) =>{
     const {name, email, password, geo_location, location} = req.body;
+    if(emailValidator.validate(email)){
     try{
         const user = new Client();
         user.name = name;
@@ -26,6 +27,10 @@ const register = async (req, res) =>{
     }catch(err){
         res.status(400).json({
             message: err.message
+        })
+    }}else{
+        res.status(400).json({
+            message: "Invalid email structure"
         })
     }
 }
@@ -50,7 +55,8 @@ const updateprofilepic = async (req, res)=>{
             profile_picture: fileName
         })
         const updated = await Client.findById(id);
-        await res.json({updated});
+        await res.json({
+            "user":updated});
     } catch (error) {
         res.status(400).json({
             message: error.message,
@@ -58,8 +64,30 @@ const updateprofilepic = async (req, res)=>{
     }
 }
 
+//function to edit profile
+const editProfile = async (req, res)=>{
+    const id = req.user.id;
+    const {name, geo_location, location} = req.body;
+    try{
+        const user = await Client.findByIdAndUpdate(id,{
+            name,
+            geo_location,
+            location
+        })
+        const updated = await Client.findById(id);
+        await res.json({
+            "user":updated});
+    } catch(error){
+        res.status(400).json({
+            message: error.message,
+        })
+    }
+    
+}
+
 module.exports= {
     register,
-    updateprofilepic
+    updateprofilepic,
+    editProfile
 }
 
