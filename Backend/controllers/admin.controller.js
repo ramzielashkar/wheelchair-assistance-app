@@ -68,6 +68,12 @@ const getServiceProviders = async (req, res)=>{
     res.json({service_providers});
 }
 
+//function to get banned service providers
+const getBannedServiceProviders = async (req, res)=>{
+    const service_providers = await Seller.find({active:false});
+    if(!service_providers) return res.json({message: "No Service Providers Found"});
+    res.json({service_providers});
+}
 
 
 
@@ -75,6 +81,7 @@ const getServiceProviders = async (req, res)=>{
 module.exports= {
     addUser,
     login,
-    getServiceProviders
+    getServiceProviders,
+    getBannedServiceProviders
 }
 
