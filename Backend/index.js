@@ -6,6 +6,8 @@ require('dotenv').config();
 const cors = require ('cors');
 
 app.use(cors());
+app.use('/public',express.static('public'));
+
 
 const clientRoutes = require('./routes/client.routes');
 app.use('/client', clientRoutes)
