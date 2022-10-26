@@ -80,8 +80,39 @@ const editProfile = async (req, res)=>{
     
 }
 
+//function to add picture
+const addPicture = async (req, res)=>{
+    const id = req.user.id;
+    const matches = req.body.image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
+    const response ={};
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+    const decodedImg = response;
+    const imageBuffer = decodedImg.data;
+    const type = decodedImg.type;
+    const date = new Date();
+    const seconds = date.getSeconds();
+    const fileName = `${id+ seconds}.png`;
+    
+    fs.writeFileSync("./public/" + fileName, imageBuffer, 'utf8');
+    const picture = {
+        picture : fileName
+    }
+    Seller.findById(id, (error, result)=>{
+        try {
+            result.pictures.push(picture);
+            result.save();
+            res.json(result);
+        } catch (error) {
+            res.status(400).send(error.message);
+        } 
+    })
+
+}
+
 module.exports = {
     login,
     updateprofilepic,
-    editProfile
+    editProfile,
+    addPicture
 }
