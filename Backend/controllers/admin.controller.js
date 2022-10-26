@@ -85,7 +85,16 @@ const toggleActiveClient = async (req, res)=>{
     res.json({user})
 }
 
+// function to get number of service providers
 
+const getUsersCount = async (req, res)=>{
+    const service_providers = await Seller.find({active:true}).count();
+    const clients = await Client.find({active:true}).count();
+    res.json({
+        "service_providers":service_providers,
+        "clients": clients
+    })
+}
 
 
 module.exports= {
@@ -93,6 +102,7 @@ module.exports= {
     login,
     getServiceProviders,
     getBannedServiceProviders,
-    toggleActiveClient
+    toggleActiveClient,
+    getUsersCount
 }
 
