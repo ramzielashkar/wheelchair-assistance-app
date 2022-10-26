@@ -12,6 +12,9 @@ app.use('/public',express.static('public'));
 const clientRoutes = require('./routes/client.routes');
 app.use('/client', clientRoutes)
 
+const adminRoutes = require('./routes/admin.routes');
+app.use('/admin', adminRoutes)
+
 app.listen(process.env.PORT, (err)=>{
     if(err) throw err;
     console.log(`server running on port ${process.env.PORT}`);
