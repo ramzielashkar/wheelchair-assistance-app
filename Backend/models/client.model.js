@@ -21,6 +21,7 @@ const Client = User.discriminator('Client', new mongoose.Schema({
     ],
     active:{
         type: Boolean,
+        default:true
     },
     geo_location:{
         type : {type : String},
