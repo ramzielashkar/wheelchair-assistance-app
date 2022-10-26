@@ -96,6 +96,13 @@ const getUsersCount = async (req, res)=>{
     })
 }
 
+//function to get clients
+const getActiveClients = async (req, res)=>{
+    const clients = await Client.find({active:true});
+    if(!clients) return res.json({message: "No Clients Found"});
+    res.json({clients});
+}
+
 
 module.exports= {
     addUser,
@@ -103,6 +110,7 @@ module.exports= {
     getServiceProviders,
     getBannedServiceProviders,
     toggleActiveClient,
-    getUsersCount
+    getUsersCount,
+    getActiveClients
 }
 
