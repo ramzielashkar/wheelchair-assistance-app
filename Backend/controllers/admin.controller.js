@@ -61,10 +61,20 @@ const addUser = async (req, res) =>{
 }
 }
 
+//function to get service providers
+const getServiceProviders = async (req, res)=>{
+    const service_providers = await Seller.find({active:true});
+    if(!service_providers) return res.json({message: "No Service Providers Found"});
+    res.json({service_providers});
+}
+
+
+
 
 
 module.exports= {
     addUser,
-    login
+    login,
+    getServiceProviders
 }
 
