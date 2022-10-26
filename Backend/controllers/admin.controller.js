@@ -103,6 +103,14 @@ const getActiveClients = async (req, res)=>{
     res.json({clients});
 }
 
+//function to get banned clients
+const getBannedClients = async (req, res)=>{
+    const clients = await Client.find({active:false});
+    if(!clients) return res.json({message: "No Clients Found"});
+    res.json({clients});
+}
+
+
 
 module.exports= {
     addUser,
@@ -111,6 +119,7 @@ module.exports= {
     getBannedServiceProviders,
     toggleActiveClient,
     getUsersCount,
-    getActiveClients
+    getActiveClients,
+    getBannedClients
 }
 
