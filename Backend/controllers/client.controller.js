@@ -4,11 +4,23 @@ const Client = require('../models/client.model');
 const fs = require("fs");
 const { now } = require('mongoose');
 const emailValidator = require('email-validator');
+const passwordSchema = require('../validators/password.validator');
 
 // function to register client
 const register = async (req, res) =>{
     const {name, email, password, geo_location, location} = req.body;
-    if(emailValidator.validate(email)){
+
+    if(!emailValidator.validate(email)){
+        res.status(400).json({
+            message: "Invalid email structure"
+        })
+    }else{
+        if(!passwordSchema.validate(password)){
+            res.status(400).json({
+                message: "Password must have minimum 8 chars, lowercase and uppercase letters and at least 2 digits"
+            })
+        }else{
+    
     try{
         const user = new Client();
         user.name = name;
@@ -28,11 +40,9 @@ const register = async (req, res) =>{
         res.status(400).json({
             message: err.message
         })
-    }}else{
-        res.status(400).json({
-            message: "Invalid email structure"
-        })
     }
+}
+}
 }
 
 //function to update profile picture
