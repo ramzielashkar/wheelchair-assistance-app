@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const { register, updateprofilepic, editProfile, getServiceProviders, getServiceProvider, follow } = require('../controllers/client.controller');
+const { register, updateprofilepic, editProfile, getServiceProviders, getServiceProvider, follow, unFollow } = require('../controllers/client.controller');
 const clientMiddleware = require('../middlewares/client.middleware');
 const router = Router();
 
@@ -9,6 +9,7 @@ router.put('/editprofile', clientMiddleware, editProfile);
 router.get('/services/:type', clientMiddleware, getServiceProviders);
 router.get('/service/:_id', clientMiddleware, getServiceProvider);
 router.get('/follow/:seller_id', clientMiddleware, follow);
+router.delete('/unfollow/:follow_id', clientMiddleware, unFollow);
 
 
 
