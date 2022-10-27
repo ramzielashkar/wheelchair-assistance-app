@@ -123,16 +123,18 @@ const getPictures = async (req, res)=>{
 //function to delete picture
 const deletePicture = async (req, res)=>{
     const id = req.user.id;
-    const {picture_id} = req.params;
+    const {picture_id} = req.params; 
+    console.log(id)   
     try{
-    const seller = await Seller.updateOne({id}, 
+    const seller = await Seller.findOneAndUpdate(id, 
         {$pull:
             {
             "pictures":
                 {"_id": picture_id}
         }
     });
-    res.json({seller})
+    const updated =await Seller.findById(id);
+    res.json({updated})
     }catch(error){
         res.status(400).json({
             message: error.message,
