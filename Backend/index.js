@@ -18,6 +18,9 @@ app.use('/admin', adminRoutes)
 const serviceProviderRoutes = require('./routes/serviceprovider.routes');
 app.use('/service', serviceProviderRoutes);
 
+const authRoutes = require('./routes/auth.routes');
+app.use('/auth', authRoutes);
+
 app.listen(process.env.PORT, (err)=>{
     if(err) throw err;
     console.log(`server running on port ${process.env.PORT}`);
