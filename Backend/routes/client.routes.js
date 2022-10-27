@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const { register, updateprofilepic, editProfile, getServiceProviders, getServiceProvider } = require('../controllers/client.controller');
+const { register, updateprofilepic, editProfile, getServiceProviders, getServiceProvider, follow } = require('../controllers/client.controller');
 const clientMiddleware = require('../middlewares/client.middleware');
 const router = Router();
 
@@ -8,6 +8,8 @@ router.put('/profilepic', clientMiddleware, updateprofilepic);
 router.put('/editprofile', clientMiddleware, editProfile);
 router.get('/services/:type', clientMiddleware, getServiceProviders);
 router.get('/service/:_id', clientMiddleware, getServiceProvider);
+router.get('/follow/:seller_id', clientMiddleware, follow);
+
 
 
 module.exports = router
