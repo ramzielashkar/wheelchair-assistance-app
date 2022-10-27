@@ -43,13 +43,10 @@ const Seller = User.discriminator('Seller', new mongoose.Schema({
     type:{
         type:String,
     },
-    geo_location:{
-        type : {type : String},
-        coordinates : [],
-    }
 
 }),
 );
+
 
 
 

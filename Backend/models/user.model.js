@@ -22,9 +22,14 @@ const userSchema = new mongoose.Schema({
         required: 'password is required',
         select: false
     },
+    geo_location:{
+        type : {type : String},
+        coordinates : [],
+    }
 
 }, baseOptions,)
 
+userSchema.index({geo_location: "2dsphere"})
 const User = mongoose.model('User', userSchema);
 
 module.exports = {User,
