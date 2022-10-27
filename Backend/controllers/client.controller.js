@@ -123,6 +123,23 @@ const getServiceProvider = async (req, res) =>{
     res.json({seller});
 }
 
+//function to follow service provider
+const follow = async (req,res) =>{
+    const id = req.user.id;
+    const {seller_id} = req.params;
+    const following_id = {
+        following_id: seller_id
+    }
+    Client.findById(id, (error, result)=>{
+        try {
+            result.following.push(following_id);
+            result.save();
+            res.json(result);
+        } catch (error) {
+            res.status(400).send(error.message);
+        } 
+    })
+} 
 
 
 module.exports= {
@@ -130,6 +147,7 @@ module.exports= {
     updateprofilepic,
     editProfile,
     getServiceProviders,
-    getServiceProvider
+    getServiceProvider,
+    follow
 }
 
