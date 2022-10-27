@@ -141,6 +141,25 @@ const follow = async (req,res) =>{
     })
 } 
 
+//function to follow service provider
+const unFollow = async (req,res) =>{
+    const id = req.user.id;
+    const {follow_id} = req.params;
+    try{
+        const following = await Client.findOneAndUpdate(id, 
+            {$pull:
+                {
+                "following":
+                    {"following_id": follow_id}
+            }
+        });
+        res.json({following})
+        }catch(error){
+            res.status(400).json({
+                message: error.message,
+            })
+        }
+} 
 
 module.exports= {
     register,
@@ -148,6 +167,7 @@ module.exports= {
     editProfile,
     getServiceProviders,
     getServiceProvider,
-    follow
+    follow,
+    unFollow
 }
 
