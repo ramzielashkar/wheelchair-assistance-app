@@ -10,7 +10,7 @@ const { stringify } = require('querystring');
 
 // function to register client
 const register = async (req, res) =>{
-    const {name, email, password, geo_location, location} = req.body;
+    const {name, email, password} = req.body;
 
     if(!emailValidator.validate(email)){
         res.status(400).json({
@@ -28,8 +28,6 @@ const register = async (req, res) =>{
         user.name = name;
         user.email = email;
         user.password = await bcrypt.hash(password, 10);
-        user.geo_location = geo_location;
-        user.location = location;
 
         await user.save();
         const token = jwt.sign({email: user.email, name: user.name}, process.env.JWT_SECRET_KEY, {
@@ -45,6 +43,24 @@ const register = async (req, res) =>{
     }
 }
 }
+}
+
+//function to login
+const login = async (req, res)=>{
+    const {email, password} = req.body;
+    
+    const user = await Client.findOne({email}).select("+password");
+
+    if(!user) return res.status(404).json({message: "Invalid Credentials"});
+    if(user.active==false) return res.status(404).json({message:"User Banned"})
+    
+    if(!user.password==password) return res.status(404).json({message: "Invalid Credentials"});
+    const token = jwt.sign({email: user.email, name: user.name}, process.env.JWT_SECRET_KEY, {
+    });
+    res.status(200).json({
+        'user': user, 
+        'token':token
+    })
 }
 
 //function to update profile picture
@@ -200,6 +216,7 @@ const search = async (req, res)=>{
 
 module.exports= {
     register,
+    login,
     updateprofilepic,
     editProfile,
     getServiceProviders,
