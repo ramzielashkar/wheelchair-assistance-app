@@ -176,7 +176,7 @@ const unFollow = async (req,res) =>{
             }
         });
         const updated = await Client.findById(id);
-        res.json({followed})
+        res.json({updated})
         }catch(error){
             res.status(400).json({
                 message: error.message,
@@ -191,6 +191,13 @@ const getFollowed = async (req,res)=>{
     res.json({followed})
 }   
 
+//function to search for service providers 
+const search = async (req, res)=>{
+    const {service} = req.params;
+    const result = await Seller.find({ "name": { "$regex": service, "$options": "i" } });
+    res.json({result});
+}
+
 module.exports= {
     register,
     updateprofilepic,
@@ -199,6 +206,7 @@ module.exports= {
     getServiceProvider,
     follow,
     unFollow,
-    getFollowed
+    getFollowed,
+    search
 }
 
