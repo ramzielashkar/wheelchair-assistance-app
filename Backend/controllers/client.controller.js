@@ -116,10 +116,20 @@ res.status(200).json({
 
 }
 
+//function to get service provider by id
+const getServiceProvider = async (req, res) =>{
+    const {_id} = req.params;
+    const seller = await Seller.findOne({_id});
+    res.json({seller});
+}
+
+
+
 module.exports= {
     register,
     updateprofilepic,
     editProfile,
-    getServiceProviders
+    getServiceProviders,
+    getServiceProvider
 }
 
