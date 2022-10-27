@@ -28,7 +28,7 @@ const login = async (req, res)=>{
 
 // function to add service provider
 const addUser = async (req, res) =>{
-    const {name, email, password} = req.body;
+    const {name, email, password, type, location, geo_location} = req.body;
 
     if(!emailValidator.validate(email)){
         res.status(400).json({
@@ -46,6 +46,9 @@ const addUser = async (req, res) =>{
         user.name = name;
         user.email = email;
         user.password = await bcrypt.hash(password, 10);
+        user.type = type;
+        user.geo_location = geo_location;
+        user.location=location;
 
         await user.save();
         
