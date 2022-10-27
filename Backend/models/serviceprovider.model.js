@@ -42,6 +42,7 @@ const Seller = User.discriminator('Seller', new mongoose.Schema({
     ],
     type:{
         type:String,
+        enum :['Hospital', 'Restaurant', 'Vendor']
     },
 
 }),
