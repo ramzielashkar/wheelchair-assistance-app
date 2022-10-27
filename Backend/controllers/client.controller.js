@@ -99,6 +99,7 @@ const editProfile = async (req, res)=>{
 //function to get service providers
 const getServiceProviders = async (req, res)=>{
     const id = req.user.id;
+    const {type} = req.params;
     const result = await Client.findById(id).select("geo_location").select("coordinates");
     console.log(result.geo_location.coordinates)
    const options={
@@ -106,7 +107,7 @@ const getServiceProviders = async (req, res)=>{
             { $near: { $geometry: { type: "Point", coordinates: result.geo_location.coordinates}, $maxDistance: 1000*1609.34 }
         }
     }
-   const sellers = await Seller.find(options)
+   const sellers = await Seller.find(options).where({type})
 
 
 res.status(200).json({
