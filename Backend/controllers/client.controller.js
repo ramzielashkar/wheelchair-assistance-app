@@ -5,7 +5,8 @@ const fs = require("fs");
 const { now } = require('mongoose');
 const emailValidator = require('email-validator');
 const passwordSchema = require('../validators/password.validator');
-const Seller = require('../models/serviceprovider.model')
+const Seller = require('../models/serviceprovider.model');
+const { stringify } = require('querystring');
 
 // function to register client
 const register = async (req, res) =>{
@@ -130,11 +131,22 @@ const follow = async (req,res) =>{
     const following_id = {
         following_id: seller_id
     }
-    Client.findById(id, (error, result)=>{
+    const follower_id = {
+        follower_id : id
+    }
+    Seller.findById(seller_id, (error, result)=>{
         try {
-            result.following.push(following_id);
+            result.followers.push(follower_id);
             result.save();
-            res.json(result);
+        } catch (error) {
+            res.status(400).send(error.message);
+        } 
+    })
+    Client.findById(id, (error, client)=>{
+        try {
+            client.following.push(following_id);
+            client.save();
+            res.json(client);
         } catch (error) {
             res.status(400).send(error.message);
         } 
@@ -145,7 +157,17 @@ const follow = async (req,res) =>{
 const unFollow = async (req,res) =>{
     const id = req.user.id;
     const {follow_id} = req.params;
+    console.log(id);
+    console.log(follow_id)
+    
     try{
+        const followed = await Seller.findByIdAndUpdate(follow_id, 
+            {$pull:
+                {
+                "followers":
+                    {"follower_id": id}
+            }
+        });
         const following = await Client.findOneAndUpdate(id, 
             {$pull:
                 {
@@ -154,7 +176,7 @@ const unFollow = async (req,res) =>{
             }
         });
         const updated = await Client.findById(id);
-        res.json({updated})
+        res.json({followed})
         }catch(error){
             res.status(400).json({
                 message: error.message,
