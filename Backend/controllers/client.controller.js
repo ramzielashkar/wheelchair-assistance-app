@@ -5,6 +5,7 @@ const fs = require("fs");
 const { now } = require('mongoose');
 const emailValidator = require('email-validator');
 const passwordSchema = require('../validators/password.validator');
+const Seller = require('../models/serviceprovider.model')
 
 // function to register client
 const register = async (req, res) =>{
@@ -95,9 +96,29 @@ const editProfile = async (req, res)=>{
     
 }
 
+//function to get service providers
+const getServiceProviders = async (req, res)=>{
+    const id = req.user.id;
+    const result = await Client.findById(id).select("geo_location").select("coordinates");
+    console.log(result.geo_location.coordinates)
+   const options={
+        geo_location:
+            { $near: { $geometry: { type: "Point", coordinates: result.geo_location.coordinates}, $maxDistance: 1000*1609.34 }
+        }
+    }
+   const sellers = await Seller.find(options)
+
+
+res.status(200).json({
+    'user': sellers, 
+})
+
+}
+
 module.exports= {
     register,
     updateprofilepic,
-    editProfile
+    editProfile,
+    getServiceProviders
 }
 
