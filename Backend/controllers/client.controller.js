@@ -153,13 +153,21 @@ const unFollow = async (req,res) =>{
                     {"following_id": follow_id}
             }
         });
-        res.json({following})
+        const updated = await Client.findById(id);
+        res.json({updated})
         }catch(error){
             res.status(400).json({
                 message: error.message,
             })
         }
 } 
+
+//function to get followed service providers
+const getFollowed = async (req,res)=>{
+    const id = req.user.id;
+    const followed = await Client.findById(id).select('following').populate('following.following_id');
+    res.json({followed})
+}   
 
 module.exports= {
     register,
@@ -168,6 +176,7 @@ module.exports= {
     getServiceProviders,
     getServiceProvider,
     follow,
-    unFollow
+    unFollow,
+    getFollowed
 }
 
