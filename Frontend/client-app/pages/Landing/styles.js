@@ -16,13 +16,11 @@ const styles = StyleSheet.create({
         height:250,
         borderRadius:30
     },
-    user_info:{
-        marginTop:30,
-    },
-    labels:{
-        fontFamily:"Roboto",
-        fontSize:"16",
-        fontWeight:"bold",
+    text:{
+        textDecorationLine: 'underline',
+        paddingBottom:1,
+        marginTop:10,
+        textAlign:"center"
     }
 });
 
