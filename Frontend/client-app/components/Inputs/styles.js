@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-
+import { Roboto_400Regular} from '@expo-google-fonts/roboto';
 const styles = StyleSheet.create({
     user_info:{
         marginTop:30,
     },
     labels:{
-        fontFamily:"Roboto",
+        fontFamily:Roboto_400Regular,
         fontSize:"16",
         fontWeight:"bold",
     },
@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
         paddingLeft:15,
         paddingVertical:10,
         marginTop:10,
-        fontSize:14,
-        fontFamily:"Roboto",
+        fontSize:12,
+        fontFamily:Roboto_400Regular,
         borderStyle:"solid",
         borderColor:"black",
         borderRadius:30,
