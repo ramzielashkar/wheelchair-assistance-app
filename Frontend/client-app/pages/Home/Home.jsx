@@ -1,8 +1,14 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
+import styles from "./styles";
 
 const Home = () =>{
     return(
-        <Text>Home</Text>
+        <View style={styles.root}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Hospitals</Text>
+                
+            </View>
+        </View>
     );
 }
 export default Home;
