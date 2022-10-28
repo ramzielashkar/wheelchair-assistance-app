@@ -10,12 +10,18 @@ const styles = StyleSheet.create({
         },
         container:{
             marginTop:25,
+            marginBottom:12,
         },
         title:{
             fontFamily:Roboto_400Regular,
             fontWeight:"bold",
             fontSize:20,
             marginBottom:25,
+        },
+        services:{
+            flex:1,
+            flexDirection:"row",
+            justifyContent:"space-between",
         }
 
      });
