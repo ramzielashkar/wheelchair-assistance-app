@@ -3,7 +3,7 @@ import styles from './styles';
 import logo from '../../assets/images/logo.jpg';
 import Input from '../../components/Inputs/Inputs';
 import Buttons from '../../components/Button/Button';
-const Landing = () =>{
+const Landing = ({navigation}) =>{
     return(
         <View style={styles.root}>
             <View>
@@ -25,7 +25,7 @@ const Landing = () =>{
                 <Buttons
                 title={"REGISTER"}/>
 
-                <Text style={styles.text}>Already have an account? SignIn</Text>
+                <Text style={styles.text} onPress={()=>navigation.push("Login")}>Already have an account? SignIn</Text>
             </View>
         </View>
     );
