@@ -7,4 +7,6 @@ const Buttons = ({title}) =>{
     </Pressable>    );
 }
 
+
+
 export default Buttons;
