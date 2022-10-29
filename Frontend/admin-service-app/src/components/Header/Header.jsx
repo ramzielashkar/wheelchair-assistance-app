@@ -1,11 +1,12 @@
-import logo from '../../assets/images/logo.jpg'
+import logo from '../../assets/images/logo.jpg';
+import './style.css';
 const Header = ()=>{
     return(
         <nav className="navbar flex">
             <div className="logo">
-                <img src={logo} alt="" className="logo-img" />
+                <img src={logo} alt="" className="logo-img"height={80} width={80} />
             </div>
-            <h1 className='title'>Wheel of life</h1>
+            <p className='title'>Wheel of Life</p>
         </nav>
     );
 }
