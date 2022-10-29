@@ -3,7 +3,12 @@ import logo from '../../assets/images/logo.jpg';
 import Input from '../../components/Input/Input';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const Landing =()=>{
+    const navigate = useNavigate();
+    const login =()=>{
+        navigate('/admin');
+    }
     const [error, setError]= useState(false);
     let errorfield;
     if(error){
@@ -17,7 +22,7 @@ const Landing =()=>{
                 <div className="logo-container">
                     <img src={logo} className="logo-image"/>
                 </div>
-                <form className='login-form flex column'>
+                <form className='login-form flex column' onSubmit={login}>
                     <Input
                     type={'email'}
                     placeholder={"Enter your email"}
