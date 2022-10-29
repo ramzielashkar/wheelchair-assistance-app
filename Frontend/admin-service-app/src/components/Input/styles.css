@@ -1,15 +1,21 @@
-.landing-input{
-    background-color: white;
-    border-radius: 30px;
-    padding: 16px 42px;
-    width: 440px;
-    margin-bottom: 20px;
-    box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.25);
-    border: 1px solid black;
+.landing-input {
+  background-color: white;
+  border-radius: 30px;
+  padding: 16px 42px;
+  width: 440px;
+  margin-bottom: 20px;
+  box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.25);
+  border: 1px solid black;
 }
 
-label{
-    margin-bottom: 10px;
+label {
+  margin-bottom: 10px;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: bold;
+}
+option {
+    padding-bottom: 10px;
     font-family: "Roboto";
     font-size: 16px;
     font-weight: bold;
