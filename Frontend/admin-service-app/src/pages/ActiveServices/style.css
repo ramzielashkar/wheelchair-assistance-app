@@ -1,0 +1,9 @@
+.flex {
+  display: flex;
+}
+.services-container {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+    gap:30px;
+}
