@@ -2,6 +2,7 @@ import './style.css';
 import logo from '../../assets/images/logo.jpg';
 import { AdminSideBarData } from '../../data/AdminSideBarData';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 const AdminSideBar = () =>{
     const [logoutPopup, setLogoutPopup] = useState(false);
     let logoutContainer;
@@ -14,15 +15,18 @@ const AdminSideBar = () =>{
         <div className="flex column admin-sidebar">
             {AdminSideBarData.map((item, index)=>{
                 return(
-                    <div className="flex item">
+                    <NavLink to={item.path} 
+                    className={({isActive})=>
+                    isActive ? "active" : "normal" 
+                    } >  
                         <span>{item.icon}</span>
-                        <span>{item.title}</span>
-                    </div>
+                        <span className='nav-title'>{item.title}</span>
+                    </NavLink>
                 );
             })}
             <div className='flex profile-item' onClick={()=>{{setLogoutPopup(!logoutPopup)}}}>
                 <img className='profile-img' src={logo} alt="" width={40} height={40} />
-                <p>Ramzi El Ashkar</p>
+                <p className='username'>Ramzi El Ashkar</p>
                 {logoutContainer}
             </div>
             
