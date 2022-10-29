@@ -2,6 +2,7 @@
     display: flex;
 }
 .services-section{
+    margin-top: 85px;
     margin-left: 300px;
     padding: 60px;
     width: 100%;
