@@ -11,7 +11,9 @@
     padding: 2rem 1rem;
     height: 100%;
 }
-.item{
+.normal{
+    display: flex;
+    text-decoration: none;
     margin-bottom: 1rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -26,7 +28,26 @@
     color:white;
     align-items: center;
 }
-.item:hover{
+
+.active{
+    display: flex;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    border-radius: 30px;
+    gap:1rem;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: #3A3A3A;
+    align-items: center; 
+    background-color: white;
+}
+.normal:hover{
     background-color: gray;
 }
 
@@ -59,4 +80,19 @@
     padding: 1rem 0;
     border-radius: 30px;
     left:10px;
+}
+
+@media (max-width:750px) {
+    .nav-title{
+        display: none;
+    }
+    .username{
+        display: none;
+    }
+    .admin-sidebar{
+        width: 100px;
+    }
+    .profile-item{
+        background-color: #3A3A3A;
+    }
 }
