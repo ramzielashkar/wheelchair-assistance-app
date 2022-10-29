@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import Landing from "./pages/Landing/Landing";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header/Header";
+import "@fontsource/roboto";
+import Admin from "./pages/Admin/Admin";
+import AdminServices from "./pages/Admin-ServiceProviders/AdminServices";
+import BannedServices from "./pages/BannedServices/BannedServices";
+import ActiveServices from "./pages/ActiveServices/ActiveServices";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <BrowserRouter>
+      <Header/>
+      <Routes>
+        <Route path="/" element={
+          <Landing/>
+        }>
+        </Route>
+        <Route path="/admin" element={
+          <Admin/>
+        }>
+          <Route path="services" element={
+            <AdminServices/>
+          }>
+            <Route path="active" element={
+              <ActiveServices/>
+            }>
+          </Route>
+          <Route path="banned" element={
+              <BannedServices/>
+            }>
+          </Route>
+
+
+        </Route>
+        </Route>
+      </Routes>
+   </BrowserRouter>
   );
 }
 
