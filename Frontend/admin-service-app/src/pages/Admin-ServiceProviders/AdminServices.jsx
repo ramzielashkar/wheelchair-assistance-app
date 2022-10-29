@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import { useState } from 'react';
 import './style.css';
+import {MdAdd} from 'react-icons/md';
 import NewService from '../../components/NewService/NewService';
 const AdminServices = ()=>{
     const navigate = useNavigate();
@@ -32,12 +33,18 @@ const AdminServices = ()=>{
                     active ? "services-title selected" : "services-title" }
                      onClick={showActive}>Service Providers</p>
                     <p className={
-                    banned ? "services-title selected" : "services-title" }
+                    banned ? "services-title selected banned" : "services-title banned" }
                      onClick={showBanned}>Banned</p>
                 </div>
-                <Button
-                text={"Add Service Provider"}
-                onClick={showAddService}/>
+                <div className="add">
+                    <Button
+                    text={"Add Service Provider"}
+                    onClick={showAddService}/>
+                </div>
+                
+                <div className="add-btn" onClick={showAddService}>
+                        <MdAdd size={40} color={"white"}/>
+                </div>
             </div>
             <NewService
             isOpen={isOpen}
