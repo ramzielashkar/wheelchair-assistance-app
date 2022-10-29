@@ -1,0 +1,50 @@
+.flex {
+    display: flex;
+}
+.column{
+    flex-direction: column;
+}
+.admin-sidebar{
+    background-color: #3A3A3A;
+    position: fixed;
+    width: 300px;
+    padding: 2rem 1rem;
+    height: 100%;
+}
+.item{
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    border-radius: 30px;
+    gap:1rem;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color:white;
+    align-items: center;
+}
+.item:hover{
+    background-color: gray;
+}
+
+.profile-item{
+    margin-top: 350px;
+    background-color: white;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    border-radius: 50px;
+    align-items: center;
+    gap:1rem;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.profile-img{
+    border-radius: 30px;
+}
