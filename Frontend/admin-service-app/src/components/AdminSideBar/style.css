@@ -31,6 +31,7 @@
 }
 
 .profile-item{
+    position: relative;
     margin-top: 350px;
     background-color: white;
     padding-top: 0.5rem;
@@ -47,4 +48,15 @@
 }
 .profile-img{
     border-radius: 30px;
+}
+
+.logoutContainer{
+    position: absolute;
+    bottom: 70px;
+    background-color: white;
+    text-align: center;
+    width: 250px;
+    padding: 1rem 0;
+    border-radius: 30px;
+    left:10px;
 }
