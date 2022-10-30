@@ -5,16 +5,20 @@ const BannedServices = () =>{
         <section className="flex services-container">
         <ServiceCard
         name={"Hospital"}
-        path={"banned"}/>
+        path={"banned"}
+        content={"service"}/>
         <ServiceCard
         name={"Hospital"}
-        path={"banned"}/>
+        path={"banned"}
+        content={"service"}/>
         <ServiceCard
         name={"Hospital"}
-        path={"banned"}/>
+        path={"banned"}
+        content={"service"}/>
         <ServiceCard
         name={"Hospital"}
-        path={"banned"}/>
+        path={"banned"}
+        content={"service"}/>
 
     </section>    
     );
