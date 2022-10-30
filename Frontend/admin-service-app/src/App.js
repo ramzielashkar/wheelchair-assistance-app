@@ -9,6 +9,7 @@ import ActiveServices from "./pages/ActiveServices/ActiveServices";
 import AdminClients from "./pages/Admin-clients/AdminClients";
 import ActiveClients from "./pages/ActiveClients/ActiveClients";
 import BannedClients from "./pages/BannedClients/BannedClients";
+import Statistics from "./pages/Statistics/Statistics";
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
               <BannedClients/>
             }>
             </Route>
+          </Route>
+          <Route path="stats" element={
+            <Statistics/>
+          }>
 
           </Route>
 
