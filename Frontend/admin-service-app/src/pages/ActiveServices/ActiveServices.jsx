@@ -5,16 +5,20 @@ const ActiveServices = ()=>{
         <section className="flex services-container">
             <ServiceCard
             name={"Hospital"}
-            path={"active"}/>
+            path={"active"}
+            content={"service"}/>
             <ServiceCard
             name={"Hospital"}
-            path={"active"}/>
+            path={"active"}
+            content={"service"}/>
             <ServiceCard
             name={"Hospital"}
-            path={"active"}/>
+            path={"active"}
+            content={"service"}/>
             <ServiceCard
             name={"Hospital"}
-            path={"active"}/>
+            path={"active"}
+            content={"service"}/>
 
         </section>    
     );
