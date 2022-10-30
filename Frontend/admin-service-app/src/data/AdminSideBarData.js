@@ -7,7 +7,7 @@ export const AdminSideBarData =[
     },
     {
         title : "Clients",
-        path:"/admin/clients",
+        path:"/admin/clients/active",
         icon :<MdOutlineGroups size={30}/>
     },
     {
