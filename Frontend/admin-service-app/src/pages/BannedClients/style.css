@@ -1,0 +1,9 @@
+.flex {
+  display: flex;
+}
+.clients-container {
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+  gap: 30px;
+}
