@@ -1,0 +1,18 @@
+.stats-section {
+  margin-top: 85px;
+  margin-left: 300px;
+  padding: 60px;
+  width: 100%;
+}
+
+.stats-title {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Roboto";
+  padding-bottom: 1rem;
+}
+.chart{
+  margin-top: 60px;
+  width: 70%;
+  align-self: center;
+}
