@@ -32,7 +32,18 @@ const ServiceCard = ({name, location, path, content})=>{
             </div>
         );
     }
-}else{
+}
+else if(content=="follower"){
+    return(
+        <div className='service-card flex column'>
+            <img src={service} alt="" className='service-img' />
+            <div className="flex column service-info">
+                <p className='service-name follower'>{name}</p>
+            </div>
+        </div>
+    );
+}
+else{
     if(path=='active'){
         return(
             <div className='service-card flex column'>

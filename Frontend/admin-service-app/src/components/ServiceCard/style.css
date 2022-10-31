@@ -39,6 +39,9 @@
   justify-content: flex-end;
   cursor: pointer;
 }
+.follower{
+  margin-bottom: 1rem;
+}
 @media (max-width:1050px){
     .service-card{
         width: 500px;
