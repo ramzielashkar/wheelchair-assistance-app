@@ -10,6 +10,9 @@ import AdminClients from "./pages/Admin-clients/AdminClients";
 import ActiveClients from "./pages/ActiveClients/ActiveClients";
 import BannedClients from "./pages/BannedClients/BannedClients";
 import Statistics from "./pages/Statistics/Statistics";
+import Service from "./pages/Service/Service";
+import ServiceFollowers from "./pages/ServiceFollowers/ServiceFollowers";
+import ServiceNotifications from "./pages/ServiceNotifications/ServiceNotifications";
 
 function App() {
   return (
@@ -49,6 +52,21 @@ function App() {
           </Route>
           <Route path="stats" element={
             <Statistics/>
+          }>
+
+          </Route>
+
+        </Route>
+        <Route path="/service" element={
+          <Service/>
+        }>
+          <Route path="followers" element={
+            <ServiceFollowers/>
+          }>
+
+          </Route>
+          <Route path="notifications" element={
+            <ServiceNotifications/>
           }>
 
           </Route>
