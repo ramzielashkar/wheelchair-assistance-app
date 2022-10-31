@@ -2,12 +2,12 @@ import {MdNotificationAdd,MdOutlineGroups, MdOutlineComment, MdPerson} from "rea
 export const ServiceSideBarData =[
     {
         title : "Followers",
-        path:"/admin/services/active",
+        path:"/service/followers",
         icon :<MdOutlineGroups size={30}/>
     },
     {
         title : "Send Notification",
-        path:"/admin/clients/active",
+        path:"/service/notifications",
         icon :<MdNotificationAdd size={30}/>
     },
     {
