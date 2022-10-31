@@ -1,6 +1,7 @@
 import Button from '../../components/Button/Button';
 import './style.css';
 import {MdAdd} from 'react-icons/md';
+import NotificationCard from '../../components/NotificationCard/NotificationCard';
 
 const ServiceNotifications = ()=>{
     return(
@@ -16,6 +17,11 @@ const ServiceNotifications = ()=>{
                         <MdAdd size={40} color={"white"}/>
                 </div>
         </div>
+        <NotificationCard/>
+        <NotificationCard/>
+        <NotificationCard/>
+        <NotificationCard/>
+
     </section>
     );
 }
