@@ -4,6 +4,7 @@ import {MdAdd} from 'react-icons/md';
 import NotificationCard from '../../components/NotificationCard/NotificationCard';
 import NewNotification from '../../components/NewNotification/NewNotification';
 import { useState } from 'react';
+import EmptyState from '../../components/EmptyState/EmptyState';
 
 const ServiceNotifications = ()=>{
     const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,8 @@ const ServiceNotifications = ()=>{
         <NotificationCard/>
         <NotificationCard/>
         <NotificationCard/>
+        
+    
 
         <NewNotification
         isOpen={isOpen}
