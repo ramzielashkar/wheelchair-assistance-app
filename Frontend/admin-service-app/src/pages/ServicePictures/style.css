@@ -1,0 +1,39 @@
+.pictures-section{
+    width: 100%;
+}
+.pictures-header{
+    width: 100%;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    padding-right: 20px;
+}
+.pictures-container{
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.picture-container{
+    margin-bottom: 30px;
+    position: relative;
+}
+.service-picture{
+    width: 400px;
+    height: 300px;
+}
+.delete-pic{
+    position: absolute;
+    cursor: pointer;
+    bottom:10px;
+    right: 20px;
+}
+@media (max-width:1200px){
+    .service-picture{
+        width: 500px;
+        height: 400px;
+    }
+}
+@media (max-width:600px){
+    .service-picture{
+        width: 300px;
+        height: 200px;
+    }
+}
