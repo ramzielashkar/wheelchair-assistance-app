@@ -11,8 +11,25 @@
   font-family: "Roboto";
   padding-bottom: 1rem;
 }
-.chart{
+.chart {
   margin-top: 60px;
-  width: 70%;
+  width: 80%;
   align-self: center;
 }
+@media (max-width:500px){
+  .stats-section {
+  margin-left: 0 !important;
+}
+.chart {
+  width: 100% !important;
+}
+}
+@media (max-width:750px){
+  .stats-section {
+  margin-left: 100px;
+}
+.chart {
+  width: 100% !important;
+}
+}
+
