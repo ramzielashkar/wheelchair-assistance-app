@@ -27,3 +27,12 @@ margin-top: 85px;
     text-align: center;
   }
 }
+@media (max-width: 500px) {
+  .notifications-section {
+    margin-left: 0;
+  }
+  .notifications-header {
+    justify-content: center;
+  }
+  
+}
