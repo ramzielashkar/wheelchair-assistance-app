@@ -17,6 +17,8 @@ const Profile =()=>{
         setProfile(false);
         setPictures(true);
         setAbout(false);
+        navigate("pictures");
+
     }
     const showAbout = ()=>{
         setProfile(false);
@@ -28,7 +30,6 @@ const Profile =()=>{
     return(
         <section className="flex column profile-section">
             <div className="profile-header flex">
-                <div className="flex">
                     <p className={
                     profile ? "profile-title selected" : "profile-title" }
                      onClick={showProfile}>Profile</p>
@@ -38,7 +39,6 @@ const Profile =()=>{
                      <p className={
                     pictures ? "profile-title selected " : "profile-title " }
                      onClick={showPictures}>Pictures</p>
-                </div>
             </div>
             <Outlet/>
         </section>
