@@ -25,9 +25,9 @@ const ProfilePicture = ()=>{
         });
     }
     return(
-        <section className="flex column">
-            <div className='profile-pic'>
-                <img src={img} alt="" width={600} height={400}/>
+        <section className="flex column profile-pic-section">
+            <div className=' flex profile-pic'>
+                <img src={img} alt="" className="profile-image"/>
                     <label htmlFor="image" className ={
                             base64 ? "hidden" : "edit-pic flex"
                         }>                    
