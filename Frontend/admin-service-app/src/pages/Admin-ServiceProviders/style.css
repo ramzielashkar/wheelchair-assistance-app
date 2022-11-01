@@ -64,7 +64,25 @@
   }
 }
 @media (max-width: 500px) {
+  .services-title {
+    font-size: 20px;
+  }
   .banned {
     width: auto;
+  }
+  .services-section {
+    margin-top: 85px;
+    margin-left: 0;
+  }
+  .add-btn {
+    padding: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a61e1;
+    border-radius: 50px;
+    position: fixed;
+    bottom: 80px;
+    right: 15px;
   }
 }
