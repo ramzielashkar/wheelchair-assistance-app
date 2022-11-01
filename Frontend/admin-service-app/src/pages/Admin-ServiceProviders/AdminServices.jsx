@@ -23,7 +23,7 @@ const AdminServices = ()=>{
     const showActive = ()=>{
         setBanned(false);
         setActive(true);
-        navigate('active');
+        navigate('');
     }
     return(
         <section className="flex column services-section">
