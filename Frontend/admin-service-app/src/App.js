@@ -13,6 +13,10 @@ import Statistics from "./pages/Statistics/Statistics";
 import Service from "./pages/Service/Service";
 import ServiceFollowers from "./pages/ServiceFollowers/ServiceFollowers";
 import ServiceNotifications from "./pages/ServiceNotifications/ServiceNotifications";
+import Profile from "./pages/Profile/Profile";
+import ProfilePicture from "./pages/ProfilePicture/ProfilePicture";
+import About from "./pages/About/About";
+import ServicePictures from "./pages/ServicePictures/ServicePictures";
 
 function App() {
   return (
@@ -29,7 +33,7 @@ function App() {
           <Route path="services" element={
             <AdminServices/>
           }>
-            <Route path="active" element={
+            <Route path="" element={
               <ActiveServices/>
             }>
           </Route>
@@ -41,7 +45,7 @@ function App() {
           <Route path="clients" element={
             <AdminClients/>
           }>
-            <Route path="active" element={
+            <Route path="" element={
               <ActiveClients/>
             }>
             </Route>
@@ -68,6 +72,26 @@ function App() {
           <Route path="notifications" element={
             <ServiceNotifications/>
           }>
+
+          </Route>
+          <Route path="profile" element={
+            <Profile/>
+            }>
+              <Route path="" element={
+              <ProfilePicture/>
+              }>
+
+            </Route>
+            <Route path="about" element={
+              <About/>
+              }>
+
+            </Route>
+            <Route path="pictures" element={
+              <ServicePictures/>
+              }>
+
+            </Route>
 
           </Route>
 
