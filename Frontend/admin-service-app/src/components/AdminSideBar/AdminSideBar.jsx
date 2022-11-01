@@ -3,6 +3,8 @@ import logo from '../../assets/images/logo.jpg';
 import { AdminSideBarData } from '../../data/AdminSideBarData';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { MdMoreVert } from "react-icons/md";
+
 const AdminSideBar = () =>{
     const [logoutPopup, setLogoutPopup] = useState(false);
     let logoutContainer;
@@ -24,11 +26,15 @@ const AdminSideBar = () =>{
                     </NavLink>
                 );
             })}
-            <div className='flex profile-item' onClick={()=>{{setLogoutPopup(!logoutPopup)}}}>
-                <img className='profile-img' src={logo} alt="" width={40} height={40} />
-                <p className='username'>Ramzi El Ashkar</p>
-                {logoutContainer}
+            <div className="flex column sidebar-end">
+                <div className='flex profile-item' onClick={()=>{{setLogoutPopup(!logoutPopup)}}}>
+                    <img className='profile-img' src={logo} alt="" width={40} height={40} />
+                    <p className='username'>Ramzi El Ashkar</p>
+                    {logoutContainer}
+                    <MdMoreVert color='#3a3a3a' size={30}/>
+                </div>
             </div>
+           
             
         </div>
     );

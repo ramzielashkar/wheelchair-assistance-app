@@ -52,9 +52,14 @@
   background-color: gray;
 }
 
+.sidebar-end{
+  padding-bottom: 70px;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
 .profile-item {
+  justify-self: flex-end;
   position: relative;
-  margin-top: 350px;
   background-color: white;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
