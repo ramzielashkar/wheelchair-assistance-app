@@ -12,3 +12,11 @@
   font-family: "Roboto";
   height: 50px;
 }
+
+@media (max-width: 500px){
+  .btn{
+    padding: 0.3rem !important;
+    height: 35px;
+
+  }
+}
