@@ -17,7 +17,7 @@ export const ServiceSideBarData =[
     },
     {
         title : "Profile",
-        path:"/admin/stats",
+        path:"/service/profile",
         icon :<MdPerson size={30}/>
     }
 ]

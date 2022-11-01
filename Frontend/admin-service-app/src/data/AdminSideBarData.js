@@ -2,12 +2,12 @@ import {MdHomeRepairService,MdOutlineGroups, MdBarChart} from "react-icons/md";
 export const AdminSideBarData =[
     {
         title : "Service Providers",
-        path:"/admin/services/active",
+        path:"/admin/services/",
         icon :<MdHomeRepairService size={30}/>
     },
     {
         title : "Clients",
-        path:"/admin/clients/active",
+        path:"/admin/clients/",
         icon :<MdOutlineGroups size={30}/>
     },
     {
