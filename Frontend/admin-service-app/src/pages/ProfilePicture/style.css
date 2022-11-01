@@ -1,0 +1,16 @@
+.profile-pic{
+    position: relative;
+}
+
+.edit-pic{
+    position: absolute;
+    border-radius: 50px;
+    background-color: #0A61E1;
+    bottom: -30px;
+    right: 20px;
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+}
