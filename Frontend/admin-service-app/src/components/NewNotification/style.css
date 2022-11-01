@@ -41,3 +41,12 @@
     flex-grow: 1;
     justify-content: flex-end;
 }
+
+@media (max-width: 500px) {
+    .new-notification-form{
+        width: 80%;
+        padding: 2rem !important;
+
+    }
+
+}
