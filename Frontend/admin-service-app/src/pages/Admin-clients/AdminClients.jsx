@@ -15,7 +15,7 @@ const AdminClients = ()=>
     const showActive = ()=>{
         setBanned(false);
         setActive(true);
-        navigate('active');
+        navigate('');
     }
  
         return(
