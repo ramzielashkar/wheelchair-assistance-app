@@ -5,6 +5,7 @@
   flex-direction: column;
 }
 .admin-sidebar {
+  z-index: 1;
   margin-top: 85px;
   background-color: #3a3a3a;
   position: fixed;
