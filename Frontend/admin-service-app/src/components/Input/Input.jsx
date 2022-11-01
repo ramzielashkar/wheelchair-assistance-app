@@ -1,5 +1,5 @@
 import './styles.css';
-const Input = ({name, placeholder, onChange, label, type })=> {
+const Input = ({name, placeholder, onChange, label, type, value, disabled})=> {
     if(type=="select"){
         return(
             <>
@@ -14,8 +14,8 @@ const Input = ({name, placeholder, onChange, label, type })=> {
     }else{
     return(
         <>
-        <label htmlFor="email">{label}</label>
-        <input type={type} placeholder={placeholder} className={name} id="email"/>
+        <label htmlFor={placeholder}>{label}</label>
+        <input type={type} placeholder={placeholder} className={name} defaultValue={value} id={placeholder} disabled={disabled}/>
         </>
     );
     }
