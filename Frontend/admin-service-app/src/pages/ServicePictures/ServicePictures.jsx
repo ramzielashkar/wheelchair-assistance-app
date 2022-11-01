@@ -38,7 +38,7 @@ const ServicePictures =()=>{
 
     return(
         <section className="flex column pictures-section">
-            <div  className="flex pictures-header">
+            <div className="flex pictures-header">
                 <label htmlFor="image" className="new-picture-btn">Add Picture</label>
             </div>
             <input id='image' type="file" hidden onChange={onImageChange} />
