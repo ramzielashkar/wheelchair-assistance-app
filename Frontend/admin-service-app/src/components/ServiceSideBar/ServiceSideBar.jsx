@@ -30,7 +30,7 @@ const ServiceSideBar = () =>{
                         <img className='profile-img' src={logo} alt="" width={40} height={40} />
                         <p className='username'>Ramzi El Ashkar</p>
                         {logoutContainer}
-                        <MdMoreVert color='#3a3a3a' size={30}/>
+                        <MdMoreVert className='more' color='#3a3a3a' size={30}/>
                     </div>
                 </div>
                 
