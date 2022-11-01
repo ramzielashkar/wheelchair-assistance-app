@@ -23,28 +23,14 @@
     justify-content: space-between;
     margin-bottom: 30px;
 }
-.new-picture-btn{
-    align-items: center;
-    background-color: #0A61E1;
-    color: white;
-    width: 200px;
-    border: none;
-    border-radius: 30px;
-    font-size: 15px;
-    font-weight: bold;
-    font-family: "Roboto";
-    cursor: pointer;
-    padding: 15px 0;
-    text-align: center;
-    justify-content: center;
 
-}
 .chosen-pic{
     width: 500px;
     height: 400px;
 }
-.post-btn{
-    margin-top: 20px;
-    justify-content: flex-end;
-    width: 100%;
+@media (max-width:600px){
+    .chosen-pic{
+        width: 300px;
+        height: 200px;
+    }  
 }
