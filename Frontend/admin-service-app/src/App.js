@@ -17,6 +17,7 @@ import Profile from "./pages/Profile/Profile";
 import ProfilePicture from "./pages/ProfilePicture/ProfilePicture";
 import About from "./pages/About/About";
 import ServicePictures from "./pages/ServicePictures/ServicePictures";
+import Chats from "./pages/Chats/Chats";
 
 function App() {
   return (
@@ -92,6 +93,11 @@ function App() {
               }>
 
             </Route>
+
+          </Route>
+          <Route path="chats" element={
+            <Chats/>
+          }>
 
           </Route>
 

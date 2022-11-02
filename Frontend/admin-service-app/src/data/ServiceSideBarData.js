@@ -12,7 +12,7 @@ export const ServiceSideBarData =[
     },
     {
         title : "Chats",
-        path:"/admin/clients/active",
+        path:"/service/chats",
         icon :<MdOutlineComment size={30}/>
     },
     {
