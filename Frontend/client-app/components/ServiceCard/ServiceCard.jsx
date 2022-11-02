@@ -12,15 +12,16 @@ const ServiceCard = ({name, location}) => {
             <Text style={styles.name}>{name}</Text>
 
             <View style={styles.location}>
-            <Ionicons name="location-outline" size={15} color="black" />
+                <Ionicons name="location-outline" size={15} color="black" />
                 <Text style={styles.location}>{location}</Text>
-            </View>
-
-            <View style={styles.more}>
+                <View style={styles.more}>
                 <View style={styles.more_info}>
-                    <AntDesign name="caretright" size={15} color="white" />
+                    <AntDesign name="caretright" size={11} color="white" />
                 </View>
             </View>
+            </View>
+
+          
         </View>
     );
 }

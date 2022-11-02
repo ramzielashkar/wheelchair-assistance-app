@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
             elevation: 13,
         },
         image:{
-            height:100,
+            height:90,
             borderRadius:20,
         },
         name:{
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
             marginTop:10,
         },
         location:{
+            paddingRight:10,
             flex:1,
             flexDirection:"row",
             alignItems:"center",
@@ -38,10 +39,7 @@ const styles = StyleSheet.create({
             color:"rgba(0, 0, 0, 0.7)"
         },
         more:{
-            paddingHorizontal:10,
-            flex:1,
             flexDirection:"row",
-            justifyContent:"flex-end",
         },
         more_info:{
             alignItems:"center",
