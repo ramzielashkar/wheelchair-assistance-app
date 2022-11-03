@@ -47,6 +47,17 @@
   }
 }
 @media (max-width: 500px) {
+  .clients-header{
+    padding-left: 30px;
+    justify-content: flex-start !important;
+  }
+  .titles{
+    gap:30px;
+  }
+  .clients-title {
+    font-size: 20px;
+    width: auto;
+  }
   .banned {
     width: auto;
   }
@@ -54,6 +65,7 @@
   margin-left: 0;
   padding: 0;
   padding-top: 40px;
+  margin-bottom: 60px;  
   
 }
 
