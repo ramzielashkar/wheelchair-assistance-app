@@ -2,8 +2,31 @@
   display: flex;
 }
 .services-container {
-    flex-wrap: wrap;
     width: 100%;
-    justify-content: space-evenly;
-    gap:30px;
+    display: grid;
+    grid-template-columns: repeat(3, 0.3fr);
+}
+
+@media (max-width:1500px){
+  .services-container {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+}
+@media (max-width:1350px){
+  .services-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+}
+@media (max-width:750px){
+  .services-container {
+    grid-template-columns: repeat(1, 1fr) !important;
+    justify-items: center;
+    align-items: center;
+    }
+}
+@media (max-width:500px){
+  .services-container {
+    grid-template-columns: repeat(1) !important;
+
+    }
 }
