@@ -42,7 +42,7 @@ const ServicePictures =()=>{
                 <label htmlFor="image" className="new-picture-btn">Add Picture</label>
             </div>
             <input id='image' type="file" hidden onChange={onImageChange} />
-            <div className="flex pictures-container">
+            <div className="pictures-container">
                 <div className="flex picture-container">
                     <img className="service-picture" src={service} alt="" />
                     <MdOutlineDeleteOutline className="delete-pic" size={30} color={'#0A61E1'}/>
