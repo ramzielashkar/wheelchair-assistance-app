@@ -39,6 +39,7 @@
 @media (max-width: 750px) {
   .services-section {
     margin-left: 100px;
+    margin-bottom: 60px;
   }
   .services-header {
     justify-content: center;
@@ -64,8 +65,13 @@
   }
 }
 @media (max-width: 500px) {
+  .services-header{
+    padding-left: 30px;
+    justify-content: flex-start !important;
+  }
   .services-title {
     font-size: 20px;
+    width: auto;
   }
   .banned {
     width: auto;

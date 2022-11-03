@@ -28,7 +28,7 @@ const AdminServices = ()=>{
     return(
         <section className="flex column services-section">
             <div className="services-header flex">
-                <div className="flex">
+                <div className="flex titles">
                     <p className={
                     active ? "services-title selected" : "services-title" }
                      onClick={showActive}>Service Providers</p>
