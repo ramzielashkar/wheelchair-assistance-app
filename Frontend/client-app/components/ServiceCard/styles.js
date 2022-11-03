@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { Roboto_400Regular} from '@expo-google-fonts/roboto';
 
 const styles = StyleSheet.create({
         container:{
+            flexDirection:"column",
             paddingBottom:15,
             backgroundColor:"white",
-            width:"45%",
+            width:"48%",
+            height:150,
             borderRadius:20,
             shadowColor: "#000",
             shadowOffset: {
@@ -17,14 +18,15 @@ const styles = StyleSheet.create({
             elevation: 13,
         },
         image:{
+            width:"100%",
             height:90,
             borderRadius:20,
         },
         name:{
-            fontFamily:Roboto_400Regular,
+            fontFamily:"Roboto",
             fontWeight:"bold",
             fontSize:13,
-            marginLeft:7,
+            marginLeft:10,
             marginTop:10,
         },
         location:{
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
             flexDirection:"row",
             alignItems:"center",
             marginLeft:7,
-            fontFamily:Roboto_400Regular,
+            fontFamily:"Roboto",
             fontWeight:"bold",
             fontSize:10,
             color:"rgba(0, 0, 0, 0.7)"
