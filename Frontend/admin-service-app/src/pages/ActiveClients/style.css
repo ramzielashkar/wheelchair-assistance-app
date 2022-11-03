@@ -17,6 +17,7 @@
 }
 @media (max-width:1050px){
   .clients-container {
+    gap:20px;
     justify-items: center;
     align-items: center;
 }
