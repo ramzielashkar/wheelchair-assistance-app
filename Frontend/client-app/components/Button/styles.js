@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Roboto_400Regular} from '@expo-google-fonts/roboto';
+//import { Roboto_400Regular} from '@expo-google-fonts/roboto';
 
 const styles = StyleSheet.create({
     btn:{
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     },
     text:{
         color:"white",
-        fontFamily:Roboto_400Regular,
+        fontFamily:"Roboto",
         fontWeight:"bold",
     }
 });
