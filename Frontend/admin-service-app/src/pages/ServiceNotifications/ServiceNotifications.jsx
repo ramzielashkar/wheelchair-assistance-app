@@ -28,10 +28,13 @@ const ServiceNotifications = ()=>{
                         <MdAdd size={40} color={"white"}/>
                 </div>
         </div>
-        <NotificationCard/>
-        <NotificationCard/>
-        <NotificationCard/>
-        <NotificationCard/>
+        <div className="flex column notifications-container">
+            <NotificationCard/>
+            <NotificationCard/>
+            <NotificationCard/>
+            <NotificationCard/>
+        </div>
+        
         
     
 
