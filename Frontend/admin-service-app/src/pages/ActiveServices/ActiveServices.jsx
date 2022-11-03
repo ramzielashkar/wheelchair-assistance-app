@@ -2,7 +2,7 @@ import ServiceCard from '../../components/ServiceCard/ServiceCard';
 import './style.css';
 const ActiveServices = ()=>{
     return(
-        <section className="flex services-container">
+        <section className=" services-container">
             <ServiceCard
             name={"Hospital"}
             path={"active"}
