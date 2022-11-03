@@ -73,6 +73,8 @@
   .services-section {
     margin-top: 85px;
     margin-left: 0;
+    padding: 0;
+    padding-top: 40px;
   }
   .add-btn {
     padding: 10px;
