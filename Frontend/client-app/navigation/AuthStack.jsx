@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Landing from "../pages/Landing/Landing";
 import Login from "../pages/Login/Login";
 
+// Auth stack navigator
 const AuthStack = ()=>{
     const AuthStack = createStackNavigator();
     return(
