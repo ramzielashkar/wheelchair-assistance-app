@@ -2,7 +2,7 @@ import ServiceCard from '../../components/ServiceCard/ServiceCard';
 import './style.css';
 const BannedClients = ()=>{
     return(
-        <section className="flex clients-container">
+        <section className="clients-container">
             <ServiceCard
             name={"Hospital"}
             path={"banned"}
