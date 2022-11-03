@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Roboto_400Regular} from '@expo-google-fonts/roboto';
+//import { Roboto_400Regular} from '@expo-google-fonts/roboto';
 
 const styles = StyleSheet.create({
     root:{
@@ -8,20 +8,32 @@ const styles = StyleSheet.create({
         flexDirection:"column",
         paddingHorizontal:34,   
         },
-        container:{
+        serviceContainer:{
             marginTop:25,
             marginBottom:12,
         },
+        header:{
+            alignItems:"center",
+            flexDirection:"row",
+            justifyContent:"space-between",
+            marginBottom:25,
+        },
         title:{
-            fontFamily:Roboto_400Regular,
+            fontFamily:"Roboto",
             fontWeight:"bold",
             fontSize:20,
-            marginBottom:25,
         },
         services:{
             flex:1,
             flexDirection:"row",
-            justifyContent:"space-between",
+            justifyContent:"flex-start",
+            gap:20,
+        },
+        more:{
+            fontFamily:"Roboto",
+            fontWeight:"bold",
+            fontSize:10,
+            color:"#0A61E1"
         }
 
      });
