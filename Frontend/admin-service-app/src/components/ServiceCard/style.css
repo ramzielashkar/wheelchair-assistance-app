@@ -42,13 +42,45 @@
 .follower{
   margin-bottom: 1rem;
 }
-@media (max-width:1050px){
+@media (max-width:1350px){
     .service-card{
-        width: 500px;
+        width: 400px;
     }
     .service-img{
-        width: 500px;
+        width: 400px;
     }
+}
+@media (max-width:1250px){
+  .service-card{
+      width: 350px;
+  }
+  .service-img{
+      width: 350px;
+  }
+}
+@media (max-width:1150px){
+  .service-card{
+      width: 300px;
+  }
+  .service-img{
+      width: 300px;
+  }
+}
+@media (max-width:1150px){
+  .service-card{
+      width: 250px;
+  }
+  .service-img{
+      width: 250px;
+  }
+}
+@media (max-width: 750px) {
+  .service-card{
+      width: 400px;
+  }
+  .service-img{
+      width: 400px;
+  }
 }
 @media (max-width: 500px) {
     .service-card{
