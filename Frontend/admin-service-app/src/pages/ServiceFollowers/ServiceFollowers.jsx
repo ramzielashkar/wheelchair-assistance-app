@@ -5,7 +5,7 @@ const ServiceFollowers = ()=>{
             <div className="clients-header flex">
                 <p className="clients-title">Followers</p>
             </div>
-            <div className="flex clients-container">
+            <div className="clients-container">
             <ServiceCard
             name={"Hospital"}
             content="follower"
