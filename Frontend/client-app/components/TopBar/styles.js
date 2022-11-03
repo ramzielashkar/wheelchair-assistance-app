@@ -1,4 +1,4 @@
-import { Roboto_700Bold } from "@expo-google-fonts/roboto";
+//import { Roboto_700Bold } from "@expo-google-fonts/roboto";
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 const width = Dimensions.get('window').width;
@@ -8,28 +8,29 @@ const styles = StyleSheet.create({
         width: width,
         flexDirection:"row",
         alignItems:'center',
-        paddingVertical:'0.3rem',
-        paddingHorizontal:"1rem",
+        paddingHorizontal:16,
         justifyContent:"space-between"
     },
     titleContainer:{
+        flex:1,
         flexDirection:"row",
         alignItems:"center",
-        gap:20,
     },
     logoImage:{
-        width:"40px",
-        height:"40px",
-        borderRadius:"50px",
+        width:40,
+        height:40,
+        borderRadius:50,
+        marginRight:20
     },
     title:{
-        fontFamily:Roboto_700Bold,
+        fontFamily:"Roboto",
         fontWeight:"bold",
-        fontSize:"20px"
+        fontSize:25
     },
     navigationContainer:{
+        width:80,
         flexDirection:"row",
-        gap:20,
+        justifyContent:"space-between",
     }
 })
 export default styles;
