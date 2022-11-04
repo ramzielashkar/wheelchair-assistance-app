@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         marginTop:30,
     },
     userName:{
+        color:"black",
         borderRadius:30,
         padding:10,
         width:300,
@@ -56,6 +57,14 @@ const styles = StyleSheet.create({
     },
     locationText:{
         marginLeft:10,
+    },
+    editPicture:{
+        position:"absolute",
+        borderRadius:50,
+        backgroundColor:"#0A61E1",
+        padding:15,
+        bottom:-30,
+        right:20,
     }
 
      });
