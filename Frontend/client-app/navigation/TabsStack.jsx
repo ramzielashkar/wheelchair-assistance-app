@@ -9,6 +9,9 @@ import  Icon  from '@expo/vector-icons/FontAwesome5';
 import Favorites from "../pages/Favorites/Favorites";
 import Search from "../pages/Search/Search";
 import HomeStack from "./HomeStack";
+import FavoritesStack from "./FavoritesStack";
+import SearchStack from "./SearchStack";
+import ProfileStack from "./ProfileStack";
 
 
 // Bottom tab stack navigator
@@ -30,19 +33,7 @@ const TabsStack = ()=>{
                 },
                 headerShown: false
 
-            }}
-            /*tabBarOptions={{
-                activeTintColor: '#0A61E1',
-                inactiveTintColor: 'rgba(0, 0, 0, 0.8)',
-                showLabel: true,
-                allowFontScaling: false,
-                keyboardHidesTabBar: true,
-                shadowColor: '#FFF',
-                labelStyle: {
-                  fontWeight: "bold",
-                  fontSize: 10,
-                },
-              }}*/>       
+            }}>       
             <Tabs.Screen name = 'Home' component={HomeStack}
              options={{
             title: 'Home',
@@ -55,9 +46,8 @@ const TabsStack = ()=>{
             ),
           }} />
             
-          <Tabs.Screen name = 'Favorites' component={Favorites}
+          <Tabs.Screen name = 'Favorites' component={FavoritesStack}
             options={{
-            headerTitle: (props) => <TopBar props={'Favorites'} />,
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons
               name={"cards-heart"}
@@ -65,16 +55,14 @@ const TabsStack = ()=>{
               color={color}
             />               ),
           }} />
-          <Tabs.Screen name = 'Search' component={Search}
+          <Tabs.Screen name = 'Search' component={SearchStack}
             options={{
-            headerTitle: (props) => <TopBar props={'Search'} />,
             tabBarIcon: ({ focused, color, size }) => (
               <Icon name="search" size={20} color={color}/>           
               ),
           }} />
-          <Tabs.Screen name = 'Profile' component={Profile}
+          <Tabs.Screen name = 'Profile' component={ProfileStack}
             options={{
-            headerTitle: (props) => <TopBar props={'Profile'} />,
             tabBarIcon: ({ focused, color, size }) => (
                 <Icon name="user-alt" size={20} color={color}/>           
                ),
