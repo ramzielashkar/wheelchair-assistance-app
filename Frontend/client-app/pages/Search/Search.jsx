@@ -16,7 +16,10 @@ const data = [
     location:"Beirut, Lebanon"
 },
 ]
-const Search = () =>{
+const Search = ({navigation}) =>{
+    const navigateToService=(name)=>{
+        navigation.navigate('Service', {name:name});
+    }
     let screenWidth = Dimensions.get('window').width
     let flatListStyle;
  console.log(screenWidth);
@@ -48,6 +51,7 @@ const Search = () =>{
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
+                        press={()=>{navigateToService(item.name)}}
                         data={item}/>
                     )}
                     numColumns={columns}
