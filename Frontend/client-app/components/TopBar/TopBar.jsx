@@ -3,7 +3,16 @@ import styles from './styles';
 import logo from '../../assets/images/logo.jpg';
 import  Icon  from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-const TopBar = ({props})=>{
+const TopBar = ({props, path})=>{
+    if(path==='stack'){
+        return(
+            <View style={styles.stackHeaderContainer}>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.title}>{props}</Text>
+                </View>
+            </View>
+        );
+    }
     return(
         <View style={styles.headerContainer}>
             <View style={styles.titleContainer}>
