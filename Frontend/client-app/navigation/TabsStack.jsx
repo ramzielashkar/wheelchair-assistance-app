@@ -8,6 +8,7 @@ import TopBar from "../components/TopBar/TopBar";
 import  Icon  from '@expo/vector-icons/FontAwesome5';
 import Favorites from "../pages/Favorites/Favorites";
 import Search from "../pages/Search/Search";
+import HomeStack from "./HomeStack";
 
 
 // Bottom tab stack navigator
@@ -27,6 +28,8 @@ const TabsStack = ()=>{
                     "fontWeight": "bold",
                     "fontSize": 10
                 },
+                headerShown: false
+
             }}
             /*tabBarOptions={{
                 activeTintColor: '#0A61E1',
@@ -40,10 +43,9 @@ const TabsStack = ()=>{
                   fontSize: 10,
                 },
               }}*/>       
-            <Tabs.Screen name = 'Home' component={Home}
+            <Tabs.Screen name = 'Home' component={HomeStack}
              options={{
             title: 'Home',
-            headerTitle: (props) => <TopBar props={'Wheel of Life'} />,
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons
                 name={"home"}
