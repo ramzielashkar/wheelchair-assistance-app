@@ -24,10 +24,6 @@ const styles = StyleSheet.create({
             fontSize:20,
         },
         services:{
-            flex:1,
-            flexDirection:"row",
-            justifyContent:"flex-start",
-            gap:20,
         },
         more:{
             fontFamily:"Roboto",
