@@ -18,6 +18,18 @@ const data = [
 ]
 const Favorites =()=>{
     let screenWidth = Dimensions.get('window').width
+    let flatListStyle;
+ console.log(screenWidth);
+ if(screenWidth<450){
+    flatListStyle={
+        justifyContent: "space-between",
+        marginBottom:20
+}}else if(screenWidth>450){
+    flatListStyle={gap:20,
+        marginBottom:20
+    }
+ }
+ 
  console.log(screenWidth);
  let columns=2;
  if(screenWidth > 600){
@@ -28,7 +40,7 @@ const Favorites =()=>{
         <ScrollView style={styles.root}>
             <View style={styles.serviceContainer}>
             <FlatList 
-                    columnWrapperStyle={{gap:20, marginBottom:20}}
+                    columnWrapperStyle={flatListStyle}
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
