@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     },
     labels:{
         fontFamily:"Roboto",
-        fontSize:"16",
+        fontSize:16,
         fontWeight:"bold",
     },
     input:{

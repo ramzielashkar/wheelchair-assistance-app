@@ -8,6 +8,14 @@ const Input = ({label, type, placeholder}) =>{
                 <TextInput  keyboardType = 'default'  placeholder={placeholder} style={styles.input} secureTextEntry='true'></TextInput>
             </View>
         );
+    }
+    else if(type==='search')
+    {
+        return(
+            <View style={styles.user_info}>
+                    <TextInput keyboardType={type}  placeholder={placeholder} style={styles.input}></TextInput>
+                </View>
+        );
     }else{
     return(
         <View style={styles.user_info}>
