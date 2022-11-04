@@ -6,6 +6,7 @@ import Profile from "../pages/Profile/Profile";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import TopBar from "../components/TopBar/TopBar";
 import  Icon  from '@expo/vector-icons/FontAwesome5';
+import Favorites from "../pages/Favorites/Favorites";
 
 
 // Bottom tab stack navigator
@@ -41,7 +42,7 @@ const TabsStack = ()=>{
             <Tabs.Screen name = 'Home' component={Home}
              options={{
             title: 'Home',
-            headerTitle: (props) => <TopBar {...props} />,
+            headerTitle: (props) => <TopBar props={'Wheel of Life'} />,
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons
                 name={"home"}
@@ -52,10 +53,20 @@ const TabsStack = ()=>{
           }} />
             <Tabs.Screen name = 'Profile' component={Profile}
             options={{
-            headerTitle: (props) => <TopBar {...props} />,
+            headerTitle: (props) => <TopBar props={'Profile'} />,
             tabBarIcon: ({ focused, color, size }) => (
                 <Icon name="user-alt" size={20} color={color}/>           
                ),
+          }} />
+          <Tabs.Screen name = 'Favorites' component={Favorites}
+            options={{
+            headerTitle: (props) => <TopBar props={'Favorites'} />,
+            tabBarIcon: ({ focused, color, size }) => (
+              <MaterialCommunityIcons
+              name={"cards-heart"}
+              size={26}
+              color={color}
+            />               ),
           }} />
           </Tabs.Navigator>
         </NavigationContainer>  
