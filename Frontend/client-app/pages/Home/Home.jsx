@@ -16,10 +16,16 @@ const data = [
 
 ]
 const Home = () =>{
-let screenWidth = Dimensions.get('window').width
+let screenWidth = Dimensions.get('window').width;
+let flatListStyle;
  console.log(screenWidth);
+ if(screenWidth<450){
+    flatListStyle={justifyContent: "space-between"}
+ }else if(screenWidth>450){
+    flatListStyle={gap:20}
+ }
  let columns=2;
- if(screenWidth > 600){
+ if(screenWidth > 450){
     columns=3;
  }
  
@@ -31,7 +37,7 @@ let screenWidth = Dimensions.get('window').width
                     <Text style={styles.more}>View more</Text>
                 </View>
                 <FlatList 
-                    columnWrapperStyle={{gap:20}}
+                    columnWrapperStyle={flatListStyle}
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
@@ -48,7 +54,7 @@ let screenWidth = Dimensions.get('window').width
                     <Text style={styles.more}>View more</Text>
                 </View>
                 <FlatList 
-                    columnWrapperStyle={{gap:20}}
+                    columnWrapperStyle={flatListStyle}
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
@@ -64,7 +70,7 @@ let screenWidth = Dimensions.get('window').width
                     <Text style={styles.more}>View more</Text>
                 </View>
                 <FlatList 
-                    columnWrapperStyle={{gap:20}}
+                    columnWrapperStyle={flatListStyle}
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
