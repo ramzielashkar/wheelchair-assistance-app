@@ -1,9 +1,9 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import { AntDesign, Ionicons } from '@expo/vector-icons'; 
 
 
-const ServiceCard = ({data}) => {
+const ServiceCard = ({data, press}) => {
  
     return (
         <View style={styles.container}>
@@ -17,9 +17,9 @@ const ServiceCard = ({data}) => {
                 <Ionicons name="location-outline" size={15} color="black" />
                 <Text style={styles.location}>{data.location}</Text>
                 <View style={styles.more}>
-                <View style={styles.more_info}>
+                <TouchableOpacity style={styles.more_info} onPress={press}>
                     <AntDesign name="caretright" size={11} color="white" />
-                </View>
+                </TouchableOpacity>
             </View>
             </View>
 
