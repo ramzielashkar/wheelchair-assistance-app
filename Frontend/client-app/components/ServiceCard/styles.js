@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
             flexDirection:"column",
             paddingBottom:15,
             backgroundColor:"white",
-            width:"48%",
+            width:150,
             height:"100%",
             borderRadius:20,
             shadowColor: "#000",
@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
             fontWeight:"bold",
             fontSize:13,
             marginLeft:10,
-            marginTop:10,
+
         },
         location:{
-            paddingRight:10,
+            paddingRight:7,
             flex:1,
             flexDirection:"row",
             alignItems:"center",
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         },
         more:{
             flexDirection:"row",
+            justifyContent:"flex-end"
         },
         more_info:{
             alignItems:"center",
@@ -50,6 +51,15 @@ const styles = StyleSheet.create({
             backgroundColor:"#0A61E1",
             width:24,
             height:24,
+        },
+        unfollow:{
+            marginTop:10,
+            paddingRight:10,
+            flex:1,
+            flexDirection:"row",
+            alignItems:"center",
+            justifyContent:"space-between",
+            marginBottom:5,
         }
 
      });
