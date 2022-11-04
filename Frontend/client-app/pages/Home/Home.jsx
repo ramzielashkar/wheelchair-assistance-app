@@ -1,72 +1,79 @@
-import { Text, View,Dimensions, ScrollView } from "react-native";
+import { Text, View,Dimensions, ScrollView, FlatList, SafeAreaView } from "react-native";
 import styles from "./styles";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
+import { useEffect } from "react";
+import ItemSeparator from "../../components/ItemSeparator/ItemSeparator";
+const data = [
+    {
+        name:"Restaurant",
+        location:"Beirut, Lebanon"
+},
+{
+    name:"Restaurant",
+    location:"Beirut, Lebanon"
+},
 
-const Home = () =>{
-    const data=[{
-        name:"hospital",
-        location: "Beirut",
-    },
-    {
-        name:"hospital",
-        location: "Beirut",
-    },
-    {
-        name:"hospital",
-        location: "Beirut",
-    },
-    {
-        name:"hospital",
-        location: "Beirut",
-    },
+
 ]
- const SLIDER_WIDTH = Dimensions.get('window').width + 80
- const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
+const Home = () =>{
+let screenWidth = Dimensions.get('window').width
+ console.log(screenWidth);
+ let columns=2;
+ if(screenWidth > 600){
+    columns=3;
+ }
+ 
     return(
         <ScrollView style={styles.root}>
-            <View style={styles.serviceContainer}>
+            <SafeAreaView style={styles.serviceContainer}>
                 <View style={styles.header}>
                     <Text style={styles.title}>Hospitals</Text>
                     <Text style={styles.more}>View more</Text>
                 </View>
-                <View style={styles.services}>
-                <ServiceCard 
-                    name={'Restaurant'}
-                    location={'Beirut, Lebanon'}/>
-                    <ServiceCard 
-                    name={'Restaurant'}
-                    location={'Beirut'}/>
-                </View>
-            </View>
+                <FlatList 
+                    columnWrapperStyle={{gap:20}}
+                    data={data}
+                    renderItem={({item})=>(
+                        <ServiceCard
+                        data={item}/>
+                    )}
+                    numColumns={columns}
+                    >
+                </FlatList>
+            </SafeAreaView>
 
-            <View style={styles.serviceContainer}>
+            <SafeAreaView style={styles.serviceContainer}>
                 <View style={styles.header}>
-                        <Text style={styles.title}>Restaurants</Text>
-                        <Text style={styles.more}>View more</Text>
-                    </View>                
-                    <View style={styles.services}>
-                    <ServiceCard 
-                    name={'Restaurant'}
-                    location={'Beirut, Lebanon'}/>
-                    <ServiceCard 
-                    name={'Restaurant'}
-                    location={'Beirut'}/>
+                    <Text style={styles.title}>Restaurants</Text>
+                    <Text style={styles.more}>View more</Text>
                 </View>
-            </View>
-            <View style={styles.serviceContainer}>
+                <FlatList 
+                    columnWrapperStyle={{gap:20}}
+                    data={data}
+                    renderItem={({item})=>(
+                        <ServiceCard
+                        data={item}/>
+                    )}
+                    numColumns={columns}
+                    >
+                </FlatList>
+            </SafeAreaView>
+            <SafeAreaView style={styles.serviceContainer}>
                 <View style={styles.header}>
-                        <Text style={styles.title}>Vendors</Text>
-                        <Text style={styles.more}>View more</Text>
-                    </View>
-                <View style={styles.services}>
-                    <ServiceCard 
-                    name={'Vendor'}
-                    location={'Beirut'}/>
-                    <ServiceCard 
-                    name={'Vendor'}
-                    location={'Beirut'}/>
+                    <Text style={styles.title}>Vendors</Text>
+                    <Text style={styles.more}>View more</Text>
                 </View>
-            </View>
+                <FlatList 
+                    columnWrapperStyle={{gap:20}}
+                    data={data}
+                    renderItem={({item})=>(
+                        <ServiceCard
+                        data={item}/>
+                    )}
+                    numColumns={columns}
+                    >
+                </FlatList>
+            </SafeAreaView>
         </ScrollView>
     );
 }
