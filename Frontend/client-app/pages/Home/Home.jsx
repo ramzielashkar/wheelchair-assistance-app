@@ -3,6 +3,7 @@ import styles from "./styles";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
 import { useEffect } from "react";
 import ItemSeparator from "../../components/ItemSeparator/ItemSeparator";
+import EmptyState from "../../components/EmptyState/EmptyState";
 const data = [
     {
         name:"Restaurant",
@@ -16,6 +17,7 @@ const data = [
 
 ]
 const Home = () =>{
+    const count =1;
 let screenWidth = Dimensions.get('window').width;
 let flatListStyle;
  console.log(screenWidth);
@@ -28,7 +30,14 @@ let flatListStyle;
  if(screenWidth > 450){
     columns=3;
  }
- 
+    if(count==0){
+        return(
+            <EmptyState
+                content={'hospitals'}
+                icon={'map-marker'}
+            />
+        );
+    }
     return(
         <ScrollView style={styles.root}>
             <SafeAreaView style={styles.serviceContainer}>

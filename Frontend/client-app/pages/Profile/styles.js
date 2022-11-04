@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
     profileContainer:{
         paddingHorizontal:38,
-        marginTop:30,
+        marginTop:40,
     },
     userName:{
         color:"black",

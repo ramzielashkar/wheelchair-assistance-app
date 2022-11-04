@@ -6,7 +6,6 @@ import { useState } from "react";
 import photo from '../../assets/images/hospital.webp';
 import * as ImagePicker from 'expo-image-picker';
 
-
 const Profile = () =>{
     const [editable, setEditable]= useState(false);
     const [imageEdit, setImageEdit]= useState(false);
@@ -65,7 +64,7 @@ const Profile = () =>{
                     <View>
                         <Ionicons name={
                             !editable? "ios-pencil-sharp": "checkmark-sharp"
-                        } size={20} color="#0A61E1" onPress={
+                        } size={28} color="#0A61E1" onPress={
                             !editable? edit : save } />
                     </View>
                 </View>
