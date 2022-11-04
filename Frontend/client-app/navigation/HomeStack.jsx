@@ -4,8 +4,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from "../pages/Home/Home";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import TopBar from "../components/TopBar/TopBar";
-import Services from "../pages/Hospitals/Services";
 import ServicePage from "../pages/ServicePage/ServicePage";
+import Services from "../pages/Services/Services";
 
 const HomeStack = ()=>{
     const homeStack = createStackNavigator();
