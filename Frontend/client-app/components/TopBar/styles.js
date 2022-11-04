@@ -31,6 +31,14 @@ const styles = StyleSheet.create({
         width:80,
         flexDirection:"row",
         justifyContent:"space-between",
+    },
+    stackHeaderContainer:{
+        alignSelf:"center",
+        width: width,
+        flexDirection:"row",
+        alignItems:'center',
+        paddingHorizontal:16,
+        marginLeft:50,
     }
 })
 export default styles;
