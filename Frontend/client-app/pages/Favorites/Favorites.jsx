@@ -8,7 +8,7 @@ const data = [
         location:"Beirut, Lebanon"
 },
 {
-    name:"Restaurant",
+    name:"Vendor",
     location:"Beirut, Lebanon"
 },
 {
@@ -16,7 +16,7 @@ const data = [
     location:"Beirut, Lebanon"
 },
 ]
-const Favorites =()=>{
+const Favorites =({navigation})=>{
     let screenWidth = Dimensions.get('window').width
     let flatListStyle;
  console.log(screenWidth);
@@ -35,6 +35,9 @@ const Favorites =()=>{
  if(screenWidth > 600){
     columns=3;
  }
+ const navigateToService=(name)=>{
+    navigation.navigate('Service', {name:name});
+}
  
     return(
         <ScrollView style={styles.root}>
@@ -44,6 +47,7 @@ const Favorites =()=>{
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
+                        press={()=>{navigateToService(item.name)}}
                         data={item}/>
                     )}
                     numColumns={columns}
