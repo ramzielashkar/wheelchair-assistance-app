@@ -14,9 +14,17 @@ const data = [
     location:"Beirut, Lebanon"
 },
 
-
 ]
-const Home = () =>{
+
+const Home = ({navigation}) =>{
+    //function to navigate to service page
+    const navigateToService=(name)=>{
+        navigation.navigate('Service', {name:name});
+    }
+    const navigateToServices = (type)=>{
+        navigation.navigate('Services', {type:type});
+
+    }
     const count =1;
 let screenWidth = Dimensions.get('window').width;
 let flatListStyle;
@@ -43,14 +51,15 @@ let flatListStyle;
             <SafeAreaView style={styles.serviceContainer}>
                 <View style={styles.header}>
                     <Text style={styles.title}>Hospitals</Text>
-                    <Text style={styles.more}>View more</Text>
+                    <Text style={styles.more} onPress={() => navigateToServices('Hospitals')}>View more</Text>
                 </View>
                 <FlatList 
                     columnWrapperStyle={flatListStyle}
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
-                        data={item}/>
+                            press={()=>{navigateToService(item.name)}}
+                            data={item}/>
                     )}
                     numColumns={columns}
                     >
@@ -60,13 +69,14 @@ let flatListStyle;
             <SafeAreaView style={styles.serviceContainer}>
                 <View style={styles.header}>
                     <Text style={styles.title}>Restaurants</Text>
-                    <Text style={styles.more}>View more</Text>
+                    <Text style={styles.more} onPress={() => navigateToServices('Restaurants')}>View more</Text>
                 </View>
                 <FlatList 
                     columnWrapperStyle={flatListStyle}
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
+                        press={()=>{navigateToService(item.name)}}
                         data={item}/>
                     )}
                     numColumns={columns}
@@ -76,13 +86,14 @@ let flatListStyle;
             <SafeAreaView style={styles.serviceContainer}>
                 <View style={styles.header}>
                     <Text style={styles.title}>Vendors</Text>
-                    <Text style={styles.more}>View more</Text>
+                    <Text style={styles.more} onPress={() => navigateToServices('Vendors')}>View more</Text>
                 </View>
                 <FlatList 
                     columnWrapperStyle={flatListStyle}
                     data={data}
                     renderItem={({item})=>(
                         <ServiceCard
+                        press={()=>{navigateToService(item.name)}}
                         data={item}/>
                     )}
                     numColumns={columns}
