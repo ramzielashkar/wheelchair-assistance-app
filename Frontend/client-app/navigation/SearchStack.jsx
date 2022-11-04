@@ -8,7 +8,7 @@ const SearchStack = ()=>{
     const SearchStack = createStackNavigator();
     return (
         <SearchStack.Navigator
-        initialRouteName="Favorites">
+        initialRouteName="Search">
             <SearchStack.Screen name="Search" component={Search} 
             options={{
                 title: 'Search',
