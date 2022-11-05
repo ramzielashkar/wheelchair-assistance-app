@@ -11,10 +11,10 @@ const SearchStack = ()=>{
         <SearchStack.Navigator
         initialRouteName="Search">
             <SearchStack.Screen name="Search" component={Search} 
-            options={{
+            options={({navigation})=>({
                 title: 'Search',
-                headerTitle: (props) => <TopBar props={'Search'} />
-                }}/> 
+                headerTitle: (props) => <TopBar props={'Search'} navigation={navigation}/>
+                })}/> 
              <SearchStack.Screen name="Service" component={ServicePage}
                 options={({ route }) => ({ title: route.params.name,
                     headerTitle: (props) => <TopBar props={route.params.name}  path={"stack"}/>
