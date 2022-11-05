@@ -5,6 +5,7 @@ import TopBar from "../components/TopBar/TopBar";
 import ServicePage from "../pages/ServicePage/ServicePage";
 import Favorites from '../pages/Favorites/Favorites';
 import Map from "../pages/Map/Map";
+import Notifications from "../pages/Notifications/Notifications";
 
 const FavoritesStack = ()=>{
     const FavoritesStack = createStackNavigator();
@@ -25,6 +26,12 @@ const FavoritesStack = ()=>{
             <FavoritesStack.Screen name="Map" component={Map}
                 options={({ route }) => ({ title: route.params.name,
                     headerTitle: (props) => <TopBar props={route.params.name}  path={"stack"}/>
+                })}
+
+             /> 
+             <FavoritesStack.Screen name="Notifications" component={Notifications}
+                options={({ route }) => ({ title: "Notifications",
+                    headerTitle: (props) => <TopBar props={"Notifications"}  path={"stack"}/>
                 })}
 
              /> 

@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import TopBar from "../components/TopBar/TopBar";
+import Notifications from "../pages/Notifications/Notifications";
 import Profile from '../pages/Profile/Profile';
 const ProfileStack = ()=>{
     const ProfileStack = createStackNavigator();
@@ -13,6 +14,12 @@ const ProfileStack = ()=>{
                 title: 'Profile',
                 headerTitle: (props) => <TopBar props={'Profile'} navigation={navigation} />
                 })}/> 
+            <ProfileStack.Screen name="Notifications" component={Notifications}
+                options={({ route }) => ({ title: "Notifications",
+                    headerTitle: (props) => <TopBar props={"Notifications"}  path={"stack"}/>
+                })}
+
+             />     
 
         </ProfileStack.Navigator>
        );

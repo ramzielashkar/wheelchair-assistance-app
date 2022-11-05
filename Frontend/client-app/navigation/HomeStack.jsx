@@ -7,7 +7,7 @@ import TopBar from "../components/TopBar/TopBar";
 import ServicePage from "../pages/ServicePage/ServicePage";
 import Services from "../pages/Services/Services";
 import Map from "../pages/Map/Map";
-import Notifications from "../pages/Notifications/styles";
+import Notifications from "../pages/Notifications/Notifications";
 
 const HomeStack = ()=>{
     const homeStack = createStackNavigator();
