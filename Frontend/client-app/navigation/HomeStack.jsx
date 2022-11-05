@@ -7,6 +7,7 @@ import TopBar from "../components/TopBar/TopBar";
 import ServicePage from "../pages/ServicePage/ServicePage";
 import Services from "../pages/Services/Services";
 import Map from "../pages/Map/Map";
+import Notifications from "../pages/Notifications/styles";
 
 const HomeStack = ()=>{
     const homeStack = createStackNavigator();
@@ -14,10 +15,10 @@ const HomeStack = ()=>{
         <homeStack.Navigator
         initialRouteName="HomePage">
             <homeStack.Screen name="HomePage" component={Home} 
-            options={{
+            options={({navigation})=>({
                 title: 'Home',
-                headerTitle: (props) => <TopBar props={'Wheel of Life'} />
-                }}/> 
+                headerTitle: ({props}) => <TopBar props={'Wheel of Life'} navigation={navigation} />
+                })}/> 
             <homeStack.Screen name="Services" component={Services}
              options={({ route }) => ({ title: route.params.type,
                 headerTitle: (props) => <TopBar props={route.params.type}  path={"stack"}/>
@@ -32,6 +33,12 @@ const HomeStack = ()=>{
              <homeStack.Screen name="Map" component={Map}
                 options={({ route }) => ({ title: route.params.name,
                     headerTitle: (props) => <TopBar props={route.params.name}  path={"stack"}/>
+                })}
+
+             /> 
+             <homeStack.Screen name="Notifications" component={Notifications}
+                options={({ route }) => ({ title: "Notifications",
+                    headerTitle: (props) => <TopBar props={"Notifications"}  path={"stack"}/>
                 })}
 
              /> 
