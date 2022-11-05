@@ -6,6 +6,7 @@ import ServicePage from "../pages/ServicePage/ServicePage";
 import Favorites from '../pages/Favorites/Favorites';
 import Map from "../pages/Map/Map";
 import Notifications from "../pages/Notifications/Notifications";
+import Chats from "../pages/Chats/Chats";
 
 const FavoritesStack = ()=>{
     const FavoritesStack = createStackNavigator();
@@ -32,6 +33,12 @@ const FavoritesStack = ()=>{
              <FavoritesStack.Screen name="Notifications" component={Notifications}
                 options={({ route }) => ({ title: "Notifications",
                     headerTitle: (props) => <TopBar props={"Notifications"}  path={"stack"}/>
+                })}
+
+             /> 
+             <FavoritesStack.Screen name="Chats" component={Chats}
+                options={({ route }) => ({ title: "Chats",
+                    headerTitle: (props) => <TopBar props={"Chats"}  path={"stack"}/>
                 })}
 
              /> 
