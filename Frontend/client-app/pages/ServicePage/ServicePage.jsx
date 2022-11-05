@@ -4,14 +4,31 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useState } from "react";
 import photo from '../../assets/images/hospital.webp';
+import { ImageSlider } from "react-native-image-slider-banner";
+
+
 const ServicePage = ({navigation, route})=>{
     const [image, setImage] = useState(photo);
     const [followed, setfollowed] = useState(false);
 
+const data=[
+{   img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYNCb0fpwqIyI2_kVF10edAAxN7vuL1XBmNw&usqp=CAU",
+},   
+{   img:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTatZSutgIKiDScKJrQTADvMiHukoi-9QeFYA&usqp=CAU",
+},
+{   img:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnJyBH7aR8qVizMo5qDuRnGJu8dn_uEmF3EA&usqp=CAU"
+}    
+]
+
     return(
         <ScrollView style={styles.root}>
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={image}></Image>
+            <ImageSlider 
+                data={data}
+                autoPlay={false}
+                closeIconColor="#fff"
+                caroselImageStyle={styles.image}
+            />            
             </View>
             <View style={styles.profileContainer}>
                 <View style={styles.profileHeader}>
