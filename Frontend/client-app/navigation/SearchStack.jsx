@@ -7,6 +7,7 @@ import Search from "../pages/Search/Search";
 import Map from "../pages/Map/Map";
 import Notifications from "../pages/Notifications/Notifications";
 import Chats from "../pages/Chats/Chats";
+import Chat from "../pages/Chat/Chat";
 const SearchStack = ()=>{
     const SearchStack = createStackNavigator();
     return (
@@ -38,6 +39,12 @@ const SearchStack = ()=>{
              <SearchStack.Screen name="Chats" component={Chats}
                 options={({ route }) => ({ title: "Chats",
                     headerTitle: (props) => <TopBar props={"Chats"}  path={"stack"}/>
+                })}
+
+             /> 
+             <SearchStack.Screen name="Chat" component={Chat}
+                options={({ route }) => ({ title: route.params.name,
+                    headerTitle: (props) => <TopBar props={route.params.name}  path={"stack"}/>
                 })}
 
              /> 
