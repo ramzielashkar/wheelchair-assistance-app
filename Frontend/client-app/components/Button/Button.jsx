@@ -1,10 +1,10 @@
-import { Pressable, Text} from "react-native";
+import { Pressable, Text, TouchableOpacity} from "react-native";
 import styles from "./styles";
-const Buttons = ({title}) =>{
+const Buttons = ({title, onClick}) =>{
     return(
-    <Pressable style={styles.btn}>
+    <TouchableOpacity style={styles.btn} onPress={onClick}>
          <Text style={styles.text}>{title}</Text>
-    </Pressable>    );
+    </TouchableOpacity>    );
 }
 
 
