@@ -9,10 +9,10 @@ const ProfileStack = ()=>{
         <ProfileStack.Navigator
         initialRouteName="Profile">
             <ProfileStack.Screen name="Profile" component={Profile} 
-            options={{
+            options={({navigation})=>({
                 title: 'Profile',
-                headerTitle: (props) => <TopBar props={'Profile'} />
-                }}/> 
+                headerTitle: (props) => <TopBar props={'Profile'} navigation={navigation} />
+                })}/> 
 
         </ProfileStack.Navigator>
        );
