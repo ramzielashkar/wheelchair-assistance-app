@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         flexDirection:"column",
         },
     imageContainer:{
-        position:'relative',
         flex:1,
         width:'100%',
         borderRadius:30,
@@ -18,8 +17,7 @@ const styles = StyleSheet.create({
         flexBasis:"70%",
     },
     image:{
-        width:"100%",
-        height:400,
+        height:350,
         borderRadius:30,
 
     },
