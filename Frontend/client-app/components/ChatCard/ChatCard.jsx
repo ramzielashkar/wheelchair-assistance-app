@@ -1,8 +1,8 @@
 import styles from "./styles";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-const ChatCard = ({data})=>{
+const ChatCard = ({data, onClick})=>{
     return(
-        <TouchableOpacity style={styles.chatCard}>
+        <TouchableOpacity style={styles.chatCard} onPress={onClick}>
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={{uri:data.img}}></Image>
             </View>
