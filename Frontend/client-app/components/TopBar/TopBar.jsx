@@ -21,7 +21,7 @@ const TopBar = ({props, path, navigation})=>{
             </View>
             <View style={styles.navigationContainer}>
             <Icon name="notifications-outline" size={28} color={"#0A61E1"} onPress={()=>{navigation.navigate('Notifications')}}/>
-            <MaterialCommunityIcons name={"message-text-outline"} size={28} color={"#0A61E1"} />            
+            <MaterialCommunityIcons name={"message-text-outline"} size={28} color={"#0A61E1"} onPress={()=>{navigation.navigate('Chats')}} />            
             </View>
         </View>
     );
