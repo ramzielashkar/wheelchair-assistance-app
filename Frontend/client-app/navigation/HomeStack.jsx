@@ -6,6 +6,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import TopBar from "../components/TopBar/TopBar";
 import ServicePage from "../pages/ServicePage/ServicePage";
 import Services from "../pages/Services/Services";
+import Map from "../pages/Map/Map";
 
 const HomeStack = ()=>{
     const homeStack = createStackNavigator();
@@ -23,6 +24,12 @@ const HomeStack = ()=>{
             })}
              /> 
              <homeStack.Screen name="Service" component={ServicePage}
+                options={({ route }) => ({ title: route.params.name,
+                    headerTitle: (props) => <TopBar props={route.params.name}  path={"stack"}/>
+                })}
+
+             /> 
+             <homeStack.Screen name="Map" component={Map}
                 options={({ route }) => ({ title: route.params.name,
                     headerTitle: (props) => <TopBar props={route.params.name}  path={"stack"}/>
                 })}
