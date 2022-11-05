@@ -12,10 +12,10 @@ const FavoritesStack = ()=>{
         <FavoritesStack.Navigator
         initialRouteName="Favorites">
             <FavoritesStack.Screen name="Favorites" component={Favorites} 
-            options={{
+            options={({navigation})=>({
                 title: 'Favorites',
-                headerTitle: (props) => <TopBar props={'Favorites'} />
-                }}/> 
+                headerTitle: (props) => <TopBar props={'Favorites'} navigation={navigation}/>
+                })}/> 
              <FavoritesStack.Screen name="Service" component={ServicePage}
                 options={({ route }) => ({ title: route.params.name,
                     headerTitle: (props) => <TopBar props={route.params.name}  path={"stack"}/>
