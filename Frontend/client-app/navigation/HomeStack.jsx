@@ -9,6 +9,7 @@ import Services from "../pages/Services/Services";
 import Map from "../pages/Map/Map";
 import Notifications from "../pages/Notifications/Notifications";
 import Chats from "../pages/Chats/Chats";
+import Chat from "../pages/Chat/Chat";
 
 const HomeStack = ()=>{
     const homeStack = createStackNavigator();
@@ -46,6 +47,12 @@ const HomeStack = ()=>{
              <homeStack.Screen name="Chats" component={Chats}
                 options={({ route }) => ({ title: "Chats",
                     headerTitle: (props) => <TopBar props={"Chats"}  path={"stack"}/>
+                })}
+
+             /> 
+            <homeStack.Screen name="Chat" component={Chat}
+                options={({ route }) => ({ title: route.params.name,
+                    headerTitle: (props) => <TopBar props={route.params.name}  path={"stack"}/>
                 })}
 
              /> 
