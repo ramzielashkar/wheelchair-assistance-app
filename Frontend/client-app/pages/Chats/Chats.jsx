@@ -31,7 +31,7 @@ const data = [
 
     }
 ]
-const Chats = ()=>{
+const Chats = ({navigation})=>{
     return(
         <ScrollView style={styles.root}>
             <View style={styles.chatsContainer}>
@@ -39,6 +39,7 @@ const Chats = ()=>{
                 data={data}
                 renderItem={({item})=>(
                     <ChatCard
+                    onClick={()=>{navigation.navigate('Chat', {name:item.name})}}
                     data={item}/>
                 )}>
                 </FlatList>
