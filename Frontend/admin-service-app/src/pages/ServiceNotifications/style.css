@@ -1,0 +1,58 @@
+.notifications-section{
+margin-top: 85px;
+  margin-left: 300px;
+  padding: 60px;
+  width: 100%;
+  align-items: center;
+}
+.notifications-header{
+    margin-bottom: 45px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.notifications-title{
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Roboto";
+  padding-bottom: 1rem;
+}
+.notifications-container{
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 750px) {
+  .notifications-section {
+    margin-left: 70px;
+  }
+  .notifications-title {
+    margin-right: 20px;
+    text-align: center;
+  }
+}
+@media (max-width: 500px) {
+
+  .notifications-section {
+    justify-content: center;
+    align-items: center;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 40px;
+    margin-left: 0;
+    
+  }
+  .notifications-title {
+    font-size: 20px;    
+  }
+  .notifications-header {
+    justify-content: flex-start;
+  }
+  .notifications-container{
+    justify-content: center;
+  }
+  
+}

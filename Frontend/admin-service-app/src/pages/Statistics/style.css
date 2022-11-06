@@ -1,0 +1,43 @@
+.stats-section {
+  margin-top: 85px;
+  margin-left: 300px;
+  padding: 60px;
+  width: 100%;
+}
+
+.stats-title {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Roboto";
+  padding-bottom: 1rem;
+}
+.chart {
+  margin-top: 60px;
+  width: 80%;
+  align-self: center;
+}
+@media (max-width:500px){
+  .stats-section {
+  margin-left: 0 !important;
+  padding-top: 40px;
+}
+.chart {
+  width: 100% !important;
+}
+}
+@media (max-width:750px){
+  .stats-section {
+  margin-left: 100px;
+}
+.chart {
+  width: 100% !important;
+  margin-top: 40px;
+}
+}
+
+@media (max-width:750px){
+  .stats-title{
+    font-size: 20px;
+  }
+}
+
