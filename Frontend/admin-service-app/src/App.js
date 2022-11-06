@@ -18,9 +18,17 @@ import ProfilePicture from "./pages/ProfilePicture/ProfilePicture";
 import About from "./pages/About/About";
 import ServicePictures from "./pages/ServicePictures/ServicePictures";
 import Chats from "./pages/Chats/Chats";
+import {QueryClientProvider} from "@tanstack/react-query";
+import {QueryClient} from "@tanstack/react-query";
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
+
+export const queryClient = new QueryClient();
+
 
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
+    <ReactQueryDevtools initialIsOpen/>
    <BrowserRouter>
       <Header/>
       <Routes>
@@ -104,6 +112,8 @@ function App() {
         </Route>
       </Routes>
    </BrowserRouter>
+   </QueryClientProvider>
+
   );
 }
 
