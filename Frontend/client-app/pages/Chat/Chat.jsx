@@ -1,6 +1,8 @@
 import { Text } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import React, { useState, useCallback, useEffect } from 'react'
+import { firebaseDB } from '../../configurations/firebaseConfiguration';
+import { getDatabase, ref, set } from "firebase/database";
 
 const Chat = ({data})=>{
     const [messages, setMessages] = useState([]);
@@ -21,7 +23,11 @@ const Chat = ({data})=>{
 
       const onSend = useCallback((messages = []) => {
         setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-      }, [])
+      }, [],
+      set(ref(firebaseDB, 'users/' + 1), {
+        username: "ramzi",
+        email: 'ramzi@gmail.com',
+      }));
     return(
     <GiftedChat
       messages={messages}
