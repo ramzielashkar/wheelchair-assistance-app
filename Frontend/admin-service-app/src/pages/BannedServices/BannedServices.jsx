@@ -4,12 +4,16 @@ import { useBannedServices } from "../../query/ServiceProviders/useServiceProvid
 import EmptyState from '../../components/EmptyState/EmptyState'
 import { CircularProgress } from "@mui/material";
 const BannedServices = () =>{
+
+    //fetching banned service providers
     const { data: bannedServices, isLoading: isLoadingServices, isFetching: isFetchingServices } = useBannedServices();
+    //if service providers aren't fetched yet
     if(isLoadingServices || isFetchingServices){
         return(
             <CircularProgress/>
         );
     }
+    //if no service providers available
     if(bannedServices.service_providers.length==0){
         return(
             <EmptyState content={'No Banned Services'}/>
@@ -17,7 +21,6 @@ const BannedServices = () =>{
     }
     return(
         <section className=" services-container">
-
         <ServiceCard
         name={"Hospital"}
         path={"banned"}
