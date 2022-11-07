@@ -58,6 +58,9 @@
   flex-grow: 1;
   justify-content: flex-end;
 }
+.userName{
+  flex-grow: 1;
+}
 .profile-item {
   justify-self: flex-end;
   position: relative;
@@ -67,6 +70,7 @@
   padding-left: 1rem;
   border-radius: 50px;
   align-items: center;
+  padding-right: 1rem;
   gap: 1rem;
   font-family: "Roboto";
   font-weight: bold;

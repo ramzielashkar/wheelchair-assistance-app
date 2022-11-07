@@ -4,19 +4,21 @@ import { AdminSideBarData } from '../../data/AdminSideBarData';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdMoreVert } from "react-icons/md";
-import { useCurrentUser } from '../../query/auth/auth';
 import { baseUrl } from '../../query/axios/axios';
+import { useSelector, useDispatch } from 'react-redux'
+import { store, persistor } from '../../Redux/store';
+import { deleteUser } from '../../Redux/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 const AdminSideBar = () =>{
-    const [user, setUser] = useState('');
+    const navigate = useNavigate();
+    const loggedInUser = useSelector((state)=>state.user)
     const [logoutPopup, setLogoutPopup] = useState(false);
-     const currentUser  =  useCurrentUser().then((res)=>{
-        setUser(res)
-    });
-    let logoutContainer;
-    if(logoutPopup){
-        logoutContainer = <div className='logoutContainer'>Logout</div>
-    }else{
-        logoutContainer = <div className='logoutContainer hidden'>Logout</div>
+
+    //function to logout user
+    const logout = ()=>{
+        store.dispatch(deleteUser())
+        localStorage.setItem('token', '')
+        navigate('/')
     }
      return(
         <div className="flex column admin-sidebar">
@@ -32,15 +34,15 @@ const AdminSideBar = () =>{
                 );
             })}
             <div className="flex column sidebar-end">
-                {user &&<div className='flex profile-item' onClick={()=>{setLogoutPopup(!logoutPopup)}}>
-                    <img className='profile-img' src={`${baseUrl}/public/${user.data.user.profile_picture}`} alt="" width={40} height={40} />
-                    <p className='username'>{user.data.user.name}</p>
+                <div className='flex profile-item' onClick={()=>{setLogoutPopup(!logoutPopup)}}>
+                    <img className='profile-img' src={`${baseUrl}/public/${loggedInUser.profile_picture}`} alt="" width={40} height={40} />
+                    <p className='username userName'>{loggedInUser.name}</p>
                     <div className={
                         logoutPopup? "logoutContainer" : "hidden"
-                    }>Logout</div>
+                    } onClick={()=>logout()}>Logout</div>
                     <MdMoreVert className='more' color='#3a3a3a' size={30}/>
                 </div>
-                }
+                
             </div>
            
             
