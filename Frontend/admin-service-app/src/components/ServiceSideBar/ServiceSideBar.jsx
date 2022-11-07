@@ -4,7 +4,11 @@ import { ServiceSideBarData } from '../../data/ServiceSideBarData';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdMoreVert } from "react-icons/md";
+import { useSelector, useDispatch } from 'react-redux'
+import { baseUrl } from '../../query/axios/axios';
+
 const ServiceSideBar = () =>{
+        const loggedInUser = useSelector((state)=>state.user)
         const [logoutPopup, setLogoutPopup] = useState(false);
         let logoutContainer;
         if(logoutPopup){
@@ -27,8 +31,8 @@ const ServiceSideBar = () =>{
                 })}
                 <div className="flex column sidebar-end">
                     <div className='flex profile-item' onClick={()=>{{setLogoutPopup(!logoutPopup)}}}>
-                        <img className='profile-img' src={logo} alt="" width={40} height={40} />
-                        <p className='username'>Ramzi El Ashkar</p>
+                        <img className='profile-img' src={`${baseUrl}/public/${loggedInUser.profile_picture}`} alt="" width={40} height={40} />
+                        <p className='username'>{loggedInUser.name}</p>
                         {logoutContainer}
                         <MdMoreVert className='more' color='#3a3a3a' size={30}/>
                     </div>
