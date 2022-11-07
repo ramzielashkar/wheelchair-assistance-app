@@ -25,9 +25,9 @@ import { Provider } from 'react-redux';
 import { persistor, store } from "./Redux/store";
 import { PersistGate } from 'redux-persist/integration/react';
 import Protected from "./protectedRoute/protected";
-
+import configureMutations from './query/Mutations';
 export const queryClient = new QueryClient();
-
+configureMutations(queryClient)
 
 function App() {
   return (
@@ -49,31 +49,45 @@ function App() {
           </Protected>
         }>
           <Route path="services" element={
-            <AdminServices/>
+            <Protected>
+              <AdminServices/>
+            </Protected>
           }>
             <Route path="" element={
-              <ActiveServices/>
+              <Protected>
+                <ActiveServices/>
+              </Protected>
             }>
           </Route>
           <Route path="banned" element={
+            <Protected>
               <BannedServices/>
+            </Protected>
             }>
           </Route>
           </Route>
           <Route path="clients" element={
-            <AdminClients/>
+            <Protected>
+              <AdminClients/>
+            </Protected>
           }>
             <Route path="" element={
-              <ActiveClients/>
+              <Protected>
+                <ActiveClients/>
+              </Protected>
             }>
             </Route>
             <Route path="banned" element={
-              <BannedClients/>
+              <Protected>
+                <BannedClients/>
+              </Protected>
             }>
             </Route>
           </Route>
           <Route path="stats" element={
-            <Statistics/>
+            <Protected>
+             <Statistics/>
+            </Protected>
           }>
 
           </Route>
@@ -85,37 +99,51 @@ function App() {
           </Protected>
         }>
           <Route path="followers" element={
-            <ServiceFollowers/>
+            <Protected>
+              <ServiceFollowers/>
+            </Protected>
           }>
 
           </Route>
           <Route path="notifications" element={
-            <ServiceNotifications/>
+            <Protected>
+              <ServiceNotifications/>
+            </Protected>
           }>
 
           </Route>
           <Route path="profile" element={
-            <Profile/>
+            <Protected>
+              <Profile/>
+            </Protected>
             }>
               <Route path="" element={
-              <ProfilePicture/>
+                <Protected>
+                  <ProfilePicture/>
+                </Protected>
               }>
 
             </Route>
             <Route path="about" element={
-              <About/>
+              <Protected>
+                <About/>
+              </Protected>
               }>
 
             </Route>
             <Route path="pictures" element={
-              <ServicePictures/>
+              <Protected>
+                <ServicePictures/>
+              </Protected>
               }>
 
             </Route>
 
           </Route>
           <Route path="chats" element={
-            <Chats/>
+            <Protected>
+              <Chats/>
+            </Protected>
           }>
 
           </Route>
