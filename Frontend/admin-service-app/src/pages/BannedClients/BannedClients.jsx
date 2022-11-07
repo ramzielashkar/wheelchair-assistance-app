@@ -3,24 +3,17 @@ import './style.css';
 import {CircularProgress} from "@mui/material";
 import { useBannedClients } from '../../query/AdminClients/useClients';
 import EmptyState from '../../components/EmptyState/EmptyState';
-import { store } from '../../Redux/store';
-import { useNavigate } from 'react-router-dom';
-import { deleteUser } from '../../Redux/slices/userSlice';
-import { AuthVerify } from '../../authorization/jwtVerify';
+import { useMutation } from '@tanstack/react-query';
+
 
 const BannedClients = ()=>{
 
-    const navigate = useNavigate();
-    //checking jwt token
-    const state = AuthVerify();
-    if(!state){
-        store.dispatch(deleteUser())
-        localStorage.setItem('token', '');
-        navigate('/')
-    }
-
+ 
     //fetching banned clients
     const { data: bannedClients, isLoading: isLoadingClients,  isFetching: isFetchingClients  } = useBannedClients();
+
+      //function to unban clients
+      const { mutate } = useMutation(["TOGGLE_CLIENT"])
 
     // if clients data still fetching
     if(isLoadingClients || isFetchingClients){
@@ -44,7 +37,7 @@ const BannedClients = ()=>{
                 path={"banned"}
                 id={client._id}
                 photo={client.profile_picture}
-                onClick={(id = client._id)=>{console.log(id)}}/>
+                onClick={()=>{mutate(client._id)}}/>
                 )
             })}
 
