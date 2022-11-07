@@ -6,7 +6,6 @@ passwordSchema.is().min(8)
 .is().max(50)
 .has().uppercase()
 .has().lowercase()
-.has().digits(2) 
-.has().not().spaces()  
+.has().digits(1) 
 
 module.exports = passwordSchema 
