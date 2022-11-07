@@ -53,15 +53,5 @@ export const useBannedServices = () => useQuery(
     }
 )
 
-//function to ban/unban service provider
-export const toggleBanService = ({id}) => queryClient.setMutationDefaults(["TOGGLE_SERVICE"],{
-    mutationFn: () => axiosInstance.put(`/banService/${{id}}`).then((res) => res.data),
-        onSuccess: (data) => {        
-            console.log(data)    
-            // Fetch all Services again 
-            queryClient.invalidateQueries({
-                queryKey: ALL_ACTIVE_SERVICES_KEY, ALL_BANNED_SERVICES_KEY
-            })
-        }
-})
+
 
