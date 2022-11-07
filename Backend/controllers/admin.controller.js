@@ -11,7 +11,6 @@ const passwordSchema = require('../validators/password.validator');
 // function to add service provider
 const addUser = async (req, res) =>{
     const {name, email, password, type, location, geo_location} = req.body;
-
     if(!emailValidator.validate(email)){
         res.status(400).json({
             message: "Invalid email structure"
@@ -19,7 +18,7 @@ const addUser = async (req, res) =>{
     }else{
         if(!passwordSchema.validate(password)){
             res.status(400).json({
-                message: "Password must have minimum 8 chars, lowercase and uppercase letters and at least 2 digits"
+                message: "Password must have minimum 8 chars, lowercase and uppercase letters and at least 1 digits"
             })
         }else{
     
@@ -71,7 +70,6 @@ const toggleActiveSellers = async (req, res)=>{
 }
 
 // function to get number of service providers
-
 const getUsersCount = async (req, res)=>{
     const service_providers = await Seller.find({active:true}).count();
     const clients = await Client.find({active:true}).count();
