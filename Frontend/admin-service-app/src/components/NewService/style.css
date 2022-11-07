@@ -25,6 +25,13 @@
   justify-content: center;
   gap: 10px;
 }
+.passError{
+  font-family: "Roboto";
+  font-size: 12px;
+  font-weight: bold;
+  max-width: 300px;
+  color: red;
+}
 @media (max-width: 500px){
     .new-service-form {
         background-color: white;
