@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../query/auth/auth';
 import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
 import { queryClient } from '../../App';
-
+import { store, persistor } from '../../Redux/store';
+import { updateUser } from '../../Redux/slices/userSlice';
 const Landing =()=>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +18,10 @@ const Landing =()=>{
     const navigateToRoute = async ()=>{
             const currentUser = await queryClient.getQueryData(["CurrentUser"]);
             localStorage.setItem('token', currentUser.data.token);
+            console.log(currentUser.data.user)
+            store.dispatch(updateUser({
+                user: currentUser.data.user
+            }))
             if(currentUser.data.user.usertype === 'Seller'){
                 navigate('/service/followers');
             }
