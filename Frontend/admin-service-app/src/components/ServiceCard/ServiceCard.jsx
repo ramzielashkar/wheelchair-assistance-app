@@ -1,7 +1,7 @@
 import './style.css';
 import service from '../../assets/images/images.jpeg';
 import {MdOutlineDeleteOutline,MdUndo} from 'react-icons/md';
-const ServiceCard = ({name, location, path, content})=>{
+const ServiceCard = ({name, location, path, content, id, onClick})=>{
 
     if(content=='service'){
     if(path=='active'){
@@ -10,10 +10,10 @@ const ServiceCard = ({name, location, path, content})=>{
             <img src={service} alt="" className='service-img' />
             <div className="flex column service-info">
                 <p className='service-name'>{name}</p>
-                <p className='service-loc'>{name}</p>
+                <p className='service-loc'>{location}</p>
             </div>
             <div className='flex delete'>
-                <MdOutlineDeleteOutline size={30} color={"#0A61E1"}/>
+                <MdOutlineDeleteOutline size={30} color={"#0A61E1"} onClick={onClick}/>
             </div>
         </div>
     );
@@ -24,10 +24,10 @@ const ServiceCard = ({name, location, path, content})=>{
                 <img src={service} alt="" className='service-img' />
                 <div className="flex column service-info">
                     <p className='service-name'>{name}</p>
-                    <p className='service-loc'>{name}</p>
+                    <p className='service-loc'>{location}</p>
                 </div>
                 <div className='flex delete'>
-                    <MdUndo size={30} color={"#0A61E1"}/>
+                    <MdUndo size={30} color={"#0A61E1"} onClick={onClick}/>
                 </div>
             </div>
         );
@@ -52,7 +52,7 @@ else{
                     <p className='service-name'>{name}</p>
                 </div>
                 <div className='flex delete'>
-                    <MdOutlineDeleteOutline size={30} color={"#0A61E1"}/>
+                    <MdOutlineDeleteOutline size={30} color={"#0A61E1"} onClick={onClick}/>
                 </div>
             </div>
         );
@@ -65,7 +65,7 @@ else{
                         <p className='service-name'>{name}</p>
                     </div>
                     <div className='flex delete'>
-                        <MdUndo size={30} color={"#0A61E1"}/>
+                        <MdUndo size={30} color={"#0A61E1"} onClick={onClick}/>
                     </div>
                 </div>
             );
