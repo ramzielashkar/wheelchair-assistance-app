@@ -5,7 +5,9 @@ import {CircularProgress} from "@mui/material";
 import { useMutation } from '@tanstack/react-query';
 import EmptyState from '../../components/EmptyState/EmptyState';
 
+
 const ActiveServices = ()=>{
+
     //getting active service providers
     const { data: activeServices, isLoading: isLoadingServices, isFetching: isFetchingServices  } = useActiveServices();
     
@@ -34,7 +36,7 @@ const ActiveServices = ()=>{
                 content={"service"}
                 photo={service.profile_picture}
                 id={service._id}
-                onClick={(id = service._id)=>{mutate({id})}}/>
+                onClick={()=>{mutate(service._id)}}/>
                 )
             })}
             
