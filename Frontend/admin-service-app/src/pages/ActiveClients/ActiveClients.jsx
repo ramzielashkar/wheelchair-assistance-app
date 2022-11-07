@@ -3,10 +3,18 @@ import './style.css';
 import { useActiveClients } from '../../query/AdminClients/useClients';
 import {CircularProgress} from "@mui/material";
 import EmptyState from '../../components/EmptyState/EmptyState';
+import { useMutation } from '@tanstack/react-query';
+
 
 const ActiveClients = ()=>{
+
+ 
+
     //fetching active clients
     const { data: activeClients, isLoading: isLoadingClients,  isFetching: isFetchingClients  } = useActiveClients();
+
+    //function to ban clients
+    const { mutate } = useMutation(["TOGGLE_CLIENT"])
 
     //if clients data isn't fetched yet
     if(isLoadingClients || isFetchingClients){
@@ -29,7 +37,7 @@ const ActiveClients = ()=>{
                 path={"active"}
                 id={client._id}
                 photo={client.profile_picture}
-                onClick={(id = client._id)=>{console.log(id)}}/>
+                onClick={()=>{mutate(client._id)}}/>
                 )
             })}
         </section>    
