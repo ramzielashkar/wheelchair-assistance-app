@@ -18,7 +18,6 @@ const Landing =()=>{
     //function to navigate to corresponding route
     const navigateToRoute = async ()=>{
             const currentUser = await queryClient.getQueryData(["CurrentUser"]);
-            localStorage.setItem('token', currentUser.data.token);
             //storing user data in redux store
             store.dispatch(updateUser({
                 user: currentUser.data.user
@@ -34,6 +33,7 @@ const Landing =()=>{
     const {mutate, isLoading} = useMutation(loginUser, {
         onSuccess: (data) =>{
             queryClient.setQueryData(["CurrentUser"], {...data})
+            localStorage.setItem('token', data.data.token);
             navigateToRoute()
         },
         onError: (e) => {
