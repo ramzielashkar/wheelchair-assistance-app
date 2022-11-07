@@ -1,13 +1,14 @@
 import './style.css';
 import service from '../../assets/images/images.jpeg';
 import {MdOutlineDeleteOutline,MdUndo} from 'react-icons/md';
-const ServiceCard = ({name, location, path, content, id, onClick})=>{
+import { baseUrl } from '../../query/axios/axios';
+const ServiceCard = ({name, location, path, content, id, onClick, photo})=>{
 
     if(content=='service'){
     if(path=='active'){
     return(
         <div className='service-card flex column'>
-            <img src={service} alt="" className='service-img' />
+            <img src={`${baseUrl}/public/${photo}`} alt="" className='service-img' />
             <div className="flex column service-info">
                 <p className='service-name'>{name}</p>
                 <p className='service-loc'>{location}</p>
@@ -21,7 +22,7 @@ const ServiceCard = ({name, location, path, content, id, onClick})=>{
     else{
         return(
             <div className='service-card flex column'>
-                <img src={service} alt="" className='service-img' />
+                <img src={`${baseUrl}/public/${photo}`} alt="" className='service-img' />
                 <div className="flex column service-info">
                     <p className='service-name'>{name}</p>
                     <p className='service-loc'>{location}</p>
@@ -36,7 +37,7 @@ const ServiceCard = ({name, location, path, content, id, onClick})=>{
 else if(content=="follower"){
     return(
         <div className='service-card flex column'>
-            <img src={service} alt="" className='service-img' />
+            <img src={`${baseUrl}/public/${photo}`} alt="" className='service-img' />
             <div className="flex column service-info">
                 <p className='service-name follower'>{name}</p>
             </div>
@@ -47,7 +48,7 @@ else{
     if(path=='active'){
         return(
             <div className='service-card flex column'>
-                <img src={service} alt="" className='service-img' />
+                <img src={`${baseUrl}/public/${photo}`} alt="" className='service-img' />
                 <div className="flex column service-info">
                     <p className='service-name'>{name}</p>
                 </div>
@@ -60,7 +61,7 @@ else{
         else{
             return(
                 <div className='service-card flex column'>
-                    <img src={service} alt="" className='service-img' />
+                    <img src={`${baseUrl}/public/${photo}`} alt="" className='service-img' />
                     <div className="flex column service-info">
                         <p className='service-name'>{name}</p>
                     </div>
