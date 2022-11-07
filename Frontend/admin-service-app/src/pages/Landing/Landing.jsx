@@ -56,13 +56,6 @@ const Landing =()=>{
 
     }
 
-    // handeling errors
-    let errorfield;
-    if(error){
-         errorfield = <p className='error '>Invalid Credentials</p>
-    }else{
-         errorfield = <p className='error hidden'>Invalid Credentials</p>
-    }
     return(
         <section className="root flex column">
             <div className="container flex">
