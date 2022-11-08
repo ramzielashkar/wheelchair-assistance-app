@@ -92,5 +92,18 @@ queryClient.setMutationDefaults(["ADD_PICTURE"],{
             })
         },
 })
+
+//function to update profile 
+queryClient.setMutationDefaults(["UPDATE_PROFILE"],{
+    mutationFn: (payload) => 
+        axiosInstance.put(`service/editprofile`, {...payload}).then((res) => res.data),
+        onSuccess: (data) => {  
+           store.dispatch(updateUser({
+                user: data.user
+            }))
+        },
+        onError:(err)=>{
+        }
+})
 }
 
