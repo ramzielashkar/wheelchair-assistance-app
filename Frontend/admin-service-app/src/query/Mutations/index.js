@@ -4,6 +4,7 @@ import { ALL_ACTIVE_CLIENTS_KEY, ALL_BANNED_CLIENTS_KEY } from "../AdminClients/
 import { useQuery} from "@tanstack/react-query";
 import { store } from "../../Redux/store";
 import { updateUser } from "../../Redux/slices/userSlice";
+import { ALL_PICTURES_KEY } from "../ServicePictures/useServicePictures";
 
 export default (queryClient)=>{
 //function to ban/unban service provider
@@ -67,6 +68,17 @@ queryClient.setMutationDefaults(["UPDATE_PICTURE"],{
         },
         onError:(err)=>{
         }
+})
+
+//function to delete picture
+queryClient.setMutationDefaults(["DELETE_PICTURE"],{
+    mutationFn: (id) => 
+        axiosInstance.delete(`service/picture/${id}`).then((res) => res.data),
+        onSuccess: (data) => {        
+            queryClient.invalidateQueries({
+                queryKey: ALL_PICTURES_KEY
+            })
+        },
 })
 
 }
