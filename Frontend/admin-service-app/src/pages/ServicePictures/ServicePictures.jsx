@@ -4,8 +4,19 @@ import service from '../../assets/images/images.jpeg';
 import {MdOutlineDeleteOutline} from 'react-icons/md';
 import { useState } from "react";
 import NewPicture from "../../components/NewPicture/NewPicture";
+import { usePictures } from "../../query/ServicePictures/useServicePictures";
+import { CircularProgress } from "@mui/material";
+import EmptyState from "../../components/EmptyState/EmptyState";
+import { baseUrl } from "../../query/axios/axios";
+import { useMutation } from "@tanstack/react-query";
 
 const ServicePictures =()=>{
+
+    //getting all pictures
+    const { data: pictures, isLoading: isLoadingPictures, isFetching: isFetchingPictures, isFetched: fetched   } = usePictures();
+
+    // mutation to delete pictures
+    const { mutate } = useMutation(["DELETE_PICTURE"])
 
     const [img, setImg] = useState();
     const [base64, setBase64]= useState('');
@@ -36,6 +47,19 @@ const ServicePictures =()=>{
             showNewPicture();
         }
 
+    // if pictures aren't fetched yet
+    if(isLoadingPictures || isFetchingPictures){
+        return(
+            <CircularProgress/>
+        );
+    }
+    //if no pictures
+    if(fetched && pictures.pictures.pictures.length==0){
+        return(
+            <EmptyState content={'No Pictures'}/>
+        );
+    }
+
     return(
         <section className="flex column pictures-section">
             <div className="flex pictures-header">
@@ -43,22 +67,16 @@ const ServicePictures =()=>{
             </div>
             <input id='image' type="file" hidden onChange={onImageChange} />
             <div className="pictures-container">
-                <div className="flex picture-container">
-                    <img className="service-picture" src={service} alt="" />
-                    <MdOutlineDeleteOutline className="delete-pic" size={30} color={'#0A61E1'}/>
+            {pictures?.pictures?.pictures?.map((picture)=>{
+                return(
+                    <div className="flex picture-container">
+                    <img className="service-picture" src={`${baseUrl}/public/${picture.picture}`} alt="" />
+                    <MdOutlineDeleteOutline className="delete-pic" size={30} color={'#0A61E1'} onClick={()=>mutate(picture._id)}/>
                 </div>
-                <div className="flex picture-container">
-                    <img className="service-picture" src={service} alt="" />
-                    <MdOutlineDeleteOutline className="delete-pic" size={30} color={'#0A61E1'}/>
-                </div>
-                 <div className="flex picture-container">
-                    <img className="service-picture" src={service} alt="" />
-                    <MdOutlineDeleteOutline className="delete-pic" size={30} color={'#0A61E1'}/>
-                </div>
-                <div className="flex picture-container">
-                    <img className="service-picture" src={service} alt="" />
-                    <MdOutlineDeleteOutline className="delete-pic" size={30} color={'#0A61E1'}/>
-                </div>
+                )
+            })}
+                
+                
             </div>
             <NewPicture
             isOpen={isOpen}
