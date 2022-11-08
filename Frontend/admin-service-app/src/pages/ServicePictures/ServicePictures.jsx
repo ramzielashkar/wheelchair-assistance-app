@@ -56,7 +56,19 @@ const ServicePictures =()=>{
     //if no pictures
     if(fetched && pictures.pictures.pictures.length==0){
         return(
+            <section className="flex column pictures-section">
+            <div className="flex pictures-header">
+                <label htmlFor="image" className="new-picture-btn">Add Picture</label>
+            </div>
+            <input id='image' type="file" hidden onChange={onImageChange} />
             <EmptyState content={'No Pictures'}/>
+            <NewPicture
+            isOpen={isOpen}
+            onClose={closeNewPicture}
+            base64={base64}
+            image={img}/>
+            </section>
+            
         );
     }
 
@@ -81,7 +93,8 @@ const ServicePictures =()=>{
             <NewPicture
             isOpen={isOpen}
             onClose={closeNewPicture}
-            image={img}/>
+            image={img}
+            base64={base64}/>
         </section>
     );
 }
