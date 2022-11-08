@@ -126,7 +126,7 @@ const deletePicture = async (req, res)=>{
 }
 
 //function to get followers
-const getFollowers = async (req,res)=>{
+const getFollowers = async (req,res)=>{ 
     const id = req.user.id;
     const followers = await Seller.findById(id).select('followers').populate('followers.follower_id');
     res.json({followers});
