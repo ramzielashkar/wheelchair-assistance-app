@@ -81,5 +81,16 @@ queryClient.setMutationDefaults(["DELETE_PICTURE"],{
         },
 })
 
+//function to add picture
+queryClient.setMutationDefaults(["ADD_PICTURE"],{
+    mutationFn: (payload) => 
+        axiosInstance.post(`service/picture`, {...payload}).then((res) => res.data),
+        onSuccess: (data) => {        
+            // Fetch all pictures again 
+            queryClient.invalidateQueries({
+                queryKey: ALL_PICTURES_KEY
+            })
+        },
+})
 }
 
