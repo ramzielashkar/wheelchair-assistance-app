@@ -2,9 +2,18 @@ import profilePic from '../../assets/images/images.jpeg'
 import { MdAddAPhoto ,MdDone} from "react-icons/md";
 import {useState} from 'react';
 import './style.css'
+import { useSelector } from 'react-redux'
+import { baseUrl } from '../../query/axios/axios';
+import { useMutation } from '@tanstack/react-query';
+
 const ProfilePicture = ()=>{
-    const [img, setImg] = useState(profilePic);
+    // getting logged in user
+    const loggedInUser = useSelector((state)=>state.user)
+    const [img, setImg] = useState(`${baseUrl}/public/${loggedInUser.profile_picture}`);
     const [base64, setBase64]= useState('');
+
+    // Calling update profile picture mutation
+    const { mutate } = useMutation(["UPDATE_PICTURE"]);
 
     //function to convert image to base64
     const getBase64 = (file, callBack) =>{
@@ -36,7 +45,9 @@ const ProfilePicture = ()=>{
                     <div className ={
                             !base64 ? "hidden" : "edit-pic flex"
                         }>
-                            <MdDone color='white' size={30}/>                  
+                            <MdDone color='white' size={30} onClick={()=>{
+                                mutate({image:base64})
+                                setBase64('')}}/>                  
                         </div>
                     <div></div>
                 <input id='image' type="file" hidden onChange={onImageChange} />
