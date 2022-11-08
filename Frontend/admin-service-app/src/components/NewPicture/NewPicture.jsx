@@ -1,7 +1,18 @@
 import './style.css';
 import {MdOutlineClose} from 'react-icons/md';
 import Button from '../Button/Button';
-const NewPicture = ({isOpen, onClose, image})=>{
+import { useMutation } from '@tanstack/react-query';
+const NewPicture = ({isOpen, onClose, image, base64})=>{
+
+    // Calling mutation to add picture
+    const { mutate } = useMutation(["ADD_PICTURE"])
+
+    //handling submission
+    const handleSubmit = (e)=>{
+        console.log(base64)
+        mutate({image: base64})
+        onClose()
+    }
     if(!isOpen){
         return null;
     }else{
@@ -14,12 +25,13 @@ const NewPicture = ({isOpen, onClose, image})=>{
                         <MdOutlineClose size={30}/>
                     </div>
                 </div>
-                <div className="flex new-picture">
+                <form className="flex column new-picture">
                     <img src={image} alt="" className='chosen-pic' />
-                </div>
-                <div className="flex post-btn">
-                    <Button text={"Post"}/>
-                </div>
+                    <div className="flex post-btn">
+                        <input type={"button"} value="POST" className="btn" onClick={handleSubmit}/>
+                     </div>
+                </form>
+                
             </form>
         </section>
     );
