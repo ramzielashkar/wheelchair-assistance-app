@@ -12,7 +12,7 @@ const passwordSchema = require('../validators/password.validator');
 //function to update profile picture
 const updateprofilepic = async (req, res)=>{
     const id = req.user.id;
-    const matches = req.body.image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
+        const matches = req.body.image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
     const response ={};
     response.type = matches[1];
     response.data = new Buffer(matches[2], 'base64');
@@ -106,7 +106,6 @@ const getPictures = async (req, res)=>{
 const deletePicture = async (req, res)=>{
     const id = req.user.id;
     const {picture_id} = req.params; 
-    console.log(id)   
     try{
     const seller = await Seller.findOneAndUpdate(id, 
         {$pull:
