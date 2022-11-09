@@ -5,12 +5,22 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { useState } from "react";
 import photo from '../../assets/images/hospital.webp';
 import * as ImagePicker from 'expo-image-picker';
+import Buttons from "../../components/Button/Button";
+import { store } from "../../Redux/store";
+import { deleteUser } from "../../Redux/Slices/userSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Profile = () =>{
     const [editable, setEditable]= useState(false);
     const [imageEdit, setImageEdit]= useState(false);
     const [image, setImage] = useState(null);
     const [base64, setBase64] = useState(null);
+
+    //function to logout
+    const logout = async()=>{
+        store.dispatch(deleteUser())
+       AsyncStorage.setItem('token', '')
+    }
     const edit =()=>{
         setEditable(true)
     }
@@ -76,6 +86,9 @@ const Profile = () =>{
                     
                 </View>
             </View>
+            <Buttons
+            title={"LOGOUT"}
+            onClick={()=>logout()}/>
         </ScrollView>
     );
 
