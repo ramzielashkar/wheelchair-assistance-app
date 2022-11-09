@@ -54,7 +54,8 @@ const login = async (req, res)=>{
     if(!user) return res.status(404).json({message: "Invalid Credentials"});
     if(user.active==false) return res.status(404).json({message:"User Banned"})
     
-    if(!user.password==password) return res.status(404).json({message: "Invalid Credentials"});
+    const isMatch = await bcrypt.compare(password, user.password);
+    if(!isMatch) return res.status(404).json({message: "Invalid Credentials"});
     const token = jwt.sign({email: user.email, name: user.name}, process.env.JWT_SECRET_KEY, {
     });
     res.status(200).json({
