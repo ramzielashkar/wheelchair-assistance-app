@@ -1,10 +1,11 @@
 import TabsStack from "./TabsStack";
 import AuthStack from "./AuthStack";
 import { useState } from "react";
+import { useSelector } from 'react-redux'
 
 // stack switcher based on user
 const StackSwitcher = ()=>{
-    const [user, setUser] = useState(true);
+    const user = useSelector((state)=>state.user)
     return user? <TabsStack/> : <AuthStack/>
 }
 
