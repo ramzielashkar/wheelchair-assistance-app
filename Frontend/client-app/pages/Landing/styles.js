@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
         paddingBottom:1,
         marginTop:10,
         textAlign:"center"
+    },
+    errorField:{
+        maxWidth:300,
+        color:"red",
+        marginTop:10,
+        textAlign:"center"
     }
 });
 
