@@ -18,7 +18,7 @@ const Landing = ({navigation}) =>{
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-     //function to login
+     //function to register
      const {mutate, isLoading} = useMutation(registerUser, {
         onSuccess: (data) =>{
             AsyncStorage.setItem('token', data.data.token);
