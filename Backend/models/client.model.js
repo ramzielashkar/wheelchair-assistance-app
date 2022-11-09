@@ -10,6 +10,7 @@ const Client = User.discriminator('Client', new mongoose.Schema({
     },
     location:{
         type: String,
+        default:""
     },
     following:[
         {
