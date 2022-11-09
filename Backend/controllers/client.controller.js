@@ -10,8 +10,7 @@ const { stringify } = require('querystring');
 
 // function to register client
 const register = async (req, res) =>{
-    const {name, email, password} = req.body;
-
+    const {name, email, password, location, geo_location} = req.body;
     if(!emailValidator.validate(email)){
         res.status(400).json({
             message: "Invalid email structure"
@@ -19,7 +18,7 @@ const register = async (req, res) =>{
     }else{
         if(!passwordSchema.validate(password)){
             res.status(400).json({
-                message: "Password must have minimum 8 chars, lowercase and uppercase letters and at least 2 digits"
+                message: "Password must have minimum 8 chars, lowercase and uppercase letters and at least 1 digits"
             })
         }else{
     
@@ -28,7 +27,8 @@ const register = async (req, res) =>{
         user.name = name;
         user.email = email;
         user.password = await bcrypt.hash(password, 10);
-
+        user.geo_location = geo_location;
+        user.location=location;
         await user.save();
         const token = jwt.sign({email: user.email, name: user.name}, process.env.JWT_SECRET_KEY, {
         });

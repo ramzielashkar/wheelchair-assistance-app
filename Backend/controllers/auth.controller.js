@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt');
 //function to login
 const login = async (req, res)=>{
     const {email, password} = req.body;
-    console.log(password)
     const user = await User.findOne({email}).select("+password");
 
     if(!user) return res.status(404).json({message: "Invalid Credentials"});
