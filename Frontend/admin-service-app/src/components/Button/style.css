@@ -1,0 +1,22 @@
+.btn {
+  cursor: pointer;
+  color: white;
+  background-color: #0a61e1;
+  padding: 0.7rem;
+  width: 200px;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "Roboto";
+  height: 50px;
+}
+
+@media (max-width: 500px){
+  .btn{
+    padding: 0.3rem !important;
+    height: 35px;
+
+  }
+}

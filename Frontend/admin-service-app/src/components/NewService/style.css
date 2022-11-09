@@ -1,0 +1,42 @@
+.flex {
+  display: flex;
+}
+.column {
+  flex-direction: column;
+}
+.new-service-section {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.new-service-form {
+  background-color: white;
+  padding: 4rem;
+  border-radius: 20px;
+}
+.btns {
+  margin-top: 20px;
+  justify-content: center;
+  gap: 10px;
+}
+.passError{
+  font-family: "Roboto";
+  font-size: 12px;
+  font-weight: bold;
+  max-width: 300px;
+  color: red;
+}
+@media (max-width: 500px){
+    .new-service-form {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 20px;
+        width: 80%;
+}
+}

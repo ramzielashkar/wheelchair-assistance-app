@@ -1,0 +1,52 @@
+.new-notification{
+    background-color: white;
+    width: 100%;
+    box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.25);
+    padding: 35px 50px;
+    border-radius: 30px;
+    outline: none;
+    font-family: "Roboto";
+}
+.new-notification-header{
+    justify-content: center;
+    margin-bottom: 50px;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+}
+
+.new-notification-section{
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+.new-notification-form{
+    background-color: white;
+    padding: 2rem 4rem 4rem 4rem;
+    border-radius: 20px;
+}
+.btns{
+    margin-top: 20px;
+    justify-content: center;
+}
+.close-popup{
+    cursor: pointer;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+@media (max-width: 500px) {
+    .new-notification-form{
+        width: 80%;
+        padding: 2rem !important;
+
+    }
+
+}

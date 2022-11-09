@@ -1,0 +1,92 @@
+.flex {
+  display: flex;
+}
+.column {
+  flex-direction: column;
+}
+.service-card {
+  width: 300px;
+  border-radius: 30px;
+  background-color: white;
+  box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.25);
+  margin-bottom: 50px;
+}
+
+.service-img {
+  border-radius: 30px;
+  width: 300px;
+  height: 200px;
+  margin-bottom: 20px;
+}
+.service-info {
+  padding: 0 30px;
+}
+.service-name {
+  font-size: 20px;
+  font-family: "Roboto";
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.service-loc {
+  font-size: 15px;
+  font-family: "Roboto";
+  font-weight: bold;
+  opacity: 80%;
+}
+.delete {
+  padding-right: 30px;
+  margin-bottom: 10px;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.follower{
+  margin-bottom: 1rem;
+}
+@media (max-width:1350px){
+    .service-card{
+        width: 400px;
+    }
+    .service-img{
+        width: 400px;
+    }
+}
+@media (max-width:1250px){
+  .service-card{
+      width: 350px;
+  }
+  .service-img{
+      width: 350px;
+  }
+}
+@media (max-width:1150px){
+  .service-card{
+      width: 300px;
+  }
+  .service-img{
+      width: 300px;
+  }
+}
+@media (max-width:1150px){
+  .service-card{
+      width: 250px;
+  }
+  .service-img{
+      width: 250px;
+  }
+}
+@media (max-width: 750px) {
+  .service-card{
+      width: 400px;
+  }
+  .service-img{
+      width: 400px;
+  }
+}
+@media (max-width: 500px) {
+    .service-card{
+        width: 300px;
+    }
+    .service-img{
+        width: 300px;
+    }
+}
