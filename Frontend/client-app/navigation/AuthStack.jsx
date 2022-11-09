@@ -10,7 +10,10 @@ const AuthStack = ()=>{
         <NavigationContainer>
 
             <AuthStack.Navigator>
-            <AuthStack.Screen name = 'Register' component={Landing}/>
+            <AuthStack.Screen options={
+              {headerShown: false}
+
+            } name = 'Register' component={Landing}/>
             <AuthStack.Screen name = 'Login' component={Login}/>
             </AuthStack.Navigator>
       
