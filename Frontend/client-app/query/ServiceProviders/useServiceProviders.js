@@ -14,23 +14,23 @@ export const buildRestauarntByIdKey = (id) => ["RESTAURANT_BY_ID:" , id]
 export const buildVendorByIdKey = (id) => ["VENDOR_BY_ID:" , id]
 
 //function to get hospitals
-export const getHospitals = ()=>axiosInstance(getToken()).get(`/client/services/Hospital/${getLatitude()}/${getLongitude()}`).then((res)=>res.data)
+export const getHospitals = (lat, lng)=>axiosInstance(getToken()).get(`/client/services/Hospital/${lat}/${lng}`).then((res)=>res.data)
 
 //function to get Restaurants
-export const getRestaurants = ()=>axiosInstance(getToken()).get(`/client/services/Restaurant/${getLatitude()}/${getLongitude()}`).then((res)=>res.data)
+export const getRestaurants = (lat, lng)=>axiosInstance(getToken()).get(`/client/services/Restaurant/${lat}/${lng}`).then((res)=>res.data)
 
 //function to get Vendors
-export const getVendors = ()=>axiosInstance(getToken()).get(`/client/services/Vendor/${getLatitude()}/${getLongitude()}`).then((res)=>res.data)
+export const getVendors = (lat, lng)=>axiosInstance(getToken()).get(`/client/services/Vendor/${lat}/${lng}`).then((res)=>res.data)
 
 
 //function to use hospitals
-export const useHospitals = () => useQuery(
+export const useHospitals = (lat, lng) => useQuery(
     {
         refetchOnWindowFocus:false,
         queryKey: ALL_HOSPITALS,
-        queryFn: async () => await getHospitals(),
+        queryFn: async () => await getHospitals(lat, lng),
         onSuccess: (data) => {
-            data.sellers.map((seller) => {
+           data.user.map((seller) => {
                 queryClient.setQueryData(buildHospitalByIdKey(seller.id), {...seller})
             })
         },
@@ -40,13 +40,13 @@ export const useHospitals = () => useQuery(
 )
 
 //function to use restaurants
-export const useRestaurants = () => useQuery(
+export const useRestaurants = (lat, lng) => useQuery(
     {
         refetchOnWindowFocus:false,
         queryKey: ALL_RESTAURANTS,
-        queryFn: async () => await getRestaurants(),
+        queryFn: async () => await getRestaurants(lat, lng),
         onSuccess: (data) => {
-            data.sellers.map((seller) => {
+          data.user.map((seller) => {
                 queryClient.setQueryData(buildRestauarntByIdKey(seller.id), {...seller})
             })
         },
@@ -56,11 +56,11 @@ export const useRestaurants = () => useQuery(
 )
 
 //function to use vendors
-export const useVendors = () => useQuery(
+export const useVendors = (lat, lng) => useQuery(
     {
         refetchOnWindowFocus:false,
         queryKey: ALL_VENDORS,
-        queryFn: async () => await getVendors(),
+        queryFn: async () => await getVendors(lat, lng),
         onSuccess: (data) => {
             data.sellers.map((seller) => {
                 queryClient.setQueryData(buildVendorByIdKey(seller.id), {...seller})
