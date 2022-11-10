@@ -5,9 +5,10 @@ import Buttons from '../../components/Button/Button';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { store } from '../../Redux/store';
-import { updateUser } from '../../Redux/Slices/userSlice';
+import { setToken, updateUser } from '../../Redux/Slices/userSlice';
 import {  useMutation} from "@tanstack/react-query";
 import { loginUser } from '../../query/auth/auth';
+import getToken from '../../query/getToken';
 
 const Login = () =>{
     const [email, setEmail] = useState('');
@@ -17,9 +18,12 @@ const Login = () =>{
     //function to login
     const {mutate, isLoading} = useMutation(loginUser, {
         onSuccess: (data) =>{
-            AsyncStorage.setItem('token', JSON.stringify(data.data.token));
+            console.log(data.data.user)
             store.dispatch(updateUser({
                 user: data.data.user
+            }))
+            store.dispatch(setToken({
+                token: data.data.token
             }))
         },
         onError: (e) => {
