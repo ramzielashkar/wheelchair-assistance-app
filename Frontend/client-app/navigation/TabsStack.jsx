@@ -16,6 +16,7 @@ import ProfileStack from "./ProfileStack";
 
 // Bottom tab stack navigator
 const TabsStack = ()=>{
+   
     const Tabs = createBottomTabNavigator();
     return (
         <NavigationContainer>
