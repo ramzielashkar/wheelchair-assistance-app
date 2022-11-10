@@ -17,7 +17,7 @@ const Login = () =>{
     //function to login
     const {mutate, isLoading} = useMutation(loginUser, {
         onSuccess: (data) =>{
-            AsyncStorage.setItem('token', data.data.token);
+            AsyncStorage.setItem('token', JSON.stringify(data.data.token));
             store.dispatch(updateUser({
                 user: data.data.user
             }))
