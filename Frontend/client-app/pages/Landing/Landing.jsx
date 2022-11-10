@@ -10,7 +10,7 @@ import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
 import { registerUser } from '../../query/auth/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { store } from '../../Redux/store';
-import { updateUser } from '../../Redux/Slices/userSlice';
+import { setToken, updateUser } from '../../Redux/Slices/userSlice';
 
 const Landing = ({navigation}) =>{
     const [name, setName] = useState('');
@@ -21,9 +21,12 @@ const Landing = ({navigation}) =>{
      //function to register
      const {mutate, isLoading} = useMutation(registerUser, {
         onSuccess: (data) =>{
-            AsyncStorage.setItem('token', JSON.stringify(data.data.token));
+            
             store.dispatch(updateUser({
                 user: data.data.user
+            }))
+            store.dispatch(setToken({
+                token: data.data.token
             }))
         },
         onError: (e) => {
