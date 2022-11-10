@@ -9,15 +9,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from "react-redux";
 
 const Map = ()=>{
-    const [location, setLocation]= useState(useSelector((state)=>state.user.location));
+    const [location, setLocation]= useState(useSelector((state)=>state.user.geo_location));
     const [showDirections, setShowDirections]=useState(false);
     const {width, height} = Dimensions.get("window");
             console.log("user: ", location)
-  /*  useEffect(()=>{
-        ( ()=>{
-            
-        })();
-  }, []);*/
+
     const dest = {
         latitude : 33.952141,
         longitude: 35.592972
