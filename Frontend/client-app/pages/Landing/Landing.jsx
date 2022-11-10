@@ -21,7 +21,7 @@ const Landing = ({navigation}) =>{
      //function to register
      const {mutate, isLoading} = useMutation(registerUser, {
         onSuccess: (data) =>{
-            AsyncStorage.setItem('token', data.data.token);
+            AsyncStorage.setItem('token', JSON.stringify(data.data.token));
             store.dispatch(updateUser({
                 user: data.data.user
             }))
