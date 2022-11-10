@@ -55,22 +55,22 @@ const data=[
                 <View style={styles.location}>
                     <View style={styles.locationContainer}>
                         <Ionicons name="location-outline" size={15} color="#0A61E1" />
-                        <Text style={styles.locationText}>Beirut, Lebanon</Text>
+                        <Text style={styles.locationText}>{route.params.service.location}</Text>
                     </View>
                 </View>
-                <View style={styles.location}>
+                {/*<View style={styles.location}>
                     <View style={styles.locationContainer}>
                         <MaterialCommunityIcons name={"phone"} size={15} color={"#0A61E1"}/>
                         <Text style={styles.locationText}>71487328</Text>
-                    </View>
-                </View>
+                            </View>
+                            </View>*/}
                 <View style={styles.location}>
                     <View style={styles.description}>
-                        <Text>We provide services for eveyone, we  are accessible for everyone</Text>
+                        <Text>{route.params.service.description}</Text>
                     </View>
                 </View>
                 <Text style={styles.hours}>Working Hours</Text>
-                <Text style={styles.workingHours}>Monday to Friday 10am to 11pm</Text>
+                <Text style={styles.workingHours}>{route.params.service.working_hours}</Text>
                 <Buttons 
                 title={"SHOW ON MAP"}
                 onClick={navigateToMap}
