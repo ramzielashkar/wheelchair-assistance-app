@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 // stack switcher based on user
 const StackSwitcher = ()=>{
-    const user = useSelector((state)=>state.user)
+    const user = useSelector((state)=>state.token)
     return user? <TabsStack/> : <AuthStack/>
 }
 
