@@ -1,9 +1,14 @@
 import { Text, View,Dimensions, ScrollView, FlatList, SafeAreaView } from "react-native";
 import styles from "./styles";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ItemSeparator from "../../components/ItemSeparator/ItemSeparator";
 import EmptyState from "../../components/EmptyState/EmptyState";
+import * as Location from 'expo-location';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { store } from "../../Redux/store";
+import { updateLocation } from "../../Redux/Slices/userSlice";
+
 const data = [
     {
         name:"Restaurant",
@@ -17,6 +22,52 @@ const data = [
 ]
 
 const Home = ({navigation}) =>{
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+    const [userLocation, setUserLocation]= useState({});
+    useEffect(()=>{
+        (async ()=>{
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+            return;
+        }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      setUserLocation({
+        latitude:location.coords.latitude,
+        longitude: location.coords.longitude
+      })
+      /*await AsyncStorage.setItem('location', JSON.stringify(userLocation), (err)=> {
+        if(err){
+            console.log("an error");
+            throw err;
+        }
+        console.log("success");
+    }).catch((err)=> {
+        console.log("error is: " + err);
+    });
+    const value = await AsyncStorage.getItem('location');
+           if (value !== null) {
+            // We have data!!
+            console.log(JSON.parse(value));
+        }*/
+        store.dispatch(updateLocation({
+            location: {
+                latitude:location.coords.latitude,
+                longitude: location.coords.longitude
+              }
+        }))
+    })();
+
+  }, []);
+  /*let userLocation = {
+    latitude:location.coords.latitude,
+    longitude: location.coords.longitude
+  }*/
+
+    console.log(userLocation)
     //function to navigate to service page
     const navigateToService=(name)=>{
         navigation.navigate('Service', {name:name});
