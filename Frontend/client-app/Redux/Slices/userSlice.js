@@ -12,9 +12,13 @@ export const userSlice = createSlice({
         },
         deleteUser:()=>{
             return initialState
+        },
+        updateLocation:(state, action)=>{
+            console.log("location: ", action.payload.location)
+            state.user.location = action.payload.location
         }
     }
 })
 
-export const {updateUser, deleteUser} = userSlice.actions
+export const {updateUser, deleteUser, updateLocation} = userSlice.actions
 export default userSlice.reducer
