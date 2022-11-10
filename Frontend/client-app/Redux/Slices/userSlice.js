@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    user:null,
+    user:{},
+    token:'',
 }
 export const userSlice = createSlice({
     name:"user",
@@ -14,11 +15,16 @@ export const userSlice = createSlice({
             return initialState
         },
         updateLocation:(state, action)=>{
-            console.log("location: ", action.payload.location)
-            state.user.location = action.payload.location
+            state.user.geo_location = action.payload.location
+        },
+        setToken:(state, action)=>{
+            state.token = action.payload.token
+        },
+        getToken:(state)=>{
+            //return state.user.token
         }
     }
 })
 
-export const {updateUser, deleteUser, updateLocation} = userSlice.actions
+export const {updateUser, deleteUser, updateLocation, setToken, getToken} = userSlice.actions
 export default userSlice.reducer
