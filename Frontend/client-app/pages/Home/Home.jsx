@@ -8,6 +8,7 @@ import * as Location from 'expo-location';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { store } from "../../Redux/store";
 import { updateLocation } from "../../Redux/Slices/userSlice";
+import { useSelector } from "react-redux";
 
 const data = [
     {
@@ -39,20 +40,6 @@ const Home = ({navigation}) =>{
         latitude:location.coords.latitude,
         longitude: location.coords.longitude
       })
-      /*await AsyncStorage.setItem('location', JSON.stringify(userLocation), (err)=> {
-        if(err){
-            console.log("an error");
-            throw err;
-        }
-        console.log("success");
-    }).catch((err)=> {
-        console.log("error is: " + err);
-    });
-    const value = await AsyncStorage.getItem('location');
-           if (value !== null) {
-            // We have data!!
-            console.log(JSON.parse(value));
-        }*/
         store.dispatch(updateLocation({
             location: {
                 latitude:location.coords.latitude,
@@ -62,12 +49,7 @@ const Home = ({navigation}) =>{
     })();
 
   }, []);
-  /*let userLocation = {
-    latitude:location.coords.latitude,
-    longitude: location.coords.longitude
-  }*/
-
-    console.log(userLocation)
+ 
     //function to navigate to service page
     const navigateToService=(name)=>{
         navigation.navigate('Service', {name:name});
