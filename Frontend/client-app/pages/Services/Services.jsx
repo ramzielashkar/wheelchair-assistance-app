@@ -1,6 +1,8 @@
 import { Text, View,Dimensions, ScrollView, FlatList, SafeAreaView } from "react-native";
 import styles from "./styles";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
+import { queryClient } from "../../App";
+import { ALL_HOSPITALS, ALL_RESTAURANTS, ALL_VENDORS } from "../../query/ServiceProviders/useServiceProviders";
 const data = [
     {
         name:"Restaurant",
@@ -19,9 +21,19 @@ const data = [
 const Services = ({navigation, route})=>{
     const type = route.params;
     console.log(type);
+    let services;
+    if(type.type=="Hospitals"){
+         services = queryClient.getQueryData(ALL_HOSPITALS)
+
+    }else if(type.type=="Restaurants"){
+         services = queryClient.getQueryData(ALL_RESTAURANTS)
+    }
+    else if(type.type=="Vendors"){
+         services = queryClient.getQueryData(ALL_VENDORS)
+    }
     //function to navigate to service page
-    const navigateToService=(name)=>{
-        navigation.navigate('Service', {name:name});
+    const navigateToService=(item)=>{
+        navigation.navigate('Service', {service:item, name:item.name});
     }
     const count =1;
     let screenWidth = Dimensions.get('window').width
@@ -42,10 +54,10 @@ const Services = ({navigation, route})=>{
     if(screenWidth > 600){
         columns=3;
     }
-        if(count==0){
+        if(services.user.length==0){
             return(
                 <EmptyState
-                    content={'hospitals'}
+                    content={type.type}
                     icon={'map-marker'}
                 />
             );
@@ -58,10 +70,10 @@ const Services = ({navigation, route})=>{
                 </View>
                 <FlatList 
                     columnWrapperStyle={flatListStyle}
-                    data={data}
+                    data={services?.user}
                     renderItem={({item})=>(
                         <ServiceCard
-                        press={()=>{navigateToService(item.name)}}
+                        press={()=>{navigateToService(item)}}
                         data={item}/>
                     )}
                     numColumns={columns}
