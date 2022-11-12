@@ -27,6 +27,7 @@ const Login = () =>{
             }))
         },
         onError: (e) => {
+            console.log(e.response)
            setError('Invalid Credentials')
         }
      })
