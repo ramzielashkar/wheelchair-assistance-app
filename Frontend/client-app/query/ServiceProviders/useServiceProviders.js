@@ -1,8 +1,6 @@
 import { useQuery} from "@tanstack/react-query";
 import { queryClient } from "../../App";
 import axiosInstance from '../axios/index'
-import { getLatitude } from "../getLatitude";
-import { getLongitude } from "../getLongitude";
 import { getToken } from "../getToken";
 
 export const ALL_HOSPITALS = ["ALL_HOSPITALS"]
@@ -30,7 +28,6 @@ export const useHospitals = (lat, lng) => useQuery(
         queryKey: ALL_HOSPITALS,
         queryFn: async () => await getHospitals(lat, lng),
         onSuccess: (data) => {
-            console.log('helloooo')
            data.user.map((seller) => {
                 queryClient.setQueryData(buildHospitalByIdKey(seller.id), {...seller})
             })
