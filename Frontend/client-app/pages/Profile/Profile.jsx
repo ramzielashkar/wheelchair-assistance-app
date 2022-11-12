@@ -22,7 +22,6 @@ const Profile = () =>{
     const [base64, setBase64] = useState('');
     const [mutationKey, setMutationKey] = useState([]);
     const [name, setName] = useState(loggedInUser.name);
-
     //function to logout
     const logout = async()=>{
         store.dispatch(deleteUser())
@@ -89,7 +88,7 @@ console.log(getLatitude())
                 <View style={styles.location}>
                     <View style={styles.locationContainer}>
                         <Ionicons name="location-outline" size={15} color="#0A61E1" />
-                        <Text style={styles.locationText}>Beirut, Lebanon</Text>
+                        <Text style={styles.locationText}>{loggedInUser.location.address.city} {loggedInUser.location.address.subregion} {loggedInUser.location.address.country}</Text>
                     </View>
                     <View>
                         <Ionicons name={
