@@ -6,7 +6,7 @@ import { useState } from "react";
 import * as ImagePicker from 'expo-image-picker';
 import Buttons from "../../components/Button/Button";
 import { store } from "../../Redux/store";
-import { deleteUser } from "../../Redux/Slices/userSlice";
+import { deleteUser, updateName } from "../../Redux/Slices/userSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from 'react-redux';
 import { baseUrl } from "../../Credentials/credentials";
@@ -20,13 +20,13 @@ const Profile = () =>{
     const [imageEdit, setImageEdit]= useState(false);
     const [image, setImage] = useState(`${baseUrl}/public/${loggedInUser.profile_picture}`);
     const [base64, setBase64] = useState('');
-    const [mutationKey, setMutationKey] = useState([]);
-    const [name, setName] = useState(loggedInUser.name);
+    const [mutateFn, setMutateFn] = editable?['UPDATE_PROFILE'] : ['UPDATE_PICTURE  ']
+    const [name, setName] = useState(loggedInUser?.name);
     //function to logout
     const logout = async()=>{
         store.dispatch(deleteUser())
     }
-     const { mutate } = useMutation(mutationKey)
+     const { mutate } = useMutation([mutateFn])
 
     //function to edit profile picture
     const editPicture = ()=>{
@@ -38,10 +38,12 @@ console.log(getLatitude())
         setEditable(true)
     }
     const save =()=>{
-        setEditable(false)
-        console.log("name", name)
-        setMutationKey(['UPDATE_PROFILE'])
+        console.log(mutateFn)
+        store.dispatch(updateName({
+            name: name
+        }))
         mutate({name})
+        setEditable(false)
     }
     
     // function to choose photo
