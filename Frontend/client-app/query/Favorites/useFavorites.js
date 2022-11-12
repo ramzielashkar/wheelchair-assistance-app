@@ -20,7 +20,6 @@ export const useFavorites = () => useQuery(
         queryKey: ALL_FAVORITES,
         queryFn: async () => await getFavorites(),
         onSuccess: (data) => {
-            console.log(data.followed.following)
             store.dispatch(updateFavorites({
                 favorites: data.followed.following
             }))
