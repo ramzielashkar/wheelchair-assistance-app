@@ -2,39 +2,71 @@ import { Text, View,Dimensions, ScrollView, FlatList, Image, TextInput, Touchabl
 import styles from "./styles";
 import { AntDesign, Ionicons } from '@expo/vector-icons'; 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import photo from '../../assets/images/hospital.webp';
 import { ImageSlider } from "react-native-image-slider-banner";
 import Buttons from "../../components/Button/Button";
+import { useMutation } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
+import { baseUrl } from "../../Credentials/credentials";
 
 
 const ServicePage = ({navigation, route})=>{
     const [image, setImage] = useState(photo);
     const [followed, setfollowed] = useState(false);
+    const [mutateFn, setMutateFn] = followed?['UNFOLLOW'] : ['FOLLOW']
+    const loggedInUser = useSelector((state)=>state.user.following)
+    //checking if the service is followed or not
+    useEffect(()=>{
+        if(loggedInUser.some(e=>e.following_id._id===route.params.service._id)){
+            setfollowed(true)
+        }else{
+            console.log('unfollowed')
+        }
+    }, [])
+
+    //default image
+    const data = [{
+        img:`${baseUrl}/public/${route.params.service.profile_picture}`
+    },]
+    const pictures = []
+    //getting service pictures
+    route.params.service?.pictures?.map((picture)=>{
+        pictures.push({"img": `${baseUrl}/public/${picture.picture}`})
+    })
+
+   
 
     //function to navigate to map
     const navigateToMap=()=>{
         console.log("map")
         navigation.navigate('Map', {name:route.params.name})
     }
-const data=[
-{   img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYNCb0fpwqIyI2_kVF10edAAxN7vuL1XBmNw&usqp=CAU",
-},   
-{   img:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTatZSutgIKiDScKJrQTADvMiHukoi-9QeFYA&usqp=CAU",
-},
-{   img:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnJyBH7aR8qVizMo5qDuRnGJu8dn_uEmF3EA&usqp=CAU"
-}    
-]
+     //function to mutate follow/unfollow service provider
+     let {mutate} = useMutation([mutateFn]);
+
+    //function to follow service provider
+    const follow =(id)=>{
+       setfollowed(!followed)
+       mutate(id)
+        
+    }
+    //function to unfollow service provider
+    const unFollow =(id)=>{
+      setfollowed(!followed)
+      mutate(id)   
+    }
 
     return(
         <ScrollView style={styles.root}>
             <View style={styles.imageContainer}>
             <ImageSlider 
-                data={data}
+                data={pictures.length>0? pictures :
+                    data}
                 autoPlay={false}
                 closeIconColor="#fff"
                 caroselImageStyle={styles.image}
-            />            
+    />        
             </View>
             <View style={styles.profileContainer}>
                 <View style={styles.profileHeader}>
@@ -42,7 +74,10 @@ const data=[
                         <Text style={styles.userName}>{route.params.name}</Text>
                     </View>
                     <View style={styles.iconsContainer}>
-                        <TouchableOpacity style={styles.iconContainer} onPress={()=>{setfollowed(!followed)}}>
+                        <TouchableOpacity style={styles.iconContainer} 
+                        onPress={
+                            ()=>{!followed ?follow(route.params.service._id): unFollow(route.params.service._id)}
+                        }>
                             <MaterialCommunityIcons name={
                                 !followed? "cards-heart-outline" : "cards-heart"} size={25} color={"white"}/>
                         </TouchableOpacity>
