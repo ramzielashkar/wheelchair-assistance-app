@@ -17,6 +17,9 @@ export const userSlice = createSlice({
         updateLocation:(state, action)=>{
             state.user.geo_location = action.payload.location
         },
+        updateFavorites:(state, action)=>{
+          state.user.following = action.payload.favorites  
+        },
         setToken:(state, action)=>{
             state.token = action.payload.token
         },
@@ -26,5 +29,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const {updateUser, deleteUser, updateLocation, setToken, getToken} = userSlice.actions
+export const {updateUser, deleteUser, updateLocation, setToken, getToken, updateFavorites} = userSlice.actions
 export default userSlice.reducer
