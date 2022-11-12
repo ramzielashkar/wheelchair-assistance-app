@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { useHospitals, useRestaurants, useVendors } from "../../query/ServiceProviders/useServiceProviders";
 import { getLatitude } from "../../query/getLatitude";
 import { getLongitude } from "../../query/getLongitude";
+import { useFavorites } from "../../query/Favorites/useFavorites";
 
 const Home = ({navigation}) =>{
     const loggedInUser = useSelector((state)=>state.user)
@@ -58,7 +59,7 @@ const Home = ({navigation}) =>{
         navigation.navigate('Services', {type:type});
 
     }
-
+  const { data: favorites, isLoading: isLoadingFavorites,  isFetching: isFetchingFavorites} = useFavorites(); 
   const { data: hospitals, isLoading: isLoadingHospitals,  isFetching: isFetchingHospitals, refetch: refetchHospitals  } = useHospitals(latitude, longitude);
   const { data: restaurants, isLoading: isLoadingRestaurants,  isFetching: isFetchingRestaurants,refetch: refetchRestaurants} = useRestaurants(latitude, longitude );
   const { data: vendors, isLoading: isLoadingVendors,  isFetching: isFetchingVendors, refetch: refetchVendors } = useVendors(latitude, longitude); 
@@ -74,17 +75,21 @@ const Home = ({navigation}) =>{
 let screenWidth = Dimensions.get('window').width;
 let flatListStyle;
 let columns=2;        
+    let hospitalsData = hospitals?.user;
+    let restaurantsData = restaurants?.user;
+    let vendorsData = vendors?.user;
+    
     // managing different screen sizes
     if(screenWidth<450){
         flatListStyle={justifyContent: "space-between"}
         if(hospitals?.user.length > 2){
-            hospitals.user = hospitals.user.slice(0, 2)
+            hospitalsData = hospitalsData.slice(0, 2)
         }
         if(restaurants?.user.length > 2){
-            restaurants.user = restaurants.user.slice(0, 2)
+            restaurantsData = restaurantsData.slice(0, 2)
         }
         if(vendors?.user.length > 2){
-            vendors.user = vendors.user.slice(0, 2)
+            vendorsData = vendorsData.slice(0, 2)
         }
      }else if(screenWidth>450){
         flatListStyle={gap:20}
@@ -108,7 +113,7 @@ let columns=2;
                 </View>
                 <FlatList 
                     columnWrapperStyle={flatListStyle}
-                    data={hospitals?.user}
+                    data={hospitalsData}
                     renderItem={({item})=>(
                         <ServiceCard
                             press={()=>{navigateToService(item)}}
@@ -126,10 +131,10 @@ let columns=2;
                 </View>
                 <FlatList 
                     columnWrapperStyle={flatListStyle}
-                    data={restaurants?.user}
+                    data={restaurantsData}
                     renderItem={({item})=>(
                         <ServiceCard
-                        press={()=>{navigateToService(item.name)}}
+                        press={()=>{navigateToService(item)}}
                         data={item}/>
                     )}
                     numColumns={columns}
@@ -143,10 +148,10 @@ let columns=2;
                 </View>
                 <FlatList 
                     columnWrapperStyle={flatListStyle}
-                    data={vendors?.user}
+                    data={vendorsData}
                     renderItem={({item})=>(
                         <ServiceCard
-                        press={()=>{navigateToService(item.name)}}
+                        press={()=>{navigateToService(item)}}
                         data={item}/>
                     )}
                     numColumns={columns}
