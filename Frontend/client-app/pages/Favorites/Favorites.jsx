@@ -7,7 +7,6 @@ import styles from "./style";
 
 const Favorites =({navigation})=>{
     const { data: favorites, isLoading: isLoadingFavorites,  isFetching: isFetchingFavorites} = useFavorites(); 
-    console.log("favorites: ", favorites?.followed.following)
     let screenWidth = Dimensions.get('window').width
     let flatListStyle;
  if(screenWidth<450){
@@ -41,7 +40,7 @@ return(
 }
 
     return(
-        <ScrollView style={styles.root}>
+        <View style={styles.root}>
             <View style={styles.serviceContainer}>
             <FlatList 
                     columnWrapperStyle={flatListStyle}
@@ -55,7 +54,7 @@ return(
                     >
                 </FlatList>
             </View>
-        </ScrollView>
+        </View>
     );
 }
 
