@@ -8,22 +8,21 @@ import Buttons from "../../components/Button/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from "react-redux";
 
-const Map = ()=>{
+const Map = ({navigation, route})=>{
     const [location, setLocation]= useState(useSelector((state)=>state.user.geo_location));
     const [showDirections, setShowDirections]=useState(false);
     const {width, height} = Dimensions.get("window");
             console.log("user: ", location)
-
     const dest = {
-        latitude : 33.952141,
-        longitude: 35.592972
+        latitude : route.params.service.geo_location.coordinates[0],
+        longitude: route.params.service.geo_location.coordinates[1]
     }
     const ASPECT_RATIO = width/height;
     const LATITUDE_DELTA = 0.02;
     const LONGITUDE_DELTA =LATITUDE_DELTA*ASPECT_RATIO;
     const INITIAL_POSITION={
-        latitude : 33.893791,
-        longitude: 35.501778,
+        latitude : dest.latitude,
+        longitude: dest.longitude,
         latitudeDelta:LATITUDE_DELTA,
         longitudeDelta:LONGITUDE_DELTA
     }
@@ -34,15 +33,8 @@ const Map = ()=>{
                 provider={PROVIDER_GOOGLE}
                 showsUserLocation={true}
                 initialRegion={INITIAL_POSITION}>
-                    <Marker coordinate={{
-                    latitude : 33.893791,
-                    longitude: 35.501778
-                }}/>
+                    <Marker coordinate={dest}/>
                 <Marker coordinate={location}/>
-                <MapViewDirections 
-                origin={location}
-                destination={dest}
-                apikey={GOOGLE_API_KEY}/>
                 </MapView>
                 <View style={styles.btn}>
                     <Buttons
