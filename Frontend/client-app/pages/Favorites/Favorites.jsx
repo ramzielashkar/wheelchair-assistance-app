@@ -4,20 +4,7 @@ import ServiceCard from "../../components/ServiceCard/ServiceCard";
 import { useFavorites } from "../../query/Favorites/useFavorites";
 import styles from "./style";
 
-const data = [
-    {
-        name:"Restaurant",
-        location:"Beirut, Lebanon"
-},
-{
-    name:"Vendor",
-    location:"Beirut, Lebanon"
-},
-{
-    name:"Restaurant",
-    location:"Beirut, Lebanon"
-},
-]
+
 const Favorites =({navigation})=>{
     const { data: favorites, isLoading: isLoadingFavorites,  isFetching: isFetchingFavorites} = useFavorites(); 
     console.log("favorites: ", favorites?.followed.following)
@@ -38,8 +25,8 @@ const Favorites =({navigation})=>{
  if(screenWidth > 600){
     columns=3;
  }
- const navigateToService=(name)=>{
-    navigation.navigate('Service', {name:name});
+ const navigateToService=(item)=>{
+    navigation.navigate('Service', {service:item, name:item.name});
 }
 
 // if no favorites
@@ -61,8 +48,8 @@ return(
                     data={favorites?.followed.following}
                     renderItem={({item})=>(
                         <ServiceCard
-                        press={()=>{navigateToService(item.name)}}
-                        data={item}/>
+                        press={()=>{navigateToService(item.following_id)}}
+                        data={item.following_id}/>
                     )}
                     numColumns={columns}
                     >
