@@ -14,11 +14,14 @@ import { getLatitude } from "../../query/getLatitude";
 import { getLongitude } from "../../query/getLongitude";
 
 const Home = ({navigation}) =>{
-    const [location, setLocation] = useState('');
+    const loggedInUser = useSelector((state)=>state.user)
+    const [location, setLocation] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [userLocation, setUserLocation]= useState({});
-    
-    
+    const [fetched, setFetched] = useState(false)
+   const latitude =loggedInUser.geo_location?.latitude?loggedInUser.geo_location?.latitude : 1;
+   const longitude =loggedInUser.geo_location?.longitude?loggedInUser.geo_location?.longitude : 1
+    console.log(latitude)
     useEffect(()=>{
         (async ()=>{
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -28,7 +31,6 @@ const Home = ({navigation}) =>{
         }
 
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
       setUserLocation({
         latitude:location.coords.latitude,
         longitude: location.coords.longitude
@@ -39,44 +41,39 @@ const Home = ({navigation}) =>{
                 longitude: location.coords.longitude
               }
         }))
+        setLocation(true);
+        console.log('location')
+       
 
     })();
     
 
   }, []);
- 
- 
-    //function to navigate to service page
-    const navigateToService=(item)=>{
+
+     //function to navigate to service page
+     const navigateToService=(item)=>{
         navigation.navigate('Service', {service:item, name:item.name});
     }
     const navigateToServices = (type)=>{
         navigation.navigate('Services', {type:type});
 
     }
-    //getting user geo location form redux store
-    const latitude = useSelector((state)=>state.user.geo_location.latitude? state.user.geo_location.latitude : ' ')
-    const longitude = useSelector((state)=>state.user.geo_location.longitude? state.user.geo_location.longitude: " " )
 
+  const { data: hospitals, isLoading: isLoadingHospitals,  isFetching: isFetchingHospitals, refetch: refetchHospitals  } = useHospitals(latitude, longitude);
+  const { data: restaurants, isLoading: isLoadingRestaurants,  isFetching: isFetchingRestaurants,refetch: refetchRestaurants} = useRestaurants(latitude, longitude );
+  const { data: vendors, isLoading: isLoadingVendors,  isFetching: isFetchingVendors, refetch: refetchVendors } = useVendors(latitude, longitude); 
+ 
+  if(location){
+    console.log(location)
+    setLocation(false)
+    refetchHospitals(),
+    refetchRestaurants(),
+    refetchVendors()
+  }
+    //getting user geo location form redux store
 let screenWidth = Dimensions.get('window').width;
 let flatListStyle;
-let columns=2;
-
-
-// getting service providers
- const { data: hospitals, isLoading: isLoadingHospitals,  isFetching: isFetchingHospitals  } = useHospitals(latitude, longitude);
- const { data: restaurants, isLoading: isLoadingRestaurants,  isFetching: isFetchingRestaurants  } = useRestaurants(latitude, longitude );
- const { data: vendors, isLoading: isLoadingVendors,  isFetching: isFetchingVendors  } = useVendors(latitude, longitude);
- 
- // if no service providers
-    if(hospitals && vendors && restaurants && hospitals.user.length==0 && vendors.user.length==0 && restaurants.user.length==0){
-        return(
-            <EmptyState
-                content={'Services'}
-                icon={'map-marker'}
-            />
-        );
-    }
+let columns=2;        
     // managing different screen sizes
     if(screenWidth<450){
         flatListStyle={justifyContent: "space-between"}
@@ -92,8 +89,16 @@ let columns=2;
      }else if(screenWidth>450){
         flatListStyle={gap:20}
         columns=3;
-     }
-   
+}
+    // if no service providers
+    if(hospitals && vendors && restaurants && hospitals.user.length==0 && vendors.user.length==0 && restaurants.user.length==0){
+    return(
+        <EmptyState
+            content={'Services'}
+            icon={'map-marker'}
+        />
+    );
+}
     return(
         <ScrollView style={styles.root}>
            {hospitals?.user.length!=0 &&<SafeAreaView style={styles.serviceContainer}>
@@ -150,5 +155,6 @@ let columns=2;
             </SafeAreaView>}
         </ScrollView>
     );
-}
+    }
+
 export default Home;
