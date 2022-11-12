@@ -1,5 +1,7 @@
 import { useQuery} from "@tanstack/react-query";
 import { queryClient } from "../../App";
+import { updateFavorites, updateUser } from "../../Redux/Slices/userSlice";
+import { store } from "../../Redux/store";
 import axiosInstance from '../axios/index'
 import { getToken } from "../getToken";
 
@@ -15,10 +17,14 @@ export const getFavorites = ()=>axiosInstance(getToken()).get(`/client/followed`
 export const useFavorites = () => useQuery(
     {
         refetchOnWindowFocus:false,
-        queryKey: ALL_HOSPITALS,
+        queryKey: ALL_FAVORITES,
         queryFn: async () => await getFavorites(),
         onSuccess: (data) => {
-           data.followed.map((seller) => {
+            console.log(data.followed.following)
+            store.dispatch(updateFavorites({
+                favorites: data.followed.following
+            }))
+           data.followed.following.map((seller) => {
                 queryClient.setQueryData(buildFavoriteByIdKey(seller.id), {...seller})
             })
         },
