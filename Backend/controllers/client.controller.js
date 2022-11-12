@@ -10,7 +10,7 @@ const { stringify } = require('querystring');
 
 // function to register client
 const register = async (req, res) =>{
-    const {name, email, password, location, geo_location} = req.body;
+    const {name, email, password} = req.body;
     if(!emailValidator.validate(email)){
         res.status(400).json({
             message: "Invalid email structure"
@@ -27,8 +27,8 @@ const register = async (req, res) =>{
         user.name = name;
         user.email = email;
         user.password = await bcrypt.hash(password, 10);
-        user.geo_location = geo_location;
-        user.location=location;
+        user.geo_location = {"type":"Point", "coordinates":[1, 1]};
+        user.location='';
         await user.save();
         const token = jwt.sign({email: user.email, name: user.name}, process.env.JWT_SECRET_KEY, {
         });
@@ -48,7 +48,6 @@ const register = async (req, res) =>{
 //function to login
 const login = async (req, res)=>{
     const {email, password} = req.body;
-    
     const user = await Client.findOne({email}).select("+password");
 
     if(!user) return res.status(404).json({message: "Invalid Credentials"});
@@ -67,6 +66,7 @@ const login = async (req, res)=>{
 //function to update profile picture
 const updateprofilepic = async (req, res)=>{
     const id = req.user.id;
+    console.log(req.body.image)
     const matches = req.body.image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
     const response ={};
     response.type = matches[1];
@@ -96,12 +96,10 @@ const updateprofilepic = async (req, res)=>{
 //function to edit profile
 const editProfile = async (req, res)=>{
     const id = req.user.id;
-    const {name, geo_location, location} = req.body;
+    const {name} = req.body;
     try{
         const user = await Client.findByIdAndUpdate(id,{
             name,
-            geo_location,
-            location
         })
         const updated = await Client.findById(id);
         await res.json({
@@ -117,15 +115,14 @@ const editProfile = async (req, res)=>{
 //function to get service providers
 const getServiceProviders = async (req, res)=>{
     const id = req.user.id;
-    const {type} = req.params;
-    const result = await Client.findById(id).select("geo_location").select("coordinates");
-    console.log(result.geo_location.coordinates)
+    const {type, lat, lng} = req.params;
+    console.log(type, lat, lng)
    const options={
         geo_location:
-            { $near: { $geometry: { type: "Point", coordinates: result.geo_location.coordinates}, $maxDistance: 1000*1609.34 }
+            { $near: { $geometry: { type: "Point", coordinates: [lat, lng]}, $maxDistance: 1000*1609.34 }
         }
     }
-   const sellers = await Seller.find(options).where({type})
+   const sellers = await Seller.find(options).where({type, active:true})
 
 
 res.status(200).json({
@@ -145,6 +142,7 @@ const getServiceProvider = async (req, res) =>{
 const follow = async (req,res) =>{
     const id = req.user.id;
     const {seller_id} = req.params;
+    console.log(seller_id)
     const following_id = {
         following_id: seller_id
     }
@@ -165,6 +163,7 @@ const follow = async (req,res) =>{
             client.save();
             res.json(client);
         } catch (error) {
+            console.log(error)
             res.status(400).send(error.message);
         } 
     })
