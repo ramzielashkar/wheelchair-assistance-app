@@ -12,6 +12,8 @@ import { useSelector } from 'react-redux';
 import { baseUrl } from "../../Credentials/credentials";
 import {  useMutation } from "@tanstack/react-query";
 import { getToken } from "../../query/getToken";
+import { getLatitude } from "../../query/getLatitude";
+import { getLongitude } from "../../query/getLongitude";
 const Profile = () =>{
     const loggedInUser = useSelector((state)=>state.user)
     const [editable, setEditable]= useState(false);
@@ -20,10 +22,10 @@ const Profile = () =>{
     const [base64, setBase64] = useState('');
     const [mutationKey, setMutationKey] = useState([]);
     const [name, setName] = useState(loggedInUser.name);
+
     //function to logout
     const logout = async()=>{
         store.dispatch(deleteUser())
-       AsyncStorage.setItem('token', '')
     }
      const { mutate } = useMutation(mutationKey)
 
@@ -32,7 +34,7 @@ const Profile = () =>{
         console.log('save')
 
     }
-
+console.log(getLatitude())
     const edit =()=>{
         setEditable(true)
     }
