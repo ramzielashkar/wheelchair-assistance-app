@@ -7,7 +7,7 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import * as Location from 'expo-location';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { store } from "../../Redux/store";
-import { updateLocation } from "../../Redux/Slices/userSlice";
+import { updateAddress, updateLocation } from "../../Redux/Slices/userSlice";
 import { useSelector } from "react-redux";
 import { useHospitals, useRestaurants, useVendors } from "../../query/ServiceProviders/useServiceProviders";
 import { getLatitude } from "../../query/getLatitude";
@@ -32,6 +32,8 @@ const Home = ({navigation}) =>{
         }
 
       let location = await Location.getCurrentPositionAsync({});
+      let address = await Location.reverseGeocodeAsync(location.coords)
+      console.log("address: ", address[0])
       setUserLocation({
         latitude:location.coords.latitude,
         longitude: location.coords.longitude
@@ -41,6 +43,11 @@ const Home = ({navigation}) =>{
                 latitude:location.coords.latitude,
                 longitude: location.coords.longitude
               }
+        }))
+        store.dispatch(updateAddress({
+            location:{
+                address:address[0]
+            }
         }))
         setLocation(true);
         console.log('location')
