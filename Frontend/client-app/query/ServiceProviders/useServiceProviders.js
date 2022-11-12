@@ -30,11 +30,11 @@ export const useHospitals = (lat, lng) => useQuery(
         queryKey: ALL_HOSPITALS,
         queryFn: async () => await getHospitals(lat, lng),
         onSuccess: (data) => {
+            console.log('helloooo')
            data.user.map((seller) => {
                 queryClient.setQueryData(buildHospitalByIdKey(seller.id), {...seller})
             })
         },
-        staleTime: Infinity,
         
     }
 )
@@ -50,7 +50,9 @@ export const useRestaurants = (lat, lng) => useQuery(
                 queryClient.setQueryData(buildRestauarntByIdKey(seller.id), {...seller})
             })
         },
-        staleTime: Infinity,
+        onError:(e)=>{
+            console.log(e.response)
+        }
         
     }
 )
@@ -66,7 +68,6 @@ export const useVendors = (lat, lng) => useQuery(
                 queryClient.setQueryData(buildVendorByIdKey(seller.id), {...seller})
             })
         },
-        staleTime: Infinity,
         
     }
 )
