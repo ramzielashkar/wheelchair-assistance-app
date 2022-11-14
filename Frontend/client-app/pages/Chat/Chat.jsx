@@ -2,39 +2,70 @@ import { Text } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import React, { useState, useCallback, useEffect } from 'react'
 import { firebaseDB } from '../../configurations/firebaseConfiguration';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, onValue, push, ref, set, get, update } from "firebase/database";
+import { useSelector } from 'react-redux';
 
-const Chat = ({data})=>{
+const Chat = ({data, route})=>{
     const [messages, setMessages] = useState([]);
-    useEffect(() => {
-        setMessages([
-          {
-            _id: 1,
-            text: 'Hello developer',
-            createdAt: new Date(),
-            user: {
-              _id: 2,
-              name: 'React Native',
-              avatar: 'https://placeimg.com/140/140/any',
-            },
-          },
-        ])
-      }, [])
+    const loggedInUser = useSelector((state)=>state.user._id)
+    const [exists, setExists] = useState(false);
+    // Checking if chat already exists
+    get(ref(firebaseDB,'chats/'+loggedInUser+route.params.service._id)).then((snapshot)=>{
+      if(snapshot.exists()){
+        setExists(true)
+      }
+     })
+    useEffect(()=>{
+      //getting old chat
+      const msgs =[];
+      get(ref(firebaseDB, 'chats/'+ loggedInUser+route.params.service._id+'/messages')).then((snapshot) => {
+        if(snapshot.exists()){
+          const data = snapshot.val();
+          for (const [key, value] of Object.entries(data)) {
+            for (const [index, item] of Object.entries(value)){
+              msgs.push(item)
+            }
+            
+          }
+          setMessages(msgs)
 
-      const onSend = useCallback((messages = []) => {
-        setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-      }, [],
-      set(ref(firebaseDB, 'users/' + 1), {
-        username: "ramzi",
-        email: 'ramzi@gmail.com',
-      }));
+        }
+        
+      });
+ 
+    },[])
+    // function to send message
+      const onSend = useCallback((messages = []) => {   
+        messages[0].createdAt=messages[0].createdAt.toString()
+        console.log(messages[0].createdAt)
+        if(!exists){
+          set(ref(firebaseDB, 'chats/' + loggedInUser+route.params.service._id), {
+            firstUserId: loggedInUser,
+            secondUserId: route.params.service._id,
+            latestMessage: messages[0],
+          })
+        }else{
+          update(ref(firebaseDB, 'chats/' + loggedInUser+route.params.service._id+"/latestMessage"), {
+              text:messages[0].text
+          })
+        }
+      const messagesRef = ref(firebaseDB, 'chats/' +loggedInUser+route.params.service._id+'/messages/');
+      const newMessageRef = push(messagesRef) 
+      set(newMessageRef,{
+        message: messages[0]
+      })
+      setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+    })
+    
     return(
     <GiftedChat
       messages={messages}
       onSend={messages => onSend(messages)}
-      user={{
-        _id: 1,
-      }}
-    />    );
+      user={
+        {_id:loggedInUser}
+      }
+    />    
+    );
 }
+
 export default Chat;
