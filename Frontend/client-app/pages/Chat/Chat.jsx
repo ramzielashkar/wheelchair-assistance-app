@@ -27,7 +27,7 @@ const Chat = ({data, route})=>{
             }
             
           }
-          setMessages(msgs)
+          setMessages(msgs.reverse())
 
         }
         
