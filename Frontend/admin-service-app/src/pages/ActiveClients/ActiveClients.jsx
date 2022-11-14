@@ -23,7 +23,7 @@ const ActiveClients = ()=>{
         );
     }
     //if no clients available
-    if(activeClients.clients.length==0){
+    if(activeClients?.clients.length==0){
         return(
             <EmptyState content={'No Active Clients'}/>
         );
