@@ -13,7 +13,7 @@ const ServiceFollowers = ()=>{
         );
     }
     //if no followers
-    if(fetched && followers.followers.followers.length==0){
+    if(fetched && followers?.followers.followers.length==0){
         return(
         <section className="flex column clients-section">
             <div className="clients-header flex">
