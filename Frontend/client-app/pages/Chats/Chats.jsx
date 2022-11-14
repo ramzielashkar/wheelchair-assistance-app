@@ -33,7 +33,7 @@ const data = [
 ]
 const Chats = ({navigation})=>{
     return(
-        <ScrollView style={styles.root}>
+        <View style={styles.root}>
             <View style={styles.chatsContainer}>
                 <FlatList
                 data={data}
@@ -44,7 +44,7 @@ const Chats = ({navigation})=>{
                 )}>
                 </FlatList>
             </View>
-        </ScrollView>
+        </View>
         );
 }
 export default Chats;
