@@ -4,7 +4,6 @@ import styles from "./styles";
 import { firebaseDB } from '../../configurations/firebaseConfiguration';
 import { getDatabase, onValue, push, ref, set, get, update } from "firebase/database";
 import { useSelector } from "react-redux";
-import { useService } from "../../query/ServiceProviders/useServiceProviders";
 import { getToken } from "../../query/getToken";
 import axiosInstance from '../../query/axios/index'
 import { baseUrl } from "../../Credentials/credentials";
