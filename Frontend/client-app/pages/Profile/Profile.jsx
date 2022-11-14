@@ -33,7 +33,6 @@ const Profile = () =>{
         console.log('save')
 
     }
-console.log(getLatitude())
     const edit =()=>{
         setEditable(true)
     }
@@ -90,7 +89,7 @@ console.log(getLatitude())
                 <View style={styles.location}>
                     <View style={styles.locationContainer}>
                         <Ionicons name="location-outline" size={15} color="#0A61E1" />
-                        <Text style={styles.locationText}>{loggedInUser.location.address.city} {loggedInUser.location.address.subregion} {loggedInUser.location.address.country}</Text>
+                        <Text style={styles.locationText}>{loggedInUser?.location?.address?.city} {loggedInUser?.location?.address?.subregion} {loggedInUser?.location?.address?.country}</Text>
                     </View>
                     <View>
                         <Ionicons name={
