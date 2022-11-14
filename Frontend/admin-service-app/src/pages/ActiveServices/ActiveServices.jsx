@@ -20,7 +20,7 @@ const ActiveServices = ()=>{
         );
     }
     //if no active service providers
-    if(activeServices.service_providers.length==0){
+    if(activeServices?.service_providers.length==0){
         return(
             <EmptyState content={'No Active Services'}/>
         );
