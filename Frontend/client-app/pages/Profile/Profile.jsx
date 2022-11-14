@@ -7,13 +7,10 @@ import * as ImagePicker from 'expo-image-picker';
 import Buttons from "../../components/Button/Button";
 import { store } from "../../Redux/store";
 import { deleteUser, updateName } from "../../Redux/Slices/userSlice";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from 'react-redux';
 import { baseUrl } from "../../Credentials/credentials";
 import {  useMutation } from "@tanstack/react-query";
-import { getToken } from "../../query/getToken";
-import { getLatitude } from "../../query/getLatitude";
-import { getLongitude } from "../../query/getLongitude";
+
 const Profile = () =>{
     const loggedInUser = useSelector((state)=>state.user)
     const [editable, setEditable]= useState(false);
