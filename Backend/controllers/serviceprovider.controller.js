@@ -130,6 +130,12 @@ const getFollowers = async (req,res)=>{
     const followers = await Seller.findById(id).select('followers').populate('followers.follower_id');
     res.json({followers});
 }
+//function to get client by id
+const getClient = async (req, res) =>{
+    const {_id} = req.params;
+    const client = await Client.findOne({_id});
+    res.json({client});
+}
 
 module.exports = {
     updateprofilepic,
@@ -137,5 +143,6 @@ module.exports = {
     addPicture,
     getPictures,
     deletePicture,
-    getFollowers
+    getFollowers,
+    getClient
 }
