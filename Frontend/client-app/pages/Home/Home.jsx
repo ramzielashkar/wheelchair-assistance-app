@@ -2,16 +2,12 @@ import { Text, View,Dimensions, ScrollView, FlatList, SafeAreaView } from "react
 import styles from "./styles";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
 import { useEffect, useState } from "react";
-import ItemSeparator from "../../components/ItemSeparator/ItemSeparator";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import * as Location from 'expo-location';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { store } from "../../Redux/store";
 import { updateAddress, updateLocation } from "../../Redux/Slices/userSlice";
 import { useSelector } from "react-redux";
 import { useHospitals, useRestaurants, useVendors } from "../../query/ServiceProviders/useServiceProviders";
-import { getLatitude } from "../../query/getLatitude";
-import { getLongitude } from "../../query/getLongitude";
 import { useFavorites } from "../../query/Favorites/useFavorites";
 
 const Home = ({navigation}) =>{
@@ -50,7 +46,6 @@ const Home = ({navigation}) =>{
             }
         }))
         setLocation(true);
-        console.log('location')
        
 
     })();
@@ -72,7 +67,6 @@ const Home = ({navigation}) =>{
   const { data: vendors, isLoading: isLoadingVendors,  isFetching: isFetchingVendors, refetch: refetchVendors } = useVendors(latitude, longitude); 
  
   if(location){
-    console.log(location)
     setLocation(false)
     refetchHospitals(),
     refetchRestaurants(),
