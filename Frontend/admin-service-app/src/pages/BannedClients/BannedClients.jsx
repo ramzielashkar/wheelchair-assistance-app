@@ -22,7 +22,7 @@ const BannedClients = ()=>{
         );
     }
     // if no clients available
-    if(bannedClients.clients.length==0){
+    if(bannedClients?.clients.length==0){
         return(
             <EmptyState content={'No Banned Clients'}/>
         );
