@@ -81,7 +81,7 @@ const ServicePage = ({navigation, route})=>{
                             <MaterialCommunityIcons name={
                                 !followed? "cards-heart-outline" : "cards-heart"} size={25} color={"white"}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.iconContainer} onPress={()=>{navigation.navigate('Chat', {name:route.params.name})}}>
+                        <TouchableOpacity style={styles.iconContainer} onPress={()=>{navigation.navigate('Chat', {service:route.params.service ,name:route.params.name})}}>
                             <MaterialCommunityIcons name={"message-text"} size={25} color={"white"}/>
                         </TouchableOpacity>
                     </View>
