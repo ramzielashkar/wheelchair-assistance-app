@@ -19,7 +19,7 @@ const BannedServices = () =>{
         );
     }
     //if no service providers available
-    if(bannedServices.service_providers.length==0){
+    if(bannedServices?.service_providers.length==0){
         return(
             <EmptyState content={'No Banned Services'}/>
         );
