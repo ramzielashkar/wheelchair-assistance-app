@@ -23,7 +23,7 @@ const data=[
 ]
 const Notifications = ()=>{
     return(
-        <ScrollView style={styles.root}>
+        <View style={styles.root}>
             <View style={styles.notificationsContainer}>
                 <FlatList
                 data={data}
@@ -33,7 +33,7 @@ const Notifications = ()=>{
                 )}>
                 </FlatList>
             </View>
-        </ScrollView>
+        </View>
         );
 }
 export default Notifications;
