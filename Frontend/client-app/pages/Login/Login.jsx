@@ -3,12 +3,10 @@ import styles from './styles';
 import Input from '../../components/Inputs/Inputs';
 import Buttons from '../../components/Button/Button';
 import { useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { store } from '../../Redux/store';
 import { setToken, updateUser } from '../../Redux/Slices/userSlice';
 import {  useMutation} from "@tanstack/react-query";
 import { loginUser } from '../../query/auth/auth';
-import getToken from '../../query/getToken';
 
 const Login = () =>{
     const [email, setEmail] = useState('');
