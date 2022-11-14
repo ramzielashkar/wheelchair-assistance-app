@@ -8,7 +8,6 @@ import { emailValidator } from '../../validators/emailValidator';
 import { passwordValidator } from '../../validators/passwordValidator';
 import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
 import { registerUser } from '../../query/auth/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { store } from '../../Redux/store';
 import { setToken, updateUser } from '../../Redux/Slices/userSlice';
 
