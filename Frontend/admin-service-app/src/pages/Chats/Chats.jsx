@@ -12,6 +12,9 @@ const Chats = ()=>{
     const loggedInUser = useSelector((state)=>state.user._id)
     const [data, setData] = useState(null);
     const [messages, setMessages]=useState([]);
+    const [currentChat, setCurrentChat] = useState('');
+    const [msgToSend, setMsgToSend] = useState('');
+    const [userId, setUserId] = useState('')
     useEffect(()=>{
         const conversations = [];
         let Data = [];
@@ -64,6 +67,47 @@ const Chats = ()=>{
             }
         });
     },[])
+    //function to fetch chats
+    const fetchChats = (chat)=>{
+        const msgs =[];
+        setUserId(chat.id)
+        get(ref(firebaseDB, 'chats/'+ chat.id+loggedInUser+'/messages')).then((snapshot) => {
+        if(snapshot.exists()){
+          const data = snapshot.val();
+          for (const [key, value] of Object.entries(data)) {
+            for (const [index, item] of Object.entries(value)){
+              msgs.push(item)
+            }
+            
+          }
+          setMessages(msgs)
+          setCurrentChat(chat.title)
+        }
+        
+      });
+    }
+    //function to send message
+    const sendMsg = ()=>{
+        const today = new Date();
+        const dateTime = today.toUTCString();
+
+         const latestMessage = {
+            _id:Date.now(),
+            createdAt: dateTime,
+            text: msgToSend,
+            user:{
+                _id: loggedInUser
+            }
+        }
+        update(ref(firebaseDB, 'chats/' + userId+loggedInUser), {
+            latestMessage
+        })
+        const messagesRef = ref(firebaseDB, 'chats/' +userId+loggedInUser+'/messages/');
+        const newMessageRef = push(messagesRef) 
+        set(newMessageRef,{
+            message: latestMessage
+      })
+    }
     return(
         <section className="flex column chats-section">
             <div className="chats-header flex">
@@ -84,7 +128,7 @@ const Chats = ()=>{
                         id: conversation._id
                         }
                     ]}
-                    onClick={(id)=>console.log(id) }/>
+                    onClick={(chat)=>fetchChats(chat) }/>
                         );
                     })}
                 
@@ -95,11 +139,13 @@ const Chats = ()=>{
                         {messages.map((chat)=>{
                             return(
                                 <MessageBox
-                                position='left'
-                                title='Burhan'
+                                position={
+                                    chat.user._id == loggedInUser? 'right':"left"
+                                }
+                                title={chat.user._id == loggedInUser? "You":currentChat}
                                 type='text'
-                                text="Hi there !"
-                                date={new Date()}
+                                text={chat.text}
+                                date={chat.createdAt}
                                 />
                             );
                         })}
@@ -107,8 +153,9 @@ const Chats = ()=>{
                     </div>
                     
                     <div className="flex chat-input">
-                        <input type="text" aria-multiline={true} placeholder="Type here..." className='input-msg' />
-                        <MdSend className='send-msg' size={30} color={"0A61E1"}/>
+                        <input type="text" aria-multiline={true} placeholder="Type here..." className='input-msg' onChange={(e)=>setMsgToSend(e.target.value)} />
+                        <MdSend className='send-msg' size={30} color={"0A61E1"} onClick={()=>{sendMsg()
+                        }}/>
                     </div>
                     
                 </div>
