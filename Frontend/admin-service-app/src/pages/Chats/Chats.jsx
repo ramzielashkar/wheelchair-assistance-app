@@ -3,7 +3,67 @@ import "react-chat-elements/dist/main.css"
 import { MessageBox,MessageList, ChatList } from "react-chat-elements";
 import Input from '../../components/Input/Input';
 import { MdSend } from "react-icons/md";
+import { firebaseDB } from '../../configurations/firebaseConfig';
+import { getDatabase, onValue, push, ref, set, get, update } from "firebase/database";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux'
+import { axiosInstance, baseUrl } from '../../query/axios/axios';
 const Chats = ()=>{
+    const loggedInUser = useSelector((state)=>state.user._id)
+    const [data, setData] = useState(null);
+    const [messages, setMessages]=useState([]);
+    useEffect(()=>{
+        const conversations = [];
+        let Data = [];
+        get(ref(firebaseDB,'chats/')).then((snapshot)=>{
+            if(snapshot.exists()){
+                const data = snapshot.val();
+                for (const [key, value] of Object.entries(data)) {
+                    //getting chats related to user
+                    if(value.firstUserId == loggedInUser || value.secondUserId == loggedInUser){
+                        conversations.push(value)
+    
+                    }
+                }
+                conversations.map((conversation)=>{
+                    if(conversation.firstUserId == loggedInUser){
+                        //getting client info from database
+                        axiosInstance.get(`/service/client/${conversation.secondUserId}`).then(
+                            (res)=>{
+                                Data.push({
+                                    _id: res.data.client._id,
+                                    img: `${baseUrl}/public/${res.data.client.profile_picture}`,
+                                    content: conversation.latestMessage.text,
+                                    date:conversation.latestMessage.createdAt,
+                                    name: res.data.client.name
+                                })
+                                setData(Data)
+
+                            }
+                            
+                            )
+    
+                    }else if(conversation.secondUserId == loggedInUser){
+                     //getting client info from database
+                         axiosInstance.get(`/service/client/${conversation.firstUserId}`).then(
+                            (res)=>{
+                                Data.push({
+                                    _id: res.data.client._id,
+                                    img: `${baseUrl}/public/${res.data.client.profile_picture}`,
+                                    content: conversation.latestMessage.text,
+                                    date:conversation.latestMessage.createdAt,
+                                    name: res.data.client.name
+                                })
+                                setData(Data)
+
+                            }
+                            
+                            )
+                    }
+                })
+            }
+        });
+    },[])
     return(
         <section className="flex column chats-section">
             <div className="chats-header flex">
@@ -11,113 +71,39 @@ const Chats = ()=>{
             </div>
             <div className="flex chats-container">
                 <div className="chat-list">
-                <ChatList
-                    className='chat-list'
-                    dataSource={[
+                    {data?.map((conversation)=>{
+                        return(
+                        <ChatList
+                        className='chat-list'
+                        dataSource={[
                         {
-                        avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
-                        alt: 'kursat_avatar',
-                        title: 'Kursat',
-                        subtitle: "Why don't we?",
-                        date: new Date(),
+                        avatar: conversation.img,
+                        title: conversation.name,
+                        subtitle: conversation.content,
+                        date: conversation.date,
+                        id: conversation._id
                         }
-                    ]} />
-                    <ChatList
-                    className='chat-list'
-                    dataSource={[
-                        {
-                        avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
-                        alt: 'kursat_avatar',
-                        title: 'Kursat',
-                        subtitle: "Why don't we go to ?",
-                        date: new Date(),
-                        }
-                    ]} />
-                     <ChatList
-                    className='chat-list'
-                    dataSource={[
-                        {
-                        avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
-                        alt: 'kursat_avatar',
-                        title: 'Kursat',
-                        subtitle: "Why don't we go to ?",
-                        date: new Date(),
-                        }
-                    ]} />
-                     <ChatList
-                    className='chat-list'
-                    dataSource={[
-                        {
-                        avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
-                        alt: 'kursat_avatar',
-                        title: 'Kursat',
-                        subtitle: "Why don't we go to end ?",
-                        date: new Date(),
-                        }
-                    ]} />
-                     <ChatList
-                    className='chat-list'
-                    dataSource={[
-                        {
-                        avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
-                        alt: 'kursat_avatar',
-                        title: 'Kursat',
-                        subtitle: "Why don't we go to the nd ?",
-                        date: new Date(),
-                        }
-                    ]} />
-                     <ChatList
-                    className='chat-list'
-                    dataSource={[
-                        {
-                        avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
-                        alt: 'kursat_avatar',
-                        title: 'Kursat',
-                        subtitle: "Why don't we go to the No Wa ?",
-                        date: new Date(),
-                        }
-                    ]} />
-                     <ChatList
-                    className='chat-list'
-                    dataSource={[
-                        {
-                        avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
-                        alt: 'kursat_avatar',
-                        title: 'Kursat',
-                        subtitle: "Why don't we go to the N ?",
-                        date: new Date(),
-                        }
-                    ]} />
-                    <ChatList
-                    className='chat-list'
-                    dataSource={[
-                        {
-                        avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
-                        alt: 'kursat_avatar',
-                        title: 'Kursat',
-                        subtitle: "Why don't we go to the No Way Homeej?",
-                        date: new Date(),
-                        }
-                    ]} />
+                    ]}
+                    onClick={(id)=>console.log(id) }/>
+                        );
+                    })}
+                
                 </div>
                 <div className="flex column single-chat">
                     
                     <div className="flex column chat-box">
-                        <MessageBox
-                        position='left'
-                        title='Burhan'
-                        type='text'
-                        text="Hi there !"
-                        date={new Date()}
-                        />
-
-                        <MessageBox
-                        position="right"
-                        title="Emre"
-                        type="text"
-                        text="Click to join the meeting"
-                        date={new Date()}
-                        />
+                        {messages.map((chat)=>{
+                            return(
+                                <MessageBox
+                                position='left'
+                                title='Burhan'
+                                type='text'
+                                text="Hi there !"
+                                date={new Date()}
+                                />
+                            );
+                        })}
+                    
                     </div>
                     
                     <div className="flex chat-input">
