@@ -32,6 +32,15 @@ const Chat = ({data, route})=>{
         }
         
       });
+      //function to listen to database changes
+      onValue(ref(firebaseDB, 'chats/'+ loggedInUser+route.params.service._id+'/messages'), (snapshot)=>{
+        const data = snapshot.val()
+        const Messages=[]
+        for (const [key, value] of Object.entries(data)){
+            Messages.push(value.message)
+        }
+        setMessages(Messages.reverse())
+    })
  
     },[])
     // function to send message
@@ -54,7 +63,6 @@ const Chat = ({data, route})=>{
       set(newMessageRef,{
         message: messages[0]
       })
-      setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
     })
     
     return(
