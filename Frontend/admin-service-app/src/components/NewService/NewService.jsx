@@ -95,7 +95,7 @@ const NewService = ({isOpen, onClose}) =>{
                 label={"Type"}
                 onChange={(e)=>setType(e.target.value)}
                 />
-               <label htmlFor="email">Location</label>
+               <label>Location</label>
                 <GooglePlacesAutocomplete
                 className = 'landing-input'
                 apiKey={GOOGLE_MAP_API}
