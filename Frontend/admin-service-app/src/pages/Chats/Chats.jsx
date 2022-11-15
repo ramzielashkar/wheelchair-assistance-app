@@ -66,7 +66,20 @@ const Chats = ()=>{
                 })
             }
         });
+        //function to listen to database changes
+        if(userId){
+        onValue(ref(firebaseDB, 'chats/'+ userId+loggedInUser+'/messages'), (snapshot)=>{
+            const data = snapshot.val()
+            const Messages=[]
+            for (const [key, value] of Object.entries(data)){
+                Messages.push(value.message)
+            }
+            setMessages(Messages)
+        })
+        }
     },[])
+
+    
     //function to fetch chats
     const fetchChats = (chat)=>{
         const msgs =[];
@@ -107,6 +120,7 @@ const Chats = ()=>{
         set(newMessageRef,{
             message: latestMessage
       })
+      
     }
     return(
         <section className="flex column chats-section">
