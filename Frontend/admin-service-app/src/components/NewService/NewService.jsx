@@ -3,7 +3,8 @@ import Button from '../Button/Button';
 import Input from '../Input/Input';
 import './style.css';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import { GOOGLE_MAP_API } from '../../configurations';
+import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
+import { GOOGLE_MAP_API } from '../../configurations/configurations';
 import Geocode from "react-geocode";
 import { useMutation } from '@tanstack/react-query';
 import { queryClient } from '../../App';
@@ -18,6 +19,17 @@ const NewService = ({isOpen, onClose}) =>{
     const [pwdError, setPwdError] = useState(false);
     const [emailError, setEmaiError] = useState(false);
 
+    //function to get location coordinates
+    if(location){
+        geocodeByAddress(location?.label)
+    .then(results => getLatLng(results[0]))
+    .then(({ lat, lng }) =>
+    setGeoLocation(
+        {"type":"Point", "coordinates":[lat, lng ]}
+    )
+  );
+    }
+    
     const { mutate } = useMutation(["ADD_SERVICE"])
 
     //regex for valid password
@@ -42,12 +54,13 @@ const NewService = ({isOpen, onClose}) =>{
             name, 
             email, 
             password,
-            location,
+            "location": location.label,
             type,
             geoLocation
         }
-        mutate(payload) 
         
+        mutate(payload) 
+        onClose()
     }
         
     }
@@ -82,21 +95,15 @@ const NewService = ({isOpen, onClose}) =>{
                 label={"Type"}
                 onChange={(e)=>setType(e.target.value)}
                 />
-               { /*<label htmlFor="email">Location</label>
+               <label htmlFor="email">Location</label>
                 <GooglePlacesAutocomplete
+                className = 'landing-input'
                 apiKey={GOOGLE_MAP_API}
                  selectProps={{
                 location,
                 onChange: setLocation,
                 }}
-            />*/}
-                <Input
-                name={"landing-input"}
-                placeholder={"Enter Location:"}
-                type={"text"}
-                label={"Location"}
-                onChange={(e)=>setLocation(e.target.value)}
-                />
+            />
                 <p className={
                     pwdError? "passError": "hidden"
                 }>Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number</p>
@@ -108,7 +115,7 @@ const NewService = ({isOpen, onClose}) =>{
                 text={"Cancel"}
                 onClick={onClose}
                 />
-                <input type={"submit"} value="LOGIN" className="btn"/>
+                <input type={"submit"} value="SAVE" className="btn"/>
 
                 </div>
                 
