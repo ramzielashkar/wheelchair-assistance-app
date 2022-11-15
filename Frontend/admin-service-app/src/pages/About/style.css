@@ -30,3 +30,14 @@
 .edit-btn{
     margin-bottom: 20px;
 }
+.label{
+    margin-bottom: 10px;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: bold;
+  }
+.location{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}

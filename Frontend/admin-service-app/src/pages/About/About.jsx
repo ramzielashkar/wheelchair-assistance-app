@@ -4,6 +4,9 @@ import Input from "../../components/Input/Input";
 import './style.css';
 import { useSelector } from 'react-redux'
 import { useMutation } from "@tanstack/react-query";
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
+import { GOOGLE_MAP_API } from "../../configurations/configurations";
 
 const About = ()=>{
     const loggedInUser = useSelector((state)=>state.user)
@@ -11,17 +14,30 @@ const About = ()=>{
     const [name, setName] = useState(loggedInUser.name);
     const [description, setDescription] = useState(loggedInUser.description? loggedInUser.description : '');
     const [working_hours, setWorkingHours] = useState(loggedInUser.working_hours? loggedInUser.working_hours : '');
+    const [geoLocation, setGeoLocation] = useState({});
+    const [updatedLocation, setUpdatedLocation] = useState('')
 
+        //function to get location coordinates
+        if(updatedLocation){
+        geocodeByAddress(updatedLocation?.label)
+        .then(results => getLatLng(results[0]))
+        .then(({ lat, lng }) =>
+        setGeoLocation(
+            {"type":"Point", "coordinates":[lat, lng ]}
+        )
+      );
+        }
     //calling mutation
     const { mutate } = useMutation(["UPDATE_PROFILE"])
     //function to handle form submission
     const handleSubmit =(e)=>{
         e.preventDefault();
         const payload = {
-            location,
+            "location": updatedLocation.label,
             name,
             description,
-            working_hours
+            working_hours,
+            geoLocation
         }
         mutate(payload)
         setIsDisabled(true);
@@ -50,13 +66,23 @@ const About = ()=>{
                 disabled={isDisabled}
                 onChange={(e)=>setName(e.target.value)}
                 />
-                <Input
+                {isDisabled &&<Input
                 name={"landing-input"}
                 label={"Location"}
                 value={loggedInUser.location}
                 disabled={isDisabled}
                 onChange={(e)=>setLocation(e.target.value)}
-                />
+                />}
+                {!isDisabled &&  
+                <div className="location">
+                <label className="label">Location</label>
+                <GooglePlacesAutocomplete
+                apiKey={GOOGLE_MAP_API}
+                 selectProps={{
+                updatedLocation,
+                onChange: setUpdatedLocation,
+                }}
+            /></div>}
                 <label htmlFor="description">Description</label>
                 <textarea rows={5} defaultValue={
                     loggedInUser.description? loggedInUser.description : 'Decription'
