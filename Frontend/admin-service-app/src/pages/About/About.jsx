@@ -14,7 +14,7 @@ const About = ()=>{
     const [name, setName] = useState(loggedInUser.name);
     const [description, setDescription] = useState(loggedInUser.description? loggedInUser.description : '');
     const [working_hours, setWorkingHours] = useState(loggedInUser.working_hours? loggedInUser.working_hours : '');
-    const [geoLocation, setGeoLocation] = useState({});
+    const [geoLocation, setGeoLocation] = useState(loggedInUser.geo_location);
     const [updatedLocation, setUpdatedLocation] = useState('')
 
         //function to get location coordinates
@@ -33,12 +33,13 @@ const About = ()=>{
     const handleSubmit =(e)=>{
         e.preventDefault();
         const payload = {
-            "location": updatedLocation.label,
+            "location": updatedLocation? updatedLocation.label :location,
             name,
             description,
             working_hours,
             geoLocation
         }
+        console.log(payload)
         mutate(payload)
         setIsDisabled(true);
         setEdit(false);
