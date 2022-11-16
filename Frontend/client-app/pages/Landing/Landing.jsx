@@ -3,19 +3,23 @@ import styles from './styles';
 import logo from '../../assets/images/logo.jpg';
 import Input from '../../components/Inputs/Inputs';
 import Buttons from '../../components/Button/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { emailValidator } from '../../validators/emailValidator';
 import { passwordValidator } from '../../validators/passwordValidator';
 import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
 import { registerUser } from '../../query/auth/auth';
 import { store } from '../../Redux/store';
 import { setToken, updateUser } from '../../Redux/Slices/userSlice';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import { getDeviceToken } from '../../services/useNotifications';
 
 const Landing = ({navigation}) =>{
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+ 
 
      //function to register
      const {mutate, isLoading} = useMutation(registerUser, {
