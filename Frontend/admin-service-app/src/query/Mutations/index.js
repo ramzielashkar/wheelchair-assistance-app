@@ -1,16 +1,19 @@
-import { axiosInstance } from "../axios/axios"
+import  axiosInstance  from "../axios/axios"
 import { ALL_ACTIVE_SERVICES_KEY, ALL_BANNED_SERVICES_KEY } from "../ServiceProviders/useServiceProviders"
 import { ALL_ACTIVE_CLIENTS_KEY, ALL_BANNED_CLIENTS_KEY } from "../AdminClients/useClients"
 import { useQuery} from "@tanstack/react-query";
 import { store } from "../../Redux/store";
 import { updateUser } from "../../Redux/slices/userSlice";
 import { ALL_PICTURES_KEY } from "../ServicePictures/useServicePictures";
+import { getToken } from "../getToken";
 
 export default (queryClient)=>{
+    const token = localStorage.getItem('token')
+    console.log(token)
 //function to ban/unban service provider
  queryClient.setMutationDefaults(["TOGGLE_SERVICE"],{
     mutationFn: (id) => 
-        axiosInstance.put(`admin/banService/${id}`).then((res) => res.data),
+        axiosInstance(getToken()).put(`admin/banService/${id}`).then((res) => res.data),
         onSuccess: (data) => {        
             // Fetch all Services again 
             queryClient.invalidateQueries({
@@ -26,7 +29,7 @@ export default (queryClient)=>{
 //function to ban/unban service provider
 queryClient.setMutationDefaults(["TOGGLE_CLIENT"],{
     mutationFn: (id) => 
-        axiosInstance.put(`admin/banClient/${id}`).then((res) => res.data),
+        axiosInstance(getToken()).put(`admin/banClient/${id}`).then((res) => res.data),
         onSuccess: (data) => {        
             // Fetch all Services again 
             queryClient.invalidateQueries({
@@ -43,7 +46,7 @@ queryClient.setMutationDefaults(["TOGGLE_CLIENT"],{
 //function to add service provider
 queryClient.setMutationDefaults(["ADD_SERVICE"],{
     mutationFn: (payload) => 
-        axiosInstance.post(`admin/addUser`, {...payload}).then((res) => res.data),
+        axiosInstance(getToken()).post(`admin/addUser`, {...payload}).then((res) => res.data),
         onSuccess: (data) => {        
             // Fetch all Services again 
             queryClient.invalidateQueries({
@@ -60,7 +63,7 @@ queryClient.setMutationDefaults(["ADD_SERVICE"],{
 //function to change profile picture
 queryClient.setMutationDefaults(["UPDATE_PICTURE"],{
     mutationFn: (payload) => 
-        axiosInstance.put(`service/profilepic`, {...payload}).then((res) => res.data),
+        axiosInstance(getToken()).put(`service/profilepic`, {...payload}).then((res) => res.data),
         onSuccess: (data) => {        
            store.dispatch(updateUser({
                 user: data.user
@@ -73,7 +76,7 @@ queryClient.setMutationDefaults(["UPDATE_PICTURE"],{
 //function to delete picture
 queryClient.setMutationDefaults(["DELETE_PICTURE"],{
     mutationFn: (id) => 
-        axiosInstance.delete(`service/picture/${id}`).then((res) => res.data),
+        axiosInstance(getToken()).delete(`service/picture/${id}`).then((res) => res.data),
         onSuccess: (data) => {        
             queryClient.invalidateQueries({
                 queryKey: ALL_PICTURES_KEY
@@ -84,7 +87,7 @@ queryClient.setMutationDefaults(["DELETE_PICTURE"],{
 //function to add picture
 queryClient.setMutationDefaults(["ADD_PICTURE"],{
     mutationFn: (payload) => 
-        axiosInstance.post(`service/picture`, {...payload}).then((res) => res.data),
+        axiosInstance(getToken()).post(`service/picture`, {...payload}).then((res) => res.data),
         onSuccess: (data) => {        
             // Fetch all pictures again 
             queryClient.invalidateQueries({
@@ -96,7 +99,7 @@ queryClient.setMutationDefaults(["ADD_PICTURE"],{
 //function to update profile 
 queryClient.setMutationDefaults(["UPDATE_PROFILE"],{
     mutationFn: (payload) => 
-        axiosInstance.put(`service/editprofile`, {...payload}).then((res) => res.data),
+        axiosInstance(getToken()).put(`service/editprofile`, {...payload}).then((res) => res.data),
         onSuccess: (data) => {  
            store.dispatch(updateUser({
                 user: data.user

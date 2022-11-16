@@ -1,13 +1,13 @@
 import { useQuery} from "@tanstack/react-query";
 import { queryClient } from "../../App";
-import { axiosInstance } from "../axios/axios";
-
+import  axiosInstance  from "../axios/axios";
+import { getToken } from "../getToken";
 export const ALL_FOLLOWERS_KEY = ["ALL_FOLLOWERS_KEY"]
 export const buildFollowerByIdKey = (id) => ["FOLLOWER_BY_ID:" , id]
 
 
 //function to get followers
-export const getFollowers = ()=>axiosInstance.get("/service/followers").then((res)=>res.data)
+export const getFollowers = ()=>axiosInstance(getToken()).get("/service/followers").then((res)=>res.data)
 
 
 

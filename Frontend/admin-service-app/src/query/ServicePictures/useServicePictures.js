@@ -1,13 +1,13 @@
 import { useQuery} from "@tanstack/react-query";
 import { queryClient } from "../../App";
-import { axiosInstance } from "../axios/axios";
-
+import  axiosInstance  from "../axios/axios";
+import { getToken } from "../getToken";
 export const ALL_PICTURES_KEY = ["ALL_PICTURES_KEY"]
 export const buildPictureByIdKey = (id) => ["PICTURE_BY_ID:" , id]
 
 
 //function to get followers
-export const getPictures = ()=>axiosInstance.get("/service/picture").then((res)=>res.data)
+export const getPictures = ()=>axiosInstance(getToken()).get("/service/picture").then((res)=>res.data)
 
 
 
