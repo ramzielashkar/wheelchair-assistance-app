@@ -5,20 +5,7 @@ import Input from "../../components/Inputs/Inputs";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
 import { useResults } from "../../query/Search/useSearchResults";
 import styles from "./styles";
-const data = [
-    {
-        name:"Restaurant",
-        location:"Beirut, Lebanon"
-},
-{
-    name:"Restaurant",
-    location:"Beirut, Lebanon"
-},
-{
-    name:"Restaurant",
-    location:"Beirut, Lebanon"
-},
-]
+
 const Search = ({navigation}) =>{
     const [searchResult, setSearchResult] = useState('');
     const [searchKey, setSearchKey] = useState(1);
