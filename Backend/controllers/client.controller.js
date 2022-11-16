@@ -66,14 +66,7 @@ const login = async (req, res)=>{
 //function to update profile picture
 const updateprofilepic = async (req, res)=>{
     const id = req.user.id;
-    console.log(req.body.image)
-    const matches = req.body.image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
-    const response ={};
-    response.type = matches[1];
-    response.data = new Buffer(matches[2], 'base64');
-    const decodedImg = response;
-    const imageBuffer = decodedImg.data;
-    const type = decodedImg.type;
+    const imageBuffer = Buffer.from(req.body.image, "base64");
     const date = new Date();
     const seconds = date.getSeconds();
     const fileName = `${id+ seconds}.png`;
