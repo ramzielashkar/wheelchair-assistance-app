@@ -92,13 +92,13 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Service Providers                           | Clients                               | Add new seller                                    |
 | ------------------------------------------- | ------------------------------------- | ------------------------------------------------- |
-| ![Service Providers](./readme/services.png) | ![Clients](./readme/adminClients.png) | ![Add new seller](./readme/admin-new-service.png) |
+| ![Service Providers](./readme/services.PNG) | ![Clients](./readme/adminClients.PNG) | ![Add new seller](./readme/admin-new-service.PNG) |
 
 ### Service Provider Website
 
 | Followers                                   | Chats                               | Service Pictures                              |
 | ------------------------------------------- | ----------------------------------- | --------------------------------------------- |
-| ![Followers](./readme/serviceFollowers.png) | ![About](./readme/serviceChats.png) | ![Service Pictures](./readme/servicePics.png) |
+| ![Followers](./readme/serviceFollowers.PNG) | ![About](./readme/serviceChats.PNG) | ![Service Pictures](./readme/servicePics.PNG) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
