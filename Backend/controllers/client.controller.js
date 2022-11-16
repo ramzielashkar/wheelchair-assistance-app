@@ -173,8 +173,6 @@ const follow = async (req,res) =>{
 const unFollow = async (req,res) =>{
     const id = req.user.id;
     const {follow_id} = req.params;
-    console.log(id);
-    console.log(follow_id)
     
     try{
         const followed = await Seller.findByIdAndUpdate(follow_id, 
@@ -210,6 +208,7 @@ const getFollowed = async (req,res)=>{
 //function to search for service providers 
 const search = async (req, res)=>{
     const {service} = req.params;
+    console.log(service)
     const result = await Seller.find({ "name": { "$regex": service, "$options": "i" } });
     res.json({result});
 }
