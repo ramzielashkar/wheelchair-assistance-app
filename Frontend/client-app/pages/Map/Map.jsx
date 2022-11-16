@@ -12,7 +12,6 @@ const Map = ({navigation, route})=>{
     const [location, setLocation]= useState(useSelector((state)=>state.user.geo_location));
     const [showDirections, setShowDirections]=useState(false);
     const {width, height} = Dimensions.get("window");
-            console.log("user: ", location)
     const dest = {
         latitude : route.params.service.geo_location.coordinates[0],
         longitude: route.params.service.geo_location.coordinates[1]
@@ -35,6 +34,10 @@ const Map = ({navigation, route})=>{
                 initialRegion={INITIAL_POSITION}>
                     <Marker coordinate={dest}/>
                 <Marker coordinate={location}/>
+                {showDirections &&<MapViewDirections 
+                origin={location}
+                destination={dest}
+                apikey={GOOGLE_API_KEY}/>}
                 </MapView>
                 <View style={styles.btn}>
                     <Buttons
