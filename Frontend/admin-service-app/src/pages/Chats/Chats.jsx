@@ -7,8 +7,9 @@ import { firebaseDB } from '../../configurations/firebaseConfig';
 import { getDatabase, onValue, push, ref, set, get, update } from "firebase/database";
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
-import { axiosInstance } from '../../query/axios/axios';
+import  axiosInstance  from '../../query/axios/axios';
 import { baseUrl } from '../../configurations/configurations';
+import { getToken } from '../../query/getToken';
 const Chats = ()=>{
     const loggedInUser = useSelector((state)=>state.user._id)
     const [data, setData] = useState(null);
@@ -32,7 +33,7 @@ const Chats = ()=>{
                 conversations.map((conversation)=>{
                     if(conversation.firstUserId == loggedInUser){
                         //getting client info from database
-                        axiosInstance.get(`/service/client/${conversation.secondUserId}`).then(
+                        axiosInstance(getToken()).get(`/service/client/${conversation.secondUserId}`).then(
                             (res)=>{
                                 Data.push({
                                     _id: res.data.client._id,
@@ -49,7 +50,7 @@ const Chats = ()=>{
     
                     }else if(conversation.secondUserId == loggedInUser){
                      //getting client info from database
-                         axiosInstance.get(`/service/client/${conversation.firstUserId}`).then(
+                         axiosInstance(getToken()).get(`/service/client/${conversation.firstUserId}`).then(
                             (res)=>{
                                 Data.push({
                                     _id: res.data.client._id,
