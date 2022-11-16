@@ -4,7 +4,7 @@ import { AdminSideBarData } from '../../data/AdminSideBarData';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdMoreVert } from "react-icons/md";
-import { baseUrl } from '../../query/axios/axios';
+import { baseUrl } from '../../configurations/configurations';
 import { useSelector, useDispatch } from 'react-redux'
 import { store, persistor } from '../../Redux/store';
 import { deleteUser } from '../../Redux/slices/userSlice';

@@ -1,7 +1,7 @@
 import './style.css';
 import service from '../../assets/images/images.jpeg';
 import {MdOutlineDeleteOutline,MdUndo} from 'react-icons/md';
-import { baseUrl } from '../../query/axios/axios';
+import { baseUrl } from '../../configurations/configurations';
 const ServiceCard = ({name, location, path, content, id, onClick, photo})=>{
 
     if(content=='service'){

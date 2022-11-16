@@ -5,11 +5,10 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdMoreVert } from "react-icons/md";
 import { useSelector, useDispatch } from 'react-redux'
-import { baseUrl } from '../../query/axios/axios';
 import { store, persistor } from '../../Redux/store';
 import { deleteUser } from '../../Redux/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
-
+import { baseUrl } from '../../configurations/configurations';
 
 const ServiceSideBar = () =>{
         const navigate = useNavigate();
