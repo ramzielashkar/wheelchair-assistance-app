@@ -18,7 +18,7 @@ const ServicePage = ({navigation, route})=>{
     const loggedInUser = useSelector((state)=>state.user.following)
     //checking if the service is followed or not
     useEffect(()=>{
-        if(loggedInUser.some(e=>e.following_id._id===route.params.service._id)){
+        if(loggedInUser.some(e=>e.following_id?._id===route.params.service._id)){
             setfollowed(true)
         }else{
             console.log('unfollowed')
