@@ -7,8 +7,10 @@ import styles from "./style";
 
 const Favorites =({navigation})=>{
     const { data: favorites, isLoading: isLoadingFavorites,  isFetching: isFetchingFavorites} = useFavorites(); 
-    let screenWidth = Dimensions.get('window').width
-    let flatListStyle;
+ //Handling different screen sizes   
+let screenWidth = Dimensions.get('window').width
+let flatListStyle;
+
  if(screenWidth<450){
     flatListStyle={
         justifyContent: "space-between",
@@ -19,7 +21,6 @@ const Favorites =({navigation})=>{
     }
  }
  
- console.log(screenWidth);
  let columns=2;
  if(screenWidth > 600){
     columns=3;
