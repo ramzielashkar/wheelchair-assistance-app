@@ -41,15 +41,16 @@ const updateprofilepic = async (req, res)=>{
 //function to edit profile
 const editProfile = async (req, res)=>{
     const id = req.user.id;
-    const {name, geo_location, location, description, working_hours, phone_number} = req.body;
+    const {name, location, description, working_hours, phone_number, geoLocation} = req.body;
     try{
         const user = await Seller.findByIdAndUpdate(id,{
             name,
-            geo_location,
+            geo_location:geoLocation,
             location,
             description,
             working_hours,
             phone_number
+            
         })
         const updated = await Seller.findById(id);
         await res.json({
