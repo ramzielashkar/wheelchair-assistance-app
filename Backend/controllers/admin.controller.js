@@ -10,7 +10,8 @@ const passwordSchema = require('../validators/password.validator');
 
 // function to add service provider
 const addUser = async (req, res) =>{
-    const {name, email, password, type, location, geo_location} = req.body;
+    const {name, email, password, type, location, geoLocation} = req.body;
+    console.log(geoLocation)
     if(!emailValidator.validate(email)){
         res.status(400).json({
             message: "Invalid email structure"
@@ -28,7 +29,7 @@ const addUser = async (req, res) =>{
         user.email = email;
         user.password = await bcrypt.hash(password, 10);
         user.type = type;
-        user.geo_location = geo_location;
+        user.geo_location = geoLocation;
         user.location=location;
 
         await user.save();
