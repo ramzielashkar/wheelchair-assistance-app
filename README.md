@@ -37,28 +37,28 @@
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 > Note that i didn't use any styling library or theme, all from scratch and using pure css modules
+
 ### Client App
 
-| Landing                          | Home                              | Map                              | Profile                          |
-| -------------------------------- | --------------------------------- | ---------------------------------| -------------------------------- |
+| Landing                          | Home                              | Map                      | Profile                          |
+| -------------------------------- | --------------------------------- | ------------------------ | -------------------------------- |
 | ![Landing](./readme/Landing.png) | ![Home](./readme/Feed%20Page.png) | ![Map](./readme/Map.png) | ![Profile](./readme/Profile.png) |
 
-| Service Page                                | Favorites                            | Chats                        | Chat                       |
-| ------------------------------------------- | ------------------------------------ | ---------------------------- | -------------------------- |
+| Service Page                                | Favorites                           | Chats                        | Chat                       |
+| ------------------------------------------- | ----------------------------------- | ---------------------------- | -------------------------- |
 | ![Service Page](./readme/Seller%20Page.png) | ![Favorites](./readme/Favorite.png) | ![Chats](./readme/Chats.png) | ![Chat](./readme/Chat.png) |
 
 ### Admin Panel
 
-| Service Providers                          | Clients                              | Add new seller                              |
-| -------------------------------- | --------------------------------- | ---------------------------------|
+| Service Providers                                   | Clients                          | Add new seller                               |
+| --------------------------------------------------- | -------------------------------- | -------------------------------------------- |
 | ![Service Providers](./readme/ServiceProviders.png) | ![Clients](./readme/Clients.png) | ![Add new seller](./readme/Addnewseller.png) |
 
 ### Service Provider Website
 
-| Followers                                | About                            | Service Pictures                        |
-| ------------------------------------------- | ------------------------------------ | ---------------------------- |
+| Followers                            | About                        | Service Pictures                              |
+| ------------------------------------ | ---------------------------- | --------------------------------------------- |
 | ![Followers](./readme/followers.png) | ![About](./readme/About.png) | ![Service Pictures](./readme/ProfilePage.png) |
-
 
 <br><br>
 
@@ -77,26 +77,27 @@ Here's a brief high-level overview of the tech stack the Well app uses:
   <img src="./readme/title5.svg"/>
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+
 ### Client App
 
-| Landing                          | Home                              | Map                              | Profile                          |
-| -------------------------------- | --------------------------------- | ---------------------------------| -------------------------------- |
+| Landing                                | Home                                 | Map                            | Profile                                |
+| -------------------------------------- | ------------------------------------ | ------------------------------ | -------------------------------------- |
 | ![Landing](./readme/clientLanding.jpg) | ![Home](./readme/clientServices.jpg) | ![Map](./readme/clientMap.jpg) | ![Profile](./readme/clientProfile.jpg) |
 
-| Service Page                                | Favorites                            | Chats                        | Chat                       |
-| ------------------------------------------- | ------------------------------------ | ---------------------------- | -------------------------- |
+| Service Page                                | Favorites                                  | Chats                              | Chat                             |
+| ------------------------------------------- | ------------------------------------------ | ---------------------------------- | -------------------------------- |
 | ![Service Page](./readme/clientService.jpg) | ![Favorites](./readme/clientFavorites.jpg) | ![Chats](./readme/clientChats.jpg) | ![Chat](./readme/clientChat.jpg) |
 
 ### Admin Panel
 
-| Service Providers                          | Clients                              | Add new seller                              |
-| -------------------------------- | --------------------------------- | ---------------------------------|
+| Service Providers                           | Clients                               | Add new seller                                    |
+| ------------------------------------------- | ------------------------------------- | ------------------------------------------------- |
 | ![Service Providers](./readme/services.png) | ![Clients](./readme/adminClients.png) | ![Add new seller](./readme/admin-new-service.png) |
 
 ### Service Provider Website
 
-| Followers                                | Chats                            | Service Pictures                        |
-| ------------------------------------------- | ------------------------------------ | ---------------------------- |
+| Followers                                   | Chats                               | Service Pictures                              |
+| ------------------------------------------- | ----------------------------------- | --------------------------------------------- |
 | ![Followers](./readme/serviceFollowers.png) | ![About](./readme/serviceChats.png) | ![Service Pictures](./readme/servicePics.png) |
 
 <br><br>
@@ -123,7 +124,9 @@ _Below is an example of how you can instruct your audience on installing and set
 ```sh
 git clone https://github.com/ramzielashkar/wheelchair-assistance-app.git
 ```
+
 ##### BACKEND
+
 1.  From Terminal, go to "Backend" directory
 
     ```sh
@@ -135,31 +138,36 @@ git clone https://github.com/ramzielashkar/wheelchair-assistance-app.git
     ```sh
     npm install
     ```
+
 3.  Adding Credentials
+
 ```sh
 In the 'Backend' directory create a new folder called '.env'
 ```
+
 ```sh
 In the created folder add the following:
 ```
+
 ```sh
 PORT="SPECIFY A PORT NUMBER ie: 8000"
 DATABASE_URL="YOUR_MONGODB_DATABASE_URL"
 JWT_SECRET_KEY="ADD_ANY_KEY"
 ```
+
 4.  Starting the server
+
 ```sh
 In the 'Backend' directory run 'node index'
 ```
 
-
 ##### Service Provider Website
+
 1.  From Terminal, go to "admin-service-app" directory
 
     ```sh
     cd .\Frontend\admin-service-app\
     ```
-
 
 2.  Install NPM packages
 
@@ -172,14 +180,17 @@ In the 'Backend' directory run 'node index'
     ```sh
     In the 'src' directory create a new folder called 'configurations'
     ```
+
     ```sh
     In the created folder create a new file create two files called 'configurations.js' and "firebaseConfig.js"
     ```
-     ###### Firebase Configuration
+
+    ###### Firebase Configuration
 
     ```sh
     In the 'firebaseConfig.js' file add your firebase app configurations, it has to be like the following:
     ```
+
     ```sh
     import { getApp, initializeApp } from 'firebase/app';
     import { getDatabase, ref, set } from "firebase/database";
@@ -199,6 +210,7 @@ In the 'Backend' directory run 'node index'
     export const firebaseDB = getDatabase(app);
 
     ```
+
     ###### GOOGLE MAPS API Configuration
 
     ```sh
@@ -206,6 +218,7 @@ In the 'Backend' directory run 'node index'
     export const GOOGLE_MAP_API = "YOUR_GOOGLE_MAPS_KEY";
     export const baseUrl = "YOUR_SERVER_URL";
     ```
+
 4.  Run the Website
 
     ```sh
@@ -225,26 +238,35 @@ In the 'Backend' directory run 'node index'
     ```sh
     npm install
     ```
+
 3.  Adding Credentials
+
 ###### GOOGLE MAPS API Configuration
+
 ```sh
 In the 'client-app' directory create a new folder called 'Credentials'
 ```
+
 ```sh
 In the created folder, create a new file called 'credentials.js' and add the following:
 ```
+
 ```sh
 export const GOOGLE_API_KEY = "YOUR_GOOGLE_MAPS_KEY";
 export const baseUrl = "YOUR_SERVER_URL";
 ```
+
 ###### Firebase Configuration
+
 ```sh
 In the 'client-app' directory create a new folder called 'configurations'
 ```
+
 ```sh
 In the created folder, create a new file called 'firebaseConfiguration.js' and add the following:
 ```
-```sh
+
+````sh
 import { getApp, initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from "firebase/database";
 
@@ -268,3 +290,4 @@ import { getDatabase, ref, set } from "firebase/database";
     ```sh
     Go to the client-app directory and run: npm start
     ```
+````
