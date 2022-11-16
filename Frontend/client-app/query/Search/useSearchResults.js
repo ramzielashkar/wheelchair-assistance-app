@@ -7,7 +7,7 @@ export const ALL_RESULTS = ["ALL_RESULTS"]
 export const buildResultByIdKey = (id) => ["Result_BY_ID:" , id]
 
 //function to search for service providers
-export const getResults = (payload)=>axiosInstance(getToken()).get(`/client/seacrh/${payload}`).then((res)=>res.data)
+export const getResults = (payload)=>axiosInstance(getToken()).get(`/client/search/${payload}`).then((res)=>res.data)
 
 //function to use search results
 export const useResults = (payload) => useQuery(
