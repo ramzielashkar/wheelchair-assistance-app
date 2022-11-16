@@ -1,11 +1,14 @@
 import axios from "axios";
-const token = localStorage.getItem('token');
-export const baseUrl = "http://127.0.0.1:8000"
+import { baseUrl } from "../../configurations/configurations";
+const getToken = ()=>{
+    const token = localStorage.getItem('token');
+    return token;
+}
 export const axiosInstance = axios.create(
     {
-        baseURL: "http://127.0.0.1:8000",
+        baseURL: baseUrl,
         headers:{
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${getToken()}`,
             "Access-Control-Allow-Origin": "*",
             'Access-Control-Allow-Headers': "*",
             'Access-Control-Allow-Methods': "GET, POST, PUT, DELETE",
