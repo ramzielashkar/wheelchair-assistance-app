@@ -17,7 +17,7 @@ const Profile = () =>{
     const [imageEdit, setImageEdit]= useState(false);
     const [image, setImage] = useState(`${baseUrl}/public/${loggedInUser.profile_picture}`);
     const [base64, setBase64] = useState('');
-    const [mutateFn, setMutateFn] = editable?['UPDATE_PROFILE'] : ['UPDATE_PICTURE  ']
+    const [mutateFn, setMutateFn] = editable?['UPDATE_PROFILE'] : ['UPDATE_PICTURE']
     const [name, setName] = useState(loggedInUser?.name);
     //function to logout
     const logout = async()=>{
@@ -34,7 +34,6 @@ const Profile = () =>{
         setEditable(true)
     }
     const save =()=>{
-        console.log(mutateFn)
         store.dispatch(updateName({
             name: name
         }))
@@ -54,17 +53,13 @@ const Profile = () =>{
           
           if (!result.cancelled) {
             setBase64(result.base64)
-            console.log(result.base64)
             setImageEdit(true);
             setImage(result.uri);
           }
     }
     //function to submit photo
     const submitPhoto =  ()=>{
-        setImageEdit(false);
-        console.log('submit')
-        //setMutationKey("UPDATE_PICTURE")
-        
+        setImageEdit(false);        
        mutate({image:base64})
     }
     return(
