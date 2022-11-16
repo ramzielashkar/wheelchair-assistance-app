@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Text, View,Dimensions, ScrollView, FlatList } from "react-native";
+import EmptyState from "../../components/EmptyState/EmptyState";
 import Input from "../../components/Inputs/Inputs";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
 import { useResults } from "../../query/Search/useSearchResults";
@@ -20,20 +21,19 @@ const data = [
 ]
 const Search = ({navigation}) =>{
     const [searchResult, setSearchResult] = useState('');
-    const [searchKey, setSearchKey] = useState('');
+    const [searchKey, setSearchKey] = useState(1);
     const [search, setSearch] = useState(false);
-
-    const navigateToService=(name)=>{
-        navigation.navigate('Service', {name:name});
+    const navigateToService=(item)=>{
+        navigation.navigate('Service', {service:item, name:item.name});
     }
+    const {data:results,  refetch: refetchResults} = useResults(searchKey)
 
     if(search){
-        const {data:results} = useResults(searchKey)
+        refetchResults()
     }
-
-    let screenWidth = Dimensions.get('window').width
-    let flatListStyle;
- console.log(screenWidth);
+ //Handling different screen sizes   
+let screenWidth = Dimensions.get('window').width
+let flatListStyle;
  if(screenWidth<450){
     flatListStyle={
         justifyContent: "space-between",
@@ -44,37 +44,37 @@ const Search = ({navigation}) =>{
     }
  }
  
- console.log(screenWidth);
  let columns=2;
  if(screenWidth > 600){
     columns=3;
  }
- if(searchKey!=''){
- }
-    //console.log(results)
+
     return(
-        <ScrollView style={styles.root}>
+        <View style={styles.root}>
             <Input 
             placeholder={"Search here..."}
             type={"search"}
             onChange={(e)=>{setSearchKey(e)
             setSearch(true)}}
             />
-
+           
             <View style={styles.serviceContainer}>
+            {results?.result.length ==0 &&  <EmptyState
+            content={'Services'}
+            icon={'map-marker'}/>}
             <FlatList 
                     columnWrapperStyle={flatListStyle}
-                    data={data}
+                    data={results?.result}
                     renderItem={({item})=>(
                         <ServiceCard
-                        press={()=>{navigateToService(item.name)}}
+                        press={()=>{navigateToService(item)}}
                         data={item}/>
                     )}
                     numColumns={columns}
                     >
                 </FlatList>
             </View>
-        </ScrollView>
+        </View>
     );
 }
 export default Search;
