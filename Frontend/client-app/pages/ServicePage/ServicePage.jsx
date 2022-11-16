@@ -93,12 +93,12 @@ const ServicePage = ({navigation, route})=>{
                         <Text style={styles.locationText}>{route.params.service.location}</Text>
                     </View>
                 </View>
-                {/*<View style={styles.location}>
+                {route.params.service.phone_number &&<View style={styles.location}>
                     <View style={styles.locationContainer}>
                         <MaterialCommunityIcons name={"phone"} size={15} color={"#0A61E1"}/>
                         <Text style={styles.locationText}>71487328</Text>
                             </View>
-                            </View>*/}
+                            </View>}
                 <View style={styles.location}>
                     <View style={styles.description}>
                         <Text>{route.params.service.description}</Text>
