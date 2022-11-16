@@ -7,7 +7,8 @@ import { firebaseDB } from '../../configurations/firebaseConfig';
 import { getDatabase, onValue, push, ref, set, get, update } from "firebase/database";
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
-import { axiosInstance, baseUrl } from '../../query/axios/axios';
+import { axiosInstance } from '../../query/axios/axios';
+import { baseUrl } from '../../configurations/configurations';
 const Chats = ()=>{
     const loggedInUser = useSelector((state)=>state.user._id)
     const [data, setData] = useState(null);

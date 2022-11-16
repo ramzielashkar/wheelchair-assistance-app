@@ -3,9 +3,8 @@ import { MdAddAPhoto ,MdDone} from "react-icons/md";
 import {useState} from 'react';
 import './style.css'
 import { useSelector } from 'react-redux'
-import { baseUrl } from '../../query/axios/axios';
 import { useMutation } from '@tanstack/react-query';
-
+import { baseUrl } from '../../configurations/configurations';
 const ProfilePicture = ()=>{
     // getting logged in user
     const loggedInUser = useSelector((state)=>state.user)

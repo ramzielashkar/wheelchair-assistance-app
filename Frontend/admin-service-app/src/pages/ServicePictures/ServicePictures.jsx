@@ -7,7 +7,7 @@ import NewPicture from "../../components/NewPicture/NewPicture";
 import { usePictures } from "../../query/ServicePictures/useServicePictures";
 import { CircularProgress } from "@mui/material";
 import EmptyState from "../../components/EmptyState/EmptyState";
-import { baseUrl } from "../../query/axios/axios";
+import { baseUrl } from "../../configurations/configurations";
 import { useMutation } from "@tanstack/react-query";
 
 const ServicePictures =()=>{
