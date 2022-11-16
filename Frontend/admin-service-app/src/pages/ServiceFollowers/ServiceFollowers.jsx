@@ -33,10 +33,10 @@ const ServiceFollowers = ()=>{
             {followers?.followers?.followers?.map((follower)=>{
                 return(
                 <ServiceCard
-                name={follower.follower_id.name}
+                name={follower?.follower_id?.name}
                 content={"follower"}
-                photo={follower.follower_id.profile_picture}
-                id={follower.follower_id._id}
+                photo={follower?.follower_id?.profile_picture}
+                id={follower?.follower_id?._id}
                 />
                 )
             })}
