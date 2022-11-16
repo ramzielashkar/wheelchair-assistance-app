@@ -16,7 +16,7 @@ const About = ()=>{
     const [working_hours, setWorkingHours] = useState(loggedInUser.working_hours? loggedInUser.working_hours : '');
     const [geoLocation, setGeoLocation] = useState(loggedInUser.geo_location);
     const [updatedLocation, setUpdatedLocation] = useState('')
-
+    const [phone_number, setPhoneNumber] = useState(loggedInUser.phone_number? loggedInUser.phone_number : '')
         //function to get location coordinates
         if(updatedLocation){
         geocodeByAddress(updatedLocation?.label)
@@ -37,7 +37,8 @@ const About = ()=>{
             name,
             description,
             working_hours,
-            geoLocation
+            geoLocation,
+            phone_number
         }
         console.log(payload)
         mutate(payload)
@@ -66,6 +67,13 @@ const About = ()=>{
                 value={loggedInUser.name}
                 disabled={isDisabled}
                 onChange={(e)=>setName(e.target.value)}
+                />
+                <Input
+                name={"landing-input"}
+                label={"Phone Number"}
+                value={loggedInUser.phone_number? loggedInUser.phone_number : "Enter phone number" }
+                disabled={isDisabled}
+                onChange={(e)=>setPhoneNumber(e.target.value)}
                 />
                 {isDisabled &&<Input
                 name={"landing-input"}
