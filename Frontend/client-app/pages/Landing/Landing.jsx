@@ -13,14 +13,16 @@ import { setToken, updateUser } from '../../Redux/Slices/userSlice';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { getDeviceToken } from '../../services/useNotifications';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Landing = ({navigation}) =>{
+    AsyncStorage.getItem('deviceToken').then((res)=>setDeviceToken(res))
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
- 
-
+    const [deviceToken, setDeviceToken] = useState('')
+    console.log(deviceToken)
      //function to register
      const {mutate, isLoading} = useMutation(registerUser, {
         onSuccess: (data) =>{
@@ -59,7 +61,8 @@ const Landing = ({navigation}) =>{
             const payload = {
                 name,
                 email,
-                password
+                password,
+                deviceToken
             }
             mutate(payload)
         }
