@@ -98,7 +98,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Followers                                   | Chats                               | Send Notification                                      |
 | ------------------------------------------- | ----------------------------------- | ------------------------------------------------------ |
-| ![Followers](./readme/serviceFollowers.PNG) | ![About](./readme/serviceChats.PNG) | ![New Notification](./readme/serviceNotifications.PNG) |
+| ![Followers](./readme/serviceFollowers.PNG) | ![About](./readme/serviceChats.PNG) | ![New Notification](./readme/serviceNotifications.png) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
