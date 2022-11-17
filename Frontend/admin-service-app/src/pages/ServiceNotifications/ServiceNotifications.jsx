@@ -5,6 +5,7 @@ import NotificationCard from '../../components/NotificationCard/NotificationCard
 import NewNotification from '../../components/NewNotification/NewNotification';
 import { useState } from 'react';
 import EmptyState from '../../components/EmptyState/EmptyState';
+import { useNotifications } from '../../query/ServiceNotifications/useNotifications';
 
 const ServiceNotifications = ()=>{
     const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,8 @@ const ServiceNotifications = ()=>{
     const closeAddNotification=()=>{
         setIsOpen(false);
     } 
+    const {data: notifications} = useNotifications();
+
     return(
         <section className="flex column notifications-section">
         <div className="notifications-header flex">
@@ -28,11 +31,18 @@ const ServiceNotifications = ()=>{
                         <MdAdd size={40} color={"white"}/>
                 </div>
         </div>
+        {notifications?.notifications?.notifications.length==0 && <EmptyState
+        content={"No Notifications Sent"}/> }
         <div className="flex column notifications-container">
-            <NotificationCard/>
-            <NotificationCard/>
-            <NotificationCard/>
-            <NotificationCard/>
+            {notifications?.notifications?.notifications?.map((notification)=>{
+                return(
+                    <NotificationCard
+                    content={notification.notification}
+                    date={notification.date}/>
+
+                );
+            })}
+           
         </div>
         
         
