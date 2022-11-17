@@ -16,6 +16,10 @@ export const useNotifications = () => useQuery(
         queryFn: async () => await getNotifications(),
         placeholderData: { info : {} , results: []},
         onSuccess: (data) => {
+            console.log(data)
         },
+        staleTime: Infinity,
+        cacheTime: Infinity
+
     }
 )
