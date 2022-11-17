@@ -15,8 +15,8 @@ const ServiceNotifications = ()=>{
     const closeAddNotification=()=>{
         setIsOpen(false);
     } 
-    const {data: notifications} = useNotifications();
-
+    let {data: notifications} = useNotifications();
+    let Notifications = notifications?.notifications?.notifications.reverse();
     return(
         <section className="flex column notifications-section">
         <div className="notifications-header flex">
@@ -31,10 +31,10 @@ const ServiceNotifications = ()=>{
                         <MdAdd size={40} color={"white"}/>
                 </div>
         </div>
-        {notifications?.notifications?.notifications.length==0 && <EmptyState
+        {Notifications?.length==0 && <EmptyState
         content={"No Notifications Sent"}/> }
         <div className="flex column notifications-container">
-            {notifications?.notifications?.notifications?.map((notification)=>{
+            {Notifications?.map((notification)=>{
                 return(
                     <NotificationCard
                     content={notification.notification}
