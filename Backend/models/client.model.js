@@ -25,7 +25,21 @@ const Client = User.discriminator('Client', new mongoose.Schema({
         default:true
     },
     deviceToken:{
-    }
+    },
+    notifications:[{
+            service_id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref:'Seller'
+            },
+            notification: {
+                type: String
+            },
+            date:{
+                type:String
+            }
+            
+        
+    }]
     
 }),
 );
