@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { FlatList, ScrollView, Text, View } from "react-native";
+import EmptyState from "../../components/EmptyState/EmptyState";
 import NotificationCard from "../../components/NotificationCard/NotificationCard";
 import { useNotifications } from "../../query/notifications/useNotifications";
 import styles from "./styles";
@@ -13,6 +14,12 @@ const Notifications = ()=>{
                     date: notification.date
                 })
             })
+    if(notifications?.notifications?.notifications.length==0){
+        return <EmptyState
+                content={"Notifications"}
+                icon={"bell-alert-outline"}
+                />
+    }
     return(
         <View style={styles.root}>
             <View style={styles.notificationsContainer}>
