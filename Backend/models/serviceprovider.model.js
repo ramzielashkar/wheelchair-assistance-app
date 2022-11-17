@@ -44,6 +44,7 @@ const Seller = User.discriminator('Seller', new mongoose.Schema({
         type:String,
         enum :['Hospital', 'Restaurant', 'Vendor']
     },
+    notifications:[],
 
 }),
 );
