@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const { updateprofilepic, editProfile, addPicture, getPictures, deletePicture, getFollowers, getClient } = require('../controllers/serviceprovider.controller');
+const { updateprofilepic, editProfile, addPicture, getPictures, deletePicture, getFollowers, getClient, sendNotification, getNotifications } = require('../controllers/serviceprovider.controller');
 const serviceProviderMiddleware = require('../middlewares/serviceprovider.middleware');
 const router = Router();
 
@@ -10,6 +10,8 @@ router.get('/picture', serviceProviderMiddleware, getPictures);
 router.delete('/picture/:picture_id', serviceProviderMiddleware, deletePicture);
 router.get('/followers', serviceProviderMiddleware, getFollowers);
 router.get('/client/:_id', serviceProviderMiddleware, getClient);
+router.post('/notify', serviceProviderMiddleware, sendNotification);
+router.get('/notifications', serviceProviderMiddleware, getNotifications);
 
 
 
