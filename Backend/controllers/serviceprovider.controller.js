@@ -144,18 +144,31 @@ const sendNotification = async (req,res)=>{
     let expo = new Expo();
     const id = req.user.id;
     const {notification} = req.body;
+    const today = new Date();
+    const dateTime = today.toUTCString();
     const Notification ={
         notification,
-        date: new Date()
+        date: dateTime
+    }
+    const serviceNotification = {
+        service_id: id,
+        notification,
+        date: dateTime
     }
     let messages =[]
     const followers = await Seller.findById(id).select('followers').populate('followers.follower_id');
+    const name = await Seller.findById(id).select('name');
     //getting followers device token
     followers?.followers?.forEach(element => {
+        Client.findById(element.follower_id._id, (error, result)=>{
+                result.notifications.push(serviceNotification);
+                result.save();  
+        })
         messages.push({
             to: element.follower_id.deviceToken,
             sound: 'default',
             body: notification,
+            title: name.name
           })
         
     });
