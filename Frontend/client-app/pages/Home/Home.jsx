@@ -18,7 +18,6 @@ const Home = ({navigation}) =>{
     const [fetched, setFetched] = useState(false)
    const latitude =loggedInUser.geo_location?.latitude?loggedInUser.geo_location?.latitude : 1;
    const longitude =loggedInUser.geo_location?.longitude?loggedInUser.geo_location?.longitude : 1
-    console.log(latitude)
     useEffect(()=>{
         (async ()=>{
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -29,7 +28,6 @@ const Home = ({navigation}) =>{
 
       let location = await Location.getCurrentPositionAsync({});
       let address = await Location.reverseGeocodeAsync(location.coords)
-      console.log("address: ", address[0])
       setUserLocation({
         latitude:location.coords.latitude,
         longitude: location.coords.longitude

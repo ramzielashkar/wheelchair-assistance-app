@@ -25,11 +25,6 @@ const Profile = () =>{
     }
      const { mutate } = useMutation([mutateFn])
 
-    //function to edit profile picture
-    const editPicture = ()=>{
-        console.log('save')
-
-    }
     const edit =()=>{
         setEditable(true)
     }

@@ -10,7 +10,6 @@ const Services = ({navigation, route})=>{
     let services;
     if(type.type=="Hospitals"){
          services = queryClient.getQueryData(ALL_HOSPITALS)
-        console.log(services)
     }else if(type.type=="Restaurants"){
          services = queryClient.getQueryData(ALL_RESTAURANTS)
     }

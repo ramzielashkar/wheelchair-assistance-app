@@ -22,7 +22,6 @@ const Landing = ({navigation}) =>{
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [deviceToken, setDeviceToken] = useState('')
-    console.log(deviceToken)
      //function to register
      const {mutate, isLoading} = useMutation(registerUser, {
         onSuccess: (data) =>{

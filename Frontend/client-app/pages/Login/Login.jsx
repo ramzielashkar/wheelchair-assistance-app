@@ -16,7 +16,6 @@ const Login = () =>{
     //function to login
     const {mutate, isLoading} = useMutation(loginUser, {
         onSuccess: (data) =>{
-            console.log(data.data.user)
             store.dispatch(updateUser({
                 user: data.data.user
             }))
@@ -25,7 +24,6 @@ const Login = () =>{
             }))
         },
         onError: (e) => {
-            console.log(e.response)
            setError('Invalid Credentials')
         }
      })

@@ -39,7 +39,6 @@ const ServicePage = ({navigation, route})=>{
 
     //function to navigate to map
     const navigateToMap=()=>{
-        console.log("map")
         navigation.navigate('Map', {service:route.params.service ,name:route.params.name})
     }
      //function to mutate follow/unfollow service provider

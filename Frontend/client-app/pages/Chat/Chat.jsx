@@ -46,7 +46,6 @@ const Chat = ({data, route})=>{
     // function to send message
       const onSend = useCallback((messages = []) => {   
         messages[0].createdAt=messages[0].createdAt.toString()
-        console.log(messages[0].createdAt)
         if(!exists){
           set(ref(firebaseDB, 'chats/' + loggedInUser+route.params.service._id), {
             firstUserId: loggedInUser,
