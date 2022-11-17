@@ -7,7 +7,7 @@ const fs = require("fs");
 const { now } = require('mongoose');
 const emailValidator = require('email-validator');
 const passwordSchema = require('../validators/password.validator');
-
+const { Expo } = require('expo-server-sdk')
 
 //function to update profile picture
 const updateprofilepic = async (req, res)=>{
@@ -138,12 +138,69 @@ const getClient = async (req, res) =>{
     res.json({client});
 }
 
-module.exports = {
+//function to send notification
+const sendNotification = async (req,res)=>{
+    //creating expo client
+    let expo = new Expo();
+    const id = req.user.id;
+    const {notification} = req.body;
+    const Notification ={
+        notification,
+        date: new Date()
+    }
+    let messages =[]
+    const followers = await Seller.findById(id).select('followers').populate('followers.follower_id');
+    //getting followers device token
+    followers?.followers?.forEach(element => {
+        messages.push({
+            to: element.follower_id.deviceToken,
+            sound: 'default',
+            body: notification,
+          })
+        
+    });
+    let chunks = expo.chunkPushNotifications(messages);
+    let tickets = [];
+    (async () => {
+
+    for (let chunk of chunks) {
+        try {
+        let ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+        tickets.push(...ticketChunk);
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+})();
+    Seller.findById(id, (error, result)=>{
+        try {
+            result.notifications.push(Notification);
+            result.save();
+            res.json(result);
+        } catch (error) {
+            res.status(400).send(error.message);
+        } 
+    })
+
+}
+//function to get Notifications
+const getNotifications = async (req, res)=>{
+    const id = req.user.id;
+    const notifications = await Seller.findById(id).select('notifications');
+    if(!notifications) return res.status(404).json({message:"No Notifications Found"})
+    res.json({
+        notifications
+    })
+}
+    module.exports = {
     updateprofilepic,
     editProfile,
     addPicture,
     getPictures,
     deletePicture,
     getFollowers,
-    getClient
+    getClient,
+    sendNotification,
+    getNotifications
 }
