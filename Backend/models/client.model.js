@@ -24,7 +24,8 @@ const Client = User.discriminator('Client', new mongoose.Schema({
         type: Boolean,
         default:true
     },
-    
+    deviceToken:{
+    }
     
 }),
 );
