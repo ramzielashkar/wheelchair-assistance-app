@@ -209,6 +209,13 @@ const search = async (req, res)=>{
     res.json({result});
 }
 
+//function to get Notifications
+const getNotifications = async (req,res)=>{
+    const id = req.user.id;
+    const notifications = await Client.findById(id).select('notifications').populate('notifications.service_id');
+    res.json({notifications})
+}   
+
 module.exports= {
     register,
     login,
@@ -219,6 +226,7 @@ module.exports= {
     follow,
     unFollow,
     getFollowed,
-    search
+    search,
+    getNotifications
 }
 
