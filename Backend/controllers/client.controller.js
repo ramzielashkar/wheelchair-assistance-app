@@ -10,7 +10,8 @@ const { stringify } = require('querystring');
 
 // function to register client
 const register = async (req, res) =>{
-    const {name, email, password} = req.body;
+    const {name, email, password, deviceToken} = req.body;
+    console.log(deviceToken)
     if(!emailValidator.validate(email)){
         res.status(400).json({
             message: "Invalid email structure"
@@ -29,6 +30,7 @@ const register = async (req, res) =>{
         user.password = await bcrypt.hash(password, 10);
         user.geo_location = {"type":"Point", "coordinates":[1, 1]};
         user.location='';
+        user.deviceToken = deviceToken;
         await user.save();
         const token = jwt.sign({email: user.email, name: user.name}, process.env.JWT_SECRET_KEY, {
         });
@@ -40,6 +42,7 @@ const register = async (req, res) =>{
         res.status(400).json({
             message: err.message
         })
+        console.log(err.message)
     }
 }
 }
@@ -112,7 +115,7 @@ const getServiceProviders = async (req, res)=>{
     console.log(type, lat, lng)
    const options={
         geo_location:
-            { $near: { $geometry: { type: "Point", coordinates: [lat, lng]}, $maxDistance: 1000*1609.34 }
+            { $near: { $geometry: { type: "Point", coordinates: [lat, lng]}, $maxDistance: 10*1609.34 }
         }
     }
    const sellers = await Seller.find(options).where({type, active:true})
