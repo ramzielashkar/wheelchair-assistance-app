@@ -44,9 +44,9 @@
 | -------------------------------- | --------------------------------- | ------------------------ | -------------------------------- |
 | ![Landing](./readme/Landing.png) | ![Home](./readme/Feed%20Page.png) | ![Map](./readme/Map.png) | ![Profile](./readme/Profile.png) |
 
-| Service Page                                | Favorites                           | Chats                        | Chat                       |
-| ------------------------------------------- | ----------------------------------- | ---------------------------- | -------------------------- |
-| ![Service Page](./readme/Seller%20Page.png) | ![Favorites](./readme/Favorite.png) | ![Chats](./readme/Chats.png) | ![Chat](./readme/Chat.png) |
+| Service Page                                | Favorites                           | Notifications                                | Chat                       |
+| ------------------------------------------- | ----------------------------------- | -------------------------------------------- | -------------------------- |
+| ![Service Page](./readme/Seller%20Page.png) | ![Favorites](./readme/Favorite.png) | ![Notifications](./readme/Notifications.png) | ![Chat](./readme/Chat.png) |
 
 ### Admin Panel
 
@@ -56,9 +56,9 @@
 
 ### Service Provider Website
 
-| Followers                            | About                        | Service Pictures                              |
-| ------------------------------------ | ---------------------------- | --------------------------------------------- |
-| ![Followers](./readme/followers.png) | ![About](./readme/About.png) | ![Service Pictures](./readme/ProfilePage.png) |
+| Followers                            | About                        | Send Notification                                 |
+| ------------------------------------ | ---------------------------- | ------------------------------------------------- |
+| ![Followers](./readme/followers.png) | ![About](./readme/About.png) | ![New Notification](./readme/NewNotification.png) |
 
 <br><br>
 
@@ -84,9 +84,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | -------------------------------------- | ------------------------------------ | ------------------------------ | -------------------------------------- |
 | ![Landing](./readme/clientLanding.jpg) | ![Home](./readme/clientServices.jpg) | ![Map](./readme/clientMap.jpg) | ![Profile](./readme/clientProfile.jpg) |
 
-| Service Page                                | Favorites                                  | Chats                              | Chat                             |
-| ------------------------------------------- | ------------------------------------------ | ---------------------------------- | -------------------------------- |
-| ![Service Page](./readme/clientService.jpg) | ![Favorites](./readme/clientFavorites.jpg) | ![Chats](./readme/clientChats.jpg) | ![Chat](./readme/clientChat.jpg) |
+| Service Page                                | Favorites                                  | Notifications                                       | Chat                             |
+| ------------------------------------------- | ------------------------------------------ | --------------------------------------------------- | -------------------------------- |
+| ![Service Page](./readme/clientService.jpg) | ![Favorites](./readme/clientFavorites.jpg) | ![Notifications](./readme/clientNotifications.jpeg) | ![Chat](./readme/clientChat.jpg) |
 
 ### Admin Panel
 
@@ -96,9 +96,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 ### Service Provider Website
 
-| Followers                                   | Chats                               | Service Pictures                              |
-| ------------------------------------------- | ----------------------------------- | --------------------------------------------- |
-| ![Followers](./readme/serviceFollowers.PNG) | ![About](./readme/serviceChats.PNG) | ![Service Pictures](./readme/servicePics.PNG) |
+| Followers                                   | Chats                               | Send Notification                                      |
+| ------------------------------------------- | ----------------------------------- | ------------------------------------------------------ |
+| ![Followers](./readme/serviceFollowers.PNG) | ![About](./readme/serviceChats.PNG) | ![New Notification](./readme/serviceNotifications.PNG) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
