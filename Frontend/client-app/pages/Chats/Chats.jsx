@@ -8,6 +8,7 @@ import { getToken } from "../../query/getToken";
 import axiosInstance from '../../query/axios/index'
 import { baseUrl } from "../../Credentials/credentials";
 import { useEffect, useState } from "react";
+import EmptyState from "../../components/EmptyState/EmptyState";
 
 const Chats = ({navigation})=>{
     const loggedInUser = useSelector((state)=>state.user._id)
@@ -67,7 +68,11 @@ const Chats = ({navigation})=>{
            })
     }, [])
 
-
+        if(!data){
+            return <EmptyState
+            content={'Chats'}
+            icon={'message-text-outline'}/>
+        }
         return(
             <View style={styles.root}>
                 <View style={styles.chatsContainer}>
