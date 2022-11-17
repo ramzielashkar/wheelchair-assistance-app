@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "150466773323",
+    "firebase_url": "https://wheelchair-assistance-app-default-rtdb.firebaseio.com",
+    "project_id": "wheelchair-assistance-app",
+    "storage_bucket": "wheelchair-assistance-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150466773323:android:e612e47ee95af71f2fa8ce",
+        "android_client_info": {
+          "package_name": "com.wheelollife.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150466773323-elsbh889beri1cd7dc8ptbqu34dbdpsl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZCJniqmmpJwQwhvUZPwG6UrgbtsglC2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150466773323-elsbh889beri1cd7dc8ptbqu34dbdpsl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
