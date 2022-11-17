@@ -266,28 +266,31 @@ In the 'client-app' directory create a new folder called 'configurations'
 In the created folder, create a new file called 'firebaseConfiguration.js' and add the following:
 ```
 
-````sh
-import { getApp, initializeApp } from 'firebase/app';
-import { getDatabase, ref, set } from "firebase/database";
+```sh
+    import { getApp, initializeApp } from 'firebase/app';
+    import { getDatabase, ref, set } from "firebase/database";
 
-  // CAN BE OBTAINED FROM FIREBASE
-  const firebaseConfig = {
-  apiKey: "YOUR_API-KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "...",
-  messagingSenderId: "...",
-  appId: "...",
-  measurementId: "..."
-  };
+    // CAN BE OBTAINED FROM FIREBASE
+    const firebaseConfig = {
+    apiKey: "YOUR_API-KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "...",
+    messagingSenderId: "...",
+    appId: "...",
+    measurementId: "..."
+    };
 
-  const app = initializeApp(firebaseConfig);
-  export const firebaseDB = getDatabase(app);
-
+    const app = initializeApp(firebaseConfig);
+    export const firebaseDB = getDatabase(app);
+```
 
 4.  Run the application
 
     ```sh
     Go to the client-app directory and run: npm start
     ```
-````
+
+```
+
+```
