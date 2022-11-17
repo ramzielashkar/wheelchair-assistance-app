@@ -48,7 +48,6 @@ queryClient.setMutationDefaults(["UNFOLLOW"],{
     mutationFn: (id) => 
         axiosInstance(getToken()).delete(`client/unfollow/${id}`).then((res) => res.data),
         onSuccess: (data) => { 
-            console.log(data)
             queryClient.invalidateQueries({
                 queryKey: ALL_FAVORITES
             })

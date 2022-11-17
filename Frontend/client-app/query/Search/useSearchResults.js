@@ -16,7 +16,6 @@ export const useResults = (payload) => useQuery(
         queryKey: ALL_RESULTS,
         queryFn: async () => await getResults(payload),
         onSuccess: (data) => {
-          console.log("data: ", data)
         },
         
     }
