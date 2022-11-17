@@ -6,7 +6,7 @@ import { store } from "../../Redux/store";
 import { updateUser } from "../../Redux/slices/userSlice";
 import { ALL_PICTURES_KEY } from "../ServicePictures/useServicePictures";
 import { getToken } from "../getToken";
-
+import { ALL_NOTIFICATIONS_KEY } from "../ServiceNotifications/useNotifications";
 export default (queryClient)=>{
     const token = localStorage.getItem('token')
     console.log(token)
@@ -104,6 +104,18 @@ queryClient.setMutationDefaults(["UPDATE_PROFILE"],{
            store.dispatch(updateUser({
                 user: data.user
             }))
+        },
+        onError:(err)=>{
+        }
+})
+//function to send notifications 
+queryClient.setMutationDefaults(["NOTIFY"],{
+    mutationFn: (payload) => 
+        axiosInstance(getToken()).post(`service/notify`, {...payload}).then((res) => res.data),
+        onSuccess: (data) => {  
+            queryClient.invalidateQueries({
+                queryKey: ALL_NOTIFICATIONS_KEY
+            })
         },
         onError:(err)=>{
         }
