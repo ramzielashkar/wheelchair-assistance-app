@@ -4,8 +4,8 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import NotificationCard from "../../components/NotificationCard/NotificationCard";
 import { useNotifications } from "../../query/notifications/useNotifications";
 import styles from "./styles";
-const data=[]
 const Notifications = ()=>{
+    const data=[]
     const {data: notifications} = useNotifications();
             notifications?.notifications?.notifications?.map((notification)=>{
                 data.push({
