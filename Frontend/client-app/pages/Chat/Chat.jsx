@@ -32,19 +32,26 @@ const Chat = ({data, route})=>{
         }
         
       });
-      //function to listen to database changes
-      onValue(ref(firebaseDB, 'chats/'+ loggedInUser+route.params.service._id+'/messages'), (snapshot)=>{
-        const data = snapshot.val()
-        const Messages=[]
-        for (const [key, value] of Object.entries(data)){
-            Messages.push(value.message)
-        }
-        setMessages(Messages.reverse())
-    })
+     
+          //function to listen to database changes
+          onValue(ref(firebaseDB, 'chats/'+ loggedInUser+route.params.service._id+'/messages'), (snapshot)=>{
+            if(snapshot.exists()){
+            const data = snapshot.val()
+            const Messages=[]
+            for (const [key, value] of Object.entries(data)){
+                Messages.push(value.message)
+            }
+            setMessages(Messages.reverse())
+          }
+        })
+      
+      
+    
  
     },[])
     // function to send message
-      const onSend = useCallback((messages = []) => {   
+      const onSend = useCallback((messages = []) => { 
+        setExists(true)  
         messages[0].createdAt=messages[0].createdAt.toString()
         if(!exists){
           set(ref(firebaseDB, 'chats/' + loggedInUser+route.params.service._id), {
