@@ -1,0 +1,22 @@
+.notification-card{
+    background-color: white;
+    box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 35px;
+    border-bottom: 2px solid grey;
+}
+.notification-content{
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+.notification-date{
+    justify-content: flex-end;
+    font-family: "Roboto";
+    font-size: 18px; 
+    margin-bottom: 10px;
+    color: #0A61E1;
+}

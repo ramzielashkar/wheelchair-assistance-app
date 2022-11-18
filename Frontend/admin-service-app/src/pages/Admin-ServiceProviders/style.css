@@ -1,0 +1,96 @@
+.flex {
+  display: flex;
+}
+.services-section {
+  margin-top: 85px;
+  margin-left: 300px;
+  padding: 60px;
+  width: 100%;
+  align-items: center;
+}
+
+.services-title {
+  margin-right: 100px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Roboto";
+  padding-bottom: 1rem;
+  cursor: pointer;
+}
+.selected {
+  border-bottom: 2px solid;
+}
+.services-header {
+  margin-bottom: 45px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.add-btn {
+  padding: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a61e1;
+  border-radius: 50px;
+  display: none;
+}
+
+@media (max-width: 750px) {
+  .services-section {
+    margin-left: 100px;
+    margin-bottom: 60px;
+  }
+  .services-header {
+    justify-content: center;
+  }
+  .services-title {
+    width: 150px;
+    margin-right: 20px;
+    text-align: center;
+  }
+}
+@media (max-width: 1100px) {
+  .services-title {
+    width: 200px;
+    text-align: center;
+  }
+}
+@media (max-width: 890px) {
+  .add {
+    display: none;
+  }
+  .add-btn {
+    display: flex;
+  }
+}
+@media (max-width: 500px) {
+  .services-header{
+    padding-left: 30px;
+    justify-content: flex-start !important;
+  }
+  .services-title {
+    font-size: 20px;
+    width: auto;
+  }
+  .banned {
+    width: auto;
+  }
+  .services-section {
+    margin-top: 85px;
+    margin-left: 0;
+    padding: 0;
+    padding-top: 40px;
+  }
+  .add-btn {
+    padding: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a61e1;
+    border-radius: 50px;
+    position: fixed;
+    bottom: 80px;
+    right: 15px;
+  }
+}

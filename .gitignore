@@ -1,0 +1,19 @@
+.env
+node_modules/
+.credentials
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+.configurations
+configurations/
+
+# macOS
+.DS_Store
+node_modules/

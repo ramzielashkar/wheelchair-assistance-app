@@ -1,0 +1,43 @@
+
+.hidden{
+    display: none;
+}
+.about-header{
+    width: 100%;
+    justify-content: flex-end;
+}
+.about-form{
+    width: auto;
+    background-color: white;
+    box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+.about-description{
+    background-color: white;
+    border-radius: 30px;
+    padding: 16px 42px;
+    width: auto;
+    margin-bottom: 20px;
+    box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.25);
+    border: 1px solid gray;
+    font-family: "Roboto";
+}
+.btn-container{
+    align-self: flex-end;
+}
+.edit-btn{
+    margin-bottom: 20px;
+}
+.label{
+    margin-bottom: 10px;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: bold;
+  }
+.location{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}

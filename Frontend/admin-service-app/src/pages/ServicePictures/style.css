@@ -1,0 +1,123 @@
+.pictures-section{
+    width: 100%;
+}
+.pictures-header{
+    width: 100%;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    padding-right: 20px;
+}
+.pictures-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.picture-container{
+    margin-bottom: 30px;
+    position: relative;
+}
+.new-picture-btn{
+    align-items: center;
+    background-color: #0A61E1;
+    color: white;
+    width: 200px;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Roboto";
+    cursor: pointer;
+    padding: 15px 0;
+    text-align: center;
+    justify-content: center;
+
+}
+.service-picture{
+    width: 400px;
+    height: 300px;
+}
+.delete-pic{
+    position: absolute;
+    cursor: pointer;
+    bottom:10px;
+    right:40px;
+}
+.post-btn{
+    margin-top: 20px;
+    justify-content: flex-end;
+    width: 100%;
+}
+@media (max-width:1500px){
+    .pictures-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap:20px;
+    }
+    .service-picture{
+        width: 500px;
+        height: 400px;
+    }
+}
+@media (max-width:1200px){
+    .pictures-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap:20px;
+    }
+    .service-picture{
+        width: 350px;
+        height: 250px;
+    }
+}
+@media (max-width:850px){
+    .service-picture{
+        width: 250px;
+        height: 150px;
+    }
+    .post-btn{
+        margin-top: 20px;
+        justify-content: flex-end;
+        width: 80%;
+    }
+    .delete-pic{
+        right:20px !important;
+    }
+}
+@media (max-width:600px){
+    .service-picture{
+        width: 300px;
+        height: 200px;
+    }
+    .post-btn{
+        margin-top: 20px;
+        justify-content: flex-end;
+        width: 80%;
+    }
+}
+@media (max-width:600px){
+    .pictures-container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr) !important;
+        justify-items: center;
+        align-items: center;
+        gap:20px;
+    }
+    .service-picture{
+        width: 400px;
+        height: 300px;
+    }
+}
+@media (max-width:550px){
+    .profile-header{
+        margin-left: 40px !important;
+    }
+}
+@media (max-width:500px){
+    .profile-header{
+        margin-left: 0 !important;
+    }
+    .service-picture{
+        width: 300px;
+        height: 200px;
+    }
+}

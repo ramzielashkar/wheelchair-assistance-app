@@ -1,0 +1,41 @@
+.profile-pic{
+    position: relative;
+    justify-content: center;
+}
+.profile-pic-section{
+  padding: 0 30px;
+    justify-content: center;
+    align-items: center;
+}
+.edit-pic{
+    position: absolute;
+    border-radius: 50px;
+    background-color: #0A61E1;
+    bottom: -30px;
+    right: 20px;
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+}
+.profile-image{
+    width: 600px;
+    height: 400px;
+    border-radius: 20px;
+  }
+@media (max-width:750px){
+  .profile-image{
+    width: 500px;
+  }
+  
+  
+}
+@media (max-width:500px){
+  .profile-image{
+    width: 300px;
+    height: 300px;
+  }
+  
+
+}
