@@ -1,5 +1,5 @@
 import './style.css';
-import { MdHourglassDisabled } from "react-icons/md";
+import { MdHourglassDisabled, MdInsertPhoto } from "react-icons/md";
 const EmptyState=({content})=>{
     return(
         <section className="empty-section flex column">
