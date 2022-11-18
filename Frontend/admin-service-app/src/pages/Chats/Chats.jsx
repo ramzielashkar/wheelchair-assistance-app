@@ -71,6 +71,7 @@ const Chats = ()=>{
         //function to listen to database changes
         if(userId){
         onValue(ref(firebaseDB, 'chats/'+ userId+loggedInUser+'/messages'), (snapshot)=>{
+            console.log('data')
             const data = snapshot.val()
             const Messages=[]
             for (const [key, value] of Object.entries(data)){
@@ -79,7 +80,7 @@ const Chats = ()=>{
             setMessages(Messages)
         })
         }
-    },[])
+    },[msgToSend])
 
     
     //function to fetch chats
