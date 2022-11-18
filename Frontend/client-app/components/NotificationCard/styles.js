@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         paddingVertical:10,
         paddingHorizontal:10,
         backgroundColor:"white",
-        borderBottomColor:"black",
+        borderBottomColor:"gray",
         borderBottomWidth:1,
         flex:1,
         flexDirection:"column",
