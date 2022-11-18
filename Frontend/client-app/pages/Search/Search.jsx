@@ -14,7 +14,6 @@ const Search = ({navigation}) =>{
         navigation.navigate('Service', {service:item, name:item.name});
     }
     const {data:results,  refetch: refetchResults} = useResults(searchKey)
-
     if(search){
         refetchResults()
     }
@@ -44,11 +43,10 @@ let flatListStyle;
             onChange={(e)=>{setSearchKey(e)
             setSearch(true)}}
             />
-           
-            <View style={styles.serviceContainer}>
-            {results?.result.length ==0 &&  <EmptyState
+            {results?.result.length==0 && <EmptyState
             content={'Services'}
             icon={'map-marker'}/>}
+            <View style={styles.serviceContainer}>
             <FlatList 
                     columnWrapperStyle={flatListStyle}
                     data={results?.result}
