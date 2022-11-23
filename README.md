@@ -90,9 +90,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 ### Admin Panel
 
-| Service Providers                           | Clients                               | Add new seller                                    |
-| ------------------------------------------- | ------------------------------------- | ------------------------------------------------- |
-| ![Service Providers](./readme/services.PNG) | ![Clients](./readme/adminClients.PNG) | ![Add new seller](./readme/admin-new-service.PNG) |
+| Service Providers                            | Clients                               | Add new seller                                    |
+| -------------------------------------------- | ------------------------------------- | ------------------------------------------------- |
+| ![Service Providers](./readme/services2.png) | ![Clients](./readme/adminClients.PNG) | ![Add new seller](./readme/admin-new-service.PNG) |
 
 ### Service Provider Website
 
