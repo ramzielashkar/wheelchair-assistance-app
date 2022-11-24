@@ -88,6 +88,12 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | ------------------------------------------- | ------------------------------------------ | --------------------------------------------------- | -------------------------------- |
 | ![Service Page](./readme/clientService.jpg) | ![Favorites](./readme/clientFavorites.jpg) | ![Notifications](./readme/clientNotifications.jpeg) | ![Chat](./readme/clientChat.jpg) |
 
+### Animations
+
+| Live Chatting                            | Notifications                         | Directions                             |
+| ---------------------------------------- | ------------------------------------- | -------------------------------------- |
+| ![Live Chatting ](./readme/chatting.gif) | ![Notifications](./readme/notify.gif) | ![Directions](./readme/Directions.gif) |
+
 ### Admin Panel
 
 | Service Providers                            | Clients                               | Add new seller                                    |
